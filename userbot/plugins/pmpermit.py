@@ -12,14 +12,14 @@ CACHE = {}
 
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "**You havent set a name nibber** PM @CyberJalagamALT and you would hopefully get a reply ;-)"
-USER_BOT_WARN_ZERO = "`You were spamming my peru master"
+USER_BOT_WARN_ZERO = "`You were spamming my peru master`"
                      "{}'s` inbox. henceforth your retarded lame ass has been blocked by my master's ultra userbot.`".format(DEFAULTUSER)
                      "**My Boss Don't Have Time To Speak To Retards Like You. Please Leave.**"
 USER_BOT_NO_WARN = ("[──▄█▀█▄─────────██ \n▄████████▄───▄▀█▄▄▄▄ \n██▀▼▼▼▼▼─▄▀──█▄▄ \n█████▄▲▲▲─▄▄▄▀───▀▄ \n██████▀▀▀▀─▀────────▀▀](tg://user?id=408166600)\n\n"
                     "`Hello, this is 𝔡𝓔𝐎𝕩𝕐 Security Service`\n"
                     "**This service is only available for Telegram's Most Famous Peru Users**\n"
-                    "`You have found your way here to my master,"
-                    "{}'s` inbox.\n\n".format(DEFAULTUSER)
+                    "`You have found your way here to my master,`"
+                    "{}'s` inbox.`\n\n".format(DEFAULTUSER)
                     "Leave your name, phone number, address and 10k$ and hopefully you'll get a reply within 2 light years.`\n\n"
                     "** Send** `/start` ** so that we can decide why you decided to see my master**"
                     "{}".format(DEFAULTUSER)
