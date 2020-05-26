@@ -11,7 +11,7 @@ PREV_REPLY_MESSAGE = {}
 CACHE = {}
 
 
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "**No name set yet nibba, check pinned message in** @XtraTgBot"
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "**You haven't set any name nibba, PM @CyberJalagamALT Hopefully You Will Get A Reply XD"
 USER_BOT_WARN_ZERO = "`You were spamming my peru master, henceforth your retarded lame ass has been blocked by my master's Ultra userbot.` **Ma Boss Don't Have Time To Speak To Retards Like You. So, Please Leave.** "
 USER_BOT_NO_WARN = ("[──▄█▀█▄─────────██ \n▄████████▄───▄▀█▄▄▄▄ \n██▀▼▼▼▼▼─▄▀──█▄▄ \n█████▄▲▲▲─▄▄▄▀───▀▄ \n██████▀▀▀▀─▀────────▀▀](tg://user?id=767014786)\n\n"
                     "`Hello, this is X-tra-Telegram Security Service.You have found your way here to my master,`"
