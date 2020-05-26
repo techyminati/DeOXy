@@ -12,7 +12,7 @@ CACHE = {}
 
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "**You havent set a name nibber** PM @CyberJalagamALT and you would hopefully get a reply ;-)"
-USER_BOT_WARN_ZERO = "`You were spamming my peru master
+USER_BOT_WARN_ZERO = "`You were spamming my peru master"
                      f"{DEFAULTUSER}'s` inbox. henceforth your retarded lame ass has been blocked by my master's ultra userbot.` **Ma Boss Don't Have Time To Speak To Retards Like You. So, Please Leave.** "
 USER_BOT_NO_WARN = ("[──▄█▀█▄─────────██ \n▄████████▄───▄▀█▄▄▄▄ \n██▀▼▼▼▼▼─▄▀──█▄▄ \n█████▄▲▲▲─▄▄▄▀───▀▄ \n██████▀▀▀▀─▀────────▀▀](tg://user?id=408166600)\n\n"
                     "`Hello, this is 𝔡𝓔𝐎𝕩𝕐 Security Service`\n"
