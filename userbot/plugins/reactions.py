@@ -1,4 +1,5 @@
 # By Priyam Kalra
+#Ported By MrMobTech & TechyNewbie
 # Use .syntax emoji/reactions/ascii to know all commands
 from telethon import events
 from userbot.utils import admin_cmd
