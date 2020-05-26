@@ -24,7 +24,7 @@ async def amireallyalive(alive):
                      "Thanks to: @SnapDragon7410, @anubisxx\n"
                      f"ℱÃ𝐈𝕥н𝒻𝕦l𝕝𝔂 𝑤𝑜𝑟𝑘𝑖𝑛𝑔 𝑓𝑜𝑟: 🎖{DEFAULTUSER}\n"
                      "**◆ --------------------- ✪ ---------------------◆**\n\n"
-                     "                       ★彡 [GitHub](https://github.com/JAISHNAVPRASAD-DarklIous/X-tra-Telegram) 彡★"
+                     "                       ★彡 [GitHub](https://github.com/JAISHNAVPRASAD-DarklIous/DeOXy) 彡★"
                      "                                                ")
 SYNTAX.update({
     "alive": "\
