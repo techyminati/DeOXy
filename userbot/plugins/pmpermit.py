@@ -16,7 +16,7 @@ USER_BOT_WARN_ZERO = "`You were spamming my peru master, henceforth your retarde
 USER_BOT_NO_WARN = ("[──▄█▀█▄─────────██ \n▄████████▄───▄▀█▄▄▄▄ \n██▀▼▼▼▼▼─▄▀──█▄▄ \n█████▄▲▲▲─▄▄▄▀───▀▄ \n██████▀▀▀▀─▀────────▀▀](tg://user?id=767014786)\n\n"
                     "`Hello, this is X-tra-Telegram Security Service.You have found your way here to my master,`"
                     f"{DEFAULTUSER}'s` inbox.\n\n"
-                    "**This service is only available for Telegram's Most Famous Peru Users**\n"
+                    "This service is only available for Telegram's Most Famous Peru Users\n"
                     "Leave your name, phone number, address and 10k$ and hopefully you'll get a reply within 2 light years.`\n\n"
                     "** Send** `/start` ** so that we can decide why you decided to see my busy master  .**")
 
