@@ -11,13 +11,17 @@ PREV_REPLY_MESSAGE = {}
 CACHE = {}
 
 
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "**No name set yet nibba, check pinned message in** @XtraTgBot"
-USER_BOT_WARN_ZERO = "`You were spamming my peru master @CyberJalagam , henceforth your retarded lame ass has been blocked by my master's userbot.` **Ma Boss Don't Have Time To Speak To Retards Like You. So, Please Leave.** "
-USER_BOT_NO_WARN = ("[──▄█▀█▄─────────██ \n▄████████▄───▄▀█▄▄▄▄ \n██▀▼▼▼▼▼─▄▀──█▄▄ \n█████▄▲▲▲─▄▄▄▀───▀▄ \n██████▀▀▀▀─▀────────▀▀](tg://user?id=742506768)\n\n"
-                    "`Hello, this is X-tra-Telegram Security Service.You have found your way here to my master,`"
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "**You havent set a name nibber** PM @CyberJalagamALT and you would hopefully get a reply ;-)"
+USER_BOT_WARN_ZERO = "`You were spamming my peru master
+                     f"{DEFAULTUSER}'s` inbox. henceforth your retarded lame ass has been blocked by my master's ultra userbot.` **Ma Boss Don't Have Time To Speak To Retards Like You. So, Please Leave.** "
+USER_BOT_NO_WARN = ("[──▄█▀█▄─────────██ \n▄████████▄───▄▀█▄▄▄▄ \n██▀▼▼▼▼▼─▄▀──█▄▄ \n█████▄▲▲▲─▄▄▄▀───▀▄ \n██████▀▀▀▀─▀────────▀▀](tg://user?id=408166600)\n\n"
+                    "`Hello, this is 𝔡𝓔𝐎𝕩𝕐 Security Service`\n"
+                    "**This service is only available for Telegram's Most Famous Peru Users**\n"
+                    "`You have found your way here to my master,"
                     f"{DEFAULTUSER}'s` inbox.\n\n"
                     "Leave your name, phone number, address and 10k$ and hopefully you'll get a reply within 2 light years.`\n\n"
-                    "** Send** `/start` ** so that we can decide why you decided to see my master @CyberJalagam .**")
+                    "** Send** `/start` ** so that we can decide why you decided to see my master**"
+                    f"{DEFAULTUSER}")
 
 
 if Var.PRIVATE_GROUP_ID is not None:
