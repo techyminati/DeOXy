@@ -1,6 +1,7 @@
 # 𝔡𝓔𝐎𝕩𝕐 USERBOT
 # Documentation/Guide, visit [How2Techy](https://how2techy.com/x-tra-userbot-plugin-guide-part1/)
-Join https://t.me/CyberJalagam for updates and tuts\n
+Join https://t.me/CyberJalagam for updates and tuts
+
 Thanks To [X-tra-Telegram](https://github.com/Dark-Princ3/X-tra-Telegram) [HardcoreUserbot](https://github.com/Hack12R/HardcoreUserbot) [The-TG-Bot-2.0](https://github.com/PriyamKalra/The-TG-Bot-2.0) For helping me out with the codes. Thank You Buggies ;-)
 ### Click the button below to Deploy :P
 
