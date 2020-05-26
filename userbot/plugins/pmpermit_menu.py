@@ -110,7 +110,7 @@ async def _(event):
                          await asyncio.sleep(3)
                          await event.client(functions.contacts.BlockRequest(chat_id))
              elif x == "3":
-                 await borg.send_message(chat, "`Please decide what you sending right now,\n not that i'm judging if you're a helicopter or a banana but yeah, If you are anything else than a dope source,\n Do not send more messages and let my master see for himself if he wants to talk with you.`")
+                 await borg.send_message(chat, "`Please decide what you sending right now,\n not that i'm judging if you're a helicopter or a banana but yeah, If its anything else than a dope source,\n Do not send more messages and let my master see for himself if he wants to talk with you.`")
                  response = await conv.get_response(chat)
                  if not response.text == "/start":
                      await borg.send_message(chat, LWARN)
