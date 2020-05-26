@@ -168,7 +168,7 @@ def generate_change_log(git_repo, diff_marker):
 
 async def deploy_start(tgbot, message, refspec, remote):
     await message.edit(RESTARTING_APP)
-    await message.edit("𝔡𝓔𝐎𝕩𝕐 userbot is being Updated. Stay calm and wait for 5min, .alive/.ping/.about to check if I am alive ;P.")
+    await message.edit("𝔡𝓔𝐎𝕩𝕐 userbot is being Updated. Stay calm and wait for 5min, Use .alive Or .ping to check if I am alive ;P")
     await remote.push(refspec=refspec)
     await tgbot.disconnect()
     os.execl(sys.executable, sys.executable, *sys.argv)
