@@ -43,7 +43,7 @@ else:
             if variable in heroku_var:
                 del heroku_var[variable]
             else:
-                print("All Good!")
+                print("Booted Up!")
         print("Startup Completed")
     else:
         bot.start()
@@ -60,7 +60,7 @@ for name in files:
 
 import userbot._core
 
-print("Noice. Your Xtra MOD By MrMobTech Is Successfully Working :P")
+print("Your 𝔡𝓔𝐎𝕩𝕐 USERBOT Is Successfully Working yay")
 
 if len(argv) not in (1, 3, 4):
     bot.disconnect()
