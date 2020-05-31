@@ -1,18 +1,26 @@
-## Mandatory Imports
-```python3
-None
-```
-There is None Mandatory Imports. Because Var, bot and command are already automatically imported.
+#### PROJECT 𝔡𝓔𝐎𝕩𝕐 RB INTERNATIONAL
+## This project is still incomplete.
 
-## Explanation
-The Mandatory Imports are now automatically imported.
+If use these plugins, then it is at your own risk. Don't blame me if you get banned or muted, or even if you get a gban because of you were spammimg with this userbot. All those plugins are just for fun. 
 
-### Formation
-Now I will show a short script to show the formation of the desired script.
-```python3
-@command(pattern="^.alive", outgoing=True)
-async def hello_world(event):
-    if event.fwd_from:
-        return
-    await event.edit("**HELLO WORLD**\n\nThe following is controlling me too!\n" + Var.SUDO_USERS)
-```
+### I don't take any responsibility for any bad outcome with usage of This Userbot.
+
+
+## You are free to use any of these plugins, modify them or do anything. But you should not mess with credits. Leave them as they are. You may get reported for not giving proper credits.
+
+# Credits:
+
+@Raphielgang/Paperplane
+@SpEcHiDe/Uniborg
+@Dark-Princ3/X-tra-Telegram
+@PriyamKalra/The-TG-Bot-2.0
+@Hack12R/HardcoreUserbot
+
+### And some collaborators/testers :-)
+
+@Techy05
+
+@blacklytning
+
+
+As I told above, this project is still incomplete. I may have missed some credits. I'll add them later.
