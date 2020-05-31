@@ -2,7 +2,7 @@ from global_variables_sql import SYNTAX, MODULE_LIST
 from telethon import events
 import asyncio
 
-MODULE.append("memesecurity")
+MODULE_LIST.append("memesecurity")
 
 @borg.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
 async def _(event):
