@@ -24,8 +24,8 @@ SYNTAX.update({
 \n\nDetailed usage of fuction(s):\
 \n\n\
 \nUsage: Creates Cool solar system based Emojis.\n\
-\n\nList of included Animaes:
-\```.Earth```\n\
+\n\nList of included animaes:\
+\n```.Earth```\n\
 \n```.moon```\n\
 \n```.solarsystem```\n\
 \n```.isro```\n\
