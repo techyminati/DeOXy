@@ -118,6 +118,6 @@ SYNTAX.update({
 **Requested Module --> Carbonizer**\
 \n\nDetailed usage of fuction(s):\
 \n\n```.carbon <name>```\
-\nUsage: Prints a cool carbon name.\
+\nUsage: Prints a cool carbonized name picture.\
 "
 })
