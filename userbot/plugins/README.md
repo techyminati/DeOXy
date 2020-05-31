@@ -11,10 +11,15 @@ If use these plugins, then it is at your own risk. Don't blame me if you get ban
 # Credits:
 
 @Raphielgang/Paperplane
+
 @SpEcHiDe/Uniborg
+
 @Dark-Princ3/X-tra-Telegram
+
 @PriyamKalra/The-TG-Bot-2.0
+
 @Hack12R/HardcoreUserbot
+
 
 ### And some collaborators/testers :-)
 
