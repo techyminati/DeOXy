@@ -1,5 +1,8 @@
+from global_variables_sql import SYNTAX, MODULE_LIST
 from telethon import events
 import asyncio
+
+MODULE.append("memesecurity")
 
 @borg.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
 async def _(event):
@@ -70,3 +73,14 @@ async def _(event):
             await asyncio.sleep(animation_interval)
 
             await event.edit(animation_chars[i % 11])
+            
+SYNTAX.update({
+    "memesecurity": f"\
+**Requested Module --> Quick Heal Total Security**\
+\n\nDetailed usage of fuction(s):\
+\nUsage: Meme Scans The File.\
+\n\nList of included Commands:\
+\n```.sqh```\
+\n```.vquickheal```\
+"
+})
