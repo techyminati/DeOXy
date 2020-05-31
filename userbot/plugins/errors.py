@@ -17,7 +17,7 @@ from global_variables_sql import ERROR_LIST
 async def _(event):
     if event.fwd_from:
         return
-    erros = "💫  **List of known errors in Userbots (for noobs)**\n"
+    erros = "💫  **List of known errors in 𝔡𝓔𝐎𝕩𝕐 USERBOT **\n"
     ERROR_LIST.sort()
     prev = "1"
     num = 0
