@@ -10,15 +10,15 @@ if you are using these plugins, then it is at your own risk. Don't blame me if y
 
 # Credits:
 
-@Raphielgang/Paperplane
+[@Raphielgang/Paperplane](https://github.com/RaphielGang/Telegram-Paperplane)
 
-@SpEcHiDe/Uniborg
+[@SpEcHiDe/Uniborg](https://github.com/SpEcHiDe/UniBorg)
 
-@Dark-Princ3/X-tra-Telegram
+[@Dark-Princ3/X-tra-Telegram](https://github.com/Dark-Princ3/X-tra-Telegram)
 
-@PriyamKalra/The-TG-Bot-2.0
+[@PriyamKalra/The-TG-Bot-2.0](https://github.com/PriyamKalra/The-TG-Bot-2.0)
 
-@Hack12R/HardcoreUserbot
+[@Hack12R/HardcoreUserbot](https://github.com/Hack12R/HardcoreUserbot)
 
 
 ### And some collaborators/testers :-)
