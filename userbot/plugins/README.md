@@ -23,7 +23,7 @@ if you are using these plugins, then it is at your own risk. Don't blame me if y
 
 ### And some collaborators/testers :-)
 
-[@Techy05](https://t.me/Techy05)
+[@Techy05](https://t.me/TechyNewbie)
 
 [@blacklytning](https://t.me/blacklytning)
 
