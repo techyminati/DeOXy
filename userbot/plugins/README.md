@@ -23,8 +23,11 @@ if you are using these plugins, then it is at your own risk. Don't blame me if y
 
 ### And some collaborators/testers :-)
 
-@Techy05
+[@Techy05](https://t.me/Techy05)
 
-@blacklytning
+[@blacklytning](https://t.me/blacklytning)
+
+And ofc This Iz Me [@CyberJalagam](https://t.me/CyberJalagam)
+Don't PM. Instead Msg [@CyberJalagamALT](https://t.me/CyberJalagamALT)
 
 As I told above, this project is still incomplete. I may have missed some credits. I'll add them later.
