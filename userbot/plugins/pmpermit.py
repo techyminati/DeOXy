@@ -12,12 +12,12 @@ CACHE = {}
 
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "**You haven't set any name nibba, PM @CyberJalagamALT Hopefully You Will Get A Reply XD"
-USER_BOT_WARN_ZERO = "`You were spamming my peru master, henceforth your retarded lame ass has been blocked by my master's Ultra userbot.` **Ma Boss Don't Have Time To Speak To Retards Like You. So, Please Leave.** "
+USER_BOT_WARN_ZERO = "`You were spamming my peru master, 𝔡𝓔𝐎𝕩𝕐 Service Has Banned You... MasterRequest.` **Ma Boss Don't Have Time To Speak To Retards Like You. So, Please Leave.** "
 USER_BOT_NO_WARN = ("[──▄█▀█▄─────────██ \n▄████████▄───▄▀█▄▄▄▄ \n██▀▼▼▼▼▼─▄▀──█▄▄ \n█████▄▲▲▲─▄▄▄▀───▀▄ \n██████▀▀▀▀─▀────────▀▀](tg://user?id=767014786)\n\n"
-                    "`Hello, this is X-tra-Telegram Security Service.You have found your way here to my master,`"
+                    "`Hello, this is 𝔡𝓔𝐎𝕩𝕐 ULTRA Security Service.You have found your way here to my peru master,`"
                     f"{DEFAULTUSER}'s` inbox.\n\n"
-                    "This service is only available for Telegram's Most Famous Peru Users\n"
-                    "Leave your name, phone number, address and 10k$ and hopefully you'll get a reply within 2 light years.`\n\n"
+                    "This service is only available for Telegram's TOP Most Famous Peru Users\n"
+                    "Leave your name, phone number, address and 10k$. Don't Spam, 𝔡𝓔𝐎𝕩𝕐 SERVICE can ban Blacklist you.`\n\n"
                     "** Send** `/start` ** so that we can decide why you decided to see my busy master  .**")
 
 
@@ -69,7 +69,7 @@ if Var.PRIVATE_GROUP_ID is not None:
         if event.is_private:
             if pmpermit_sql.is_approved(chat.id):
                 pmpermit_sql.disapprove(chat.id)
-                await event.edit(" ███████▄▄███████████▄  \n▓▓▓▓▓▓█░░░░░░░░░░░░░░█\n▓▓▓▓▓▓█░░░░░░░░░░░░░░█\n▓▓▓▓▓▓█░░░░░░░░░░░░░░█\n▓▓▓▓▓▓█░░░░░░░░░░░░░░█\n▓▓▓▓▓▓█░░░░░░░░░░░░░░█\n▓▓▓▓▓▓███░░░░░░░░░░░░█\n██████▀▀▀█░░░░██████▀  \n░░░░░░░░░█░░░░█  \n░░░░░░░░░░█░░░█  \n░░░░░░░░░░░█░░█  \n░░░░░░░░░░░█░░█  \n░░░░░░░░░░░░▀▀ \n\nDon't Spam Me Nibba. I Have A Lot Of Works To Do. Annoy Someone else...[{}](tg://user?id={})".format(firstname, chat.id))
+                await event.edit(" ███████▄▄███████████▄  \n▓▓▓▓▓▓█░░░░░░░░░░░░░░█\n▓▓▓▓▓▓█░░░░░░░░░░░░░░█\n▓▓▓▓▓▓█░░░░░░░░░░░░░░█\n▓▓▓▓▓▓█░░░░░░░░░░░░░░█\n▓▓▓▓▓▓█░░░░░░░░░░░░░░█\n▓▓▓▓▓▓███░░░░░░░░░░░░█\n██████▀▀▀█░░░░██████▀  \n░░░░░░░░░█░░░░█  \n░░░░░░░░░░█░░░█  \n░░░░░░░░░░░█░░█  \n░░░░░░░░░░░█░░█  \n░░░░░░░░░░░░▀▀ \n\nDon't Spam My Master Nibba. He Have Lot Of Works To Do. Annoy Someone else... 𝔡𝓔𝐎𝕩𝕐 Service Has Banned [{}](tg://user?id={})".format(firstname, chat.id))
                 await asyncio.sleep(3)
                 await event.client(functions.contacts.BlockRequest(chat.id))
 
