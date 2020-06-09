@@ -149,7 +149,7 @@ async def promote(promt):
     try:
         await promt.client(
             EditAdminRequest(promt.chat_id, user.id, new_rights, rank))
-        await promt.edit("`Promoted Successfully! Now gib Party`")
+        await promt.edit("`Targeted User, Promoted Successfully!`")
 
     # If Telethon spit BadRequestError, assume
     # we don't have Promote permission
@@ -205,7 +205,7 @@ async def demote(dmod):
     except BadRequestError:
         await dmod.edit(NO_PERM)
         return
-    await dmod.edit("`Demoted this retard Successfully!`")
+    await dmod.edit("`Demoted the targeted person!`")
 
     # Announce to the logging group if we have demoted successfully
     if BOTLOG:
@@ -504,7 +504,7 @@ async def leave(e):
         if '-' in str(e.chat_id):
             await borg(LeaveChannelRequest(e.chat_id))
         else:
-            await e.edit('`Sir This is Not A Group`')
+            await e.edit('`This Is Not A Group`')
             
             
 @register(outgoing=True, pattern="^.users ?(.*)")
@@ -597,9 +597,9 @@ async def get_user_from_id(user, event):
 
     return user_obj
 
-MODULE_LIST.append("admin")
+MODULE_LIST.append("admin_managment")
 SYNTAX.update({
-    "admin": "\
+    "admin_managment": "\
 **Detailed usage of Function(s) in Admin module -->**\
 \n\n• `.promote <username/reply> <custom rank (optional)>`\
 \nUsage: __Provides admin rights to the person in the chat.__\
