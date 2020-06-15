@@ -32,7 +32,7 @@ from gtts import gTTS
 from emoji import get_emoji_regexp
 from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, YOUTUBE_API_KEY, CHROME_DRIVER, GOOGLE_CHROME_BIN
 from userbot.utils import register
-from global_variables_sql import SYNTAX, MODULE_LIST
+
 
 CARBONLANG = "auto"
 LANG = "en"
@@ -99,7 +99,7 @@ async def carbon_api(e):
    await e.client.send_file(
          e.chat_id,
          file,
-         caption="<< `Here's your carbon!` \n **Carbonised by** [DeOXy BOT](https://github.com/JAISHNAVPRASAD-DarklIous/DeOXy)>>\n**Colour Scheme: **`{}`".format(color_name),
+         caption="<< `Here's your carbonized image` \n **Carbonised by** [MrMobTech](https://t.me/CyberJalagam)>>\n**Colour Scheme: **`{}`".format(color_name),
          force_document=True,
          reply_to=e.message.reply_to_msg_id,
          )
@@ -107,17 +107,3 @@ async def carbon_api(e):
    driver.quit()
    # Removing carbon.png after uploading
    await e.delete() # Deleting msg
-   
-MODULE_LIST.append("carbon")
-
-
-
-
-SYNTAX.update({
-    "carbon": f"\
-**Requested Module --> Carbonizer**\
-\n\nDetailed usage of fuction(s):\
-\n\n```.carbon <name>```\
-\nUsage: Prints a cool carbonized name picture.\
-"
-})
