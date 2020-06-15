@@ -8,7 +8,7 @@ from global_variables_sql import SYNTAX, MODULE_LIST
 
 MODULE_LIST.append("admins")
 
-@borg.on(admin_cmd("admins ?(.*)"))
+@borg.on(admin_cmd("admemes ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -48,7 +48,7 @@ SYNTAX.update({
     "admins": f"\
 **Requested Module --> Admin Search**\
 \n\nDetailed usage of fuction(s):\
-\n\n```.admins```\
+\n\n```.admemes```\
 \nUsage: Shows All The Admins On The Group.\
 \n\n**Reply To A Message For Mentions**\
 "
