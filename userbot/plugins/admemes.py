@@ -1,18 +1,18 @@
 # For UniBorg
-# Syntax .admemes
-#Ported To X-tra Bot v2.0 By MrMobTech
+# Syntax .admins
+#Ported To DeOXy v2.0 By MrMobTech
 from telethon import events
 from telethon.tl.types import ChannelParticipantsAdmins, ChannelParticipantAdmin, ChannelParticipantCreator
 from uniborg.util import admin_cmd
 from global_variables_sql import SYNTAX, MODULE_LIST
 
-MODULE_LIST.append("admemes")
+MODULE_LIST.append("admins")
 
-@borg.on(admin_cmd("admemes ?(.*)"))
+@borg.on(admin_cmd("admins ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
-    mentions = "Admemes In This Group..\n"
+    mentions = "Admins Of This Group..\n"
     should_mention_admins = False
     reply_message = None
     pattern_match_str = event.pattern_match.group(1)
@@ -45,10 +45,10 @@ async def _(event):
 
 
 SYNTAX.update({
-    "admemes": f"\
-**Requested Module --> Adememes**\
+    "admins": f"\
+**Requested Module --> Admin Search**\
 \n\nDetailed usage of fuction(s):\
-\n\n```.admemes```\
+\n\n```.admins```\
 \nUsage: Shows All The Admins On The Group.\
 \n\n**Reply To A Message For Mentions**\
 "
