@@ -18,7 +18,7 @@ Thank You
 
 # Complete Guide To Enable This BOT - 
 
-DO NOT SKIP ANY STEPS
+* DO NOT SKIP ANY STEPS
 
 * Install this application Termux from Google Play
 
@@ -68,15 +68,15 @@ Follow these OnScreen prompts-
 ```
 
 
-Enter your phone number including your country code, Enter The OTP
+* Enter your phone number including your country code, Enter The OTP
 
-Copy and keep the long text produced (eg, bybdiqebcuiqhdoj2k) at a secure place.
-
-
+* Copy and keep the long text produced (eg, bybdiqebcuiqhdoj2k) at a secure place.
 
 
 
-N.B.: Keep this string safe! Anyone with this string can use it to login into your account and do anything they want to to do.
+
+
+* N.B.: Keep this string safe! Anyone with this string can use it to login into your account and do anything they want to to do.
 
 
 
@@ -88,7 +88,7 @@ N.B.: Keep this string safe! Anyone with this string can use it to login into yo
 
 
 
-Click On Deploy To Heroku Button-
+* Click On Deploy To Heroku Button-
 
 [![Deploy To Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
@@ -111,11 +111,11 @@ Click On Deploy To Heroku Button-
 
         TG_BOT_USER_NAME_BF_HER- Username Of The Created Bot [Using @BotFather]
 
-Rest of the fields can be left with the default values.
+* Rest of the fields can be left with the default values.
 
 
 
-Now go to https://github.com/JAISHNAVPRASAD-DarklIous/DeOXy
+* Now go to https://github.com/JAISHNAVPRASAD-DarklIous/DeOXy
 
 * Fork and star repository (if on android, enable desktop site to fork)
 
@@ -143,24 +143,24 @@ Now go to https://github.com/JAISHNAVPRASAD-DarklIous/DeOXy
 
 # TO Enable AFK And PMPermit
 
-Create A Group And Add Haruka Or Rose
+* Create A Group And Add Haruka Or Rose
 
 * Go To the group and use the command 
 ```
 .get_id
 ```
 
-Copy the whole value
+* Copy the whole value
 
-Enable Inlinie From BotFather
+* Enable Inlinie From BotFather
 
-Go To dashboard.heroku.com
+* Go To dashboard.heroku.com
 
-Go To your app
+* Go To your app
 
-Tap on settings
+* Tap on settings
 
-Click on REVEAL CONFIG VARS
+* Click on REVEAL CONFIG VARS
 
 * Add two vars- 
 ```
@@ -170,65 +170,65 @@ PRIVATE_GROUP_ID
 PRIVATE_GROUP_BOT_API_ID
 ```
 
-Add the value as the number you got from the group for both vars
+* Add the value as the number you got from the group for both vars
 
-DO NOT ADD ADMINS TO THE GROUP, IT WILL CHANGE THE ID
+* DO NOT ADD ADMINS TO THE GROUP, IT WILL CHANGE THE ID
 
 
 
 ------------------------------------------------------------------------------------------------------------------------
 
-How To SETUP Custom Alive Name
+# How To SETUP Custom Alive Name
 
-Go to heroku and add the following vars: 
+* Go to heroku and add the following vars: 
 
 Key: 
 ```
 ALIVE_NAME
 ```
-Value: The name you want to show
+* Value: The name you want to show
 
 ------------------------------------------------------------------------------------------------------------------------
 
-How To Setup INBUILT Updater Module
+# How To Setup INBUILT Updater Module
 
-⏩You need to set these two variables in heroku vars.. 
+* You need to set these two variables in heroku vars.. 
 
 
 ```
 HEROKU_APP_NAME
 ```
-It's the name of your app on heroku. 
+* It's the name of your app on heroku. 
 
 
 ```
 HEROKU_API_KEY
 ```
-You can get the value for this on https://dashboard.heroku.com/account look for api key there
+* You can get the value for this on https://dashboard.heroku.com/account look for api key there
 
-After That Just .update now to update your DeOXY
+* After That Just .update now to update your DeOXY
 
-In Case You Aren't Able To Update, PM @MrMobTech_Bot
+* In Case You Aren't Able To Update, PM @MrMobTech_Bot
 
 ------------------------------------------------------------------------------------------------------------------------
 
 
 
-Send Your Feedback @MrMobTech_Bot
+# Send Your Feedback @MrMobTech_Bot
 
-If You Like My Project, Contribute To The Development
+# If You Like My Project, Contribute To The Development
 
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.me/RBINTERNATIONALNET)
-
-
-
-   𝔡𝓔𝐎𝕩𝕐 USERBOT TEAM
+# [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.me/RBINTERNATIONALNET)
 
 
 
+   ### 𝔡𝓔𝐎𝕩𝕐 USERBOT TEAM
 
 
-  〰️ @DeOXyOFFICIAL 〰️
+
+
+
+ # 〰️ @DeOXyOFFICIAL 〰️
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
