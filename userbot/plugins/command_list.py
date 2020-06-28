@@ -4,7 +4,7 @@ import asyncio
 import time
 
 
-@command(pattern="^.cmds", outgoing=True)
+@command(pattern="^.plugins", outgoing=True)
 async def install(event):
     if event.fwd_from:
         return
@@ -16,5 +16,5 @@ async def install(event):
     o = stdout.decode()
     _o = o.split("\n")
     o = "\n".join(_o)
-    OUTPUT = f"**List of Plugins:**\n{o}\n\n**TIP:** __If you want to know the commands for a plugin, do:-__ \n `.help <plugin name>` **without the < > brackets.**\n__All plugins might not work directly. Visit__ @XtraTgChat __for assistance.__"
+    OUTPUT = f"**List of Plugins:**\n{o}\n\n**TIP:** Use .send <plugin_name> to send the plugin and .install replied to the module to add the plugin to the userbot"
     await event.edit(OUTPUT)
