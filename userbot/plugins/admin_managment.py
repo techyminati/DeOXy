@@ -13,7 +13,7 @@ from telethon import events
 import asyncio
 from datetime import datetime
 from telethon.tl.functions.channels import EditBannedRequest
-from telethon.tl.types import ChatBannedRights
+from telethon.tl.types import ChatBannedRights, ChannelParticipantsAdmins, ChannelParticipantAdmin, ChannelParticipantCreator
 
 from telethon.errors import (BadRequestError, ChatAdminRequiredError,
                              ImageProcessFailedError, PhotoCropSizeSmallError,
@@ -386,25 +386,40 @@ async def promote(promt):
             f"CHAT: {promt.chat.title}(`{promt.chat_id}`)")
 
 
-@register(outgoing=True, pattern="^.admins$")
-@errors_handler
-async def get_admin(show):
-    """ For .admins command, list all of the admins of the chat. """
-    info = await show.client.get_entity(show.chat_id)
-    title = info.title if info.title else "this chat"
-    mentions = f'<b>Admins in {title}:</b> \n'
-    try:
-        async for user in show.client.iter_participants(
-                show.chat_id, filter=ChannelParticipantsAdmins):
-            if not user.deleted:
-                link = f"<a href=\"tg://user?id={user.id}\">{user.first_name}</a>"
-                userid = f"<code>{user.id}</code>"
-                mentions += f"\n{link} {userid}"
-            else:
-                mentions += f"\nDeleted Account <code>{user.id}</code>"
-    except ChatAdminRequiredError as err:
-        mentions += " " + str(err) + "\n"
-    await show.edit(mentions, parse_mode="html")
+@borg.on(admin_cmd("admins ?(.*)"))
+async def _(event):
+    if event.fwd_from:
+        return
+    mentions = "Admins Of This Group..\n"
+    should_mention_admins = False
+    reply_message = None
+    pattern_match_str = event.pattern_match.group(1)
+    if "loud" in pattern_match_str:
+        should_mention_admins = True
+        if event.reply_to_msg_id:
+            reply_message = await event.get_reply_message()
+    chat = await event.get_input_chat()
+    async for x in borg.iter_participants(chat, filter=ChannelParticipantsAdmins):
+        if not x.deleted:
+            if isinstance(x.participant, ChannelParticipantCreator):
+                mentions += "\n 👑 [{}](tg://user?id={}) `{}`".format(
+                    x.first_name, x.id, x.id)
+    mentions += "\n"
+    async for x in borg.iter_participants(chat, filter=ChannelParticipantsAdmins):
+        if not x.deleted:
+            if isinstance(x.participant, ChannelParticipantAdmin):
+                mentions += "\n ⚜️ [{}](tg://user?id={}) `{}`".format(
+                    x.first_name, x.id, x.id)
+        else:
+            mentions += "\n `{}`".format(x.id)
+    if should_mention_admins:
+        if reply_message:
+            await reply_message.reply(mentions)
+        else:
+            await event.reply(mentions)
+        await event.delete()
+    else:
+        await event.edit(mentions)
 
 
 @register(outgoing=True, pattern="^.pin(?: |$)(.*)")
@@ -627,7 +642,7 @@ SYNTAX.update({
 \nUsage: __Retrieves a list of admins in the chat.__\
 \n\n• `.users or .users <name of member>`\
 \nUsage: __Retrieves all (or queried) users in the chat.__\
-\n\n• `.setgppic <reply to image>`\
+\n\n• `.setpic <reply to image>`\
 \nUsage: __Changes the group's display picture.__\
 "
 })
