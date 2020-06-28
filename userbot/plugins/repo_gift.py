@@ -66,6 +66,6 @@ SYNTAX.update({
 **Requested Module --> Lucky**\
 \n\nDetailed usage of fuction(s):\
 \n\n```.lucky```\
-\nUsage: Gives the lucky use a Gift :-0 .\
+\nUsage: Gifts DeOXy Repo :-0 .\
 "
 })            
