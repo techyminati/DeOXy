@@ -20,11 +20,11 @@ Thank You
 
 DO NOT SKIP ANY STEPS
 
-👉 Install this application Termux from Google Play
+* Install this application Termux from Google Play
 
 
 
-👉 Open Termux
+* Open Termux
 
 
 ```
@@ -80,11 +80,11 @@ N.B.: Keep this string safe! Anyone with this string can use it to login into yo
 
 
 
-👉 Open this link https://my.telegram.org/auth?to=apps
+*  Open this link https://my.telegram.org/auth?to=apps
 
 
 
-👉 Create an app with the necessary infos and copy the ID and HASH for the next step
+* Create an app with the necessary infos and copy the ID and HASH for the next step
 
 
 
@@ -97,7 +97,7 @@ Click On Deploy To Heroku Button-
 
 
 
-👉 Add The Following Mandatory Feilds
+* Add The Following Mandatory Feilds
 
          App name - Any Of Your Choice
 
@@ -117,27 +117,27 @@ Rest of the fields can be left with the default values.
 
 Now go to https://github.com/JAISHNAVPRASAD-DarklIous/DeOXy
 
-👉 Fork and star repository (if on android, enable desktop site to fork)
+* Fork and star repository (if on android, enable desktop site to fork)
 
  
 
-👉 Tap on Deploy app
+* Tap on Deploy app
 
 
 
-👉 Wait for deploy to finish.
+* Wait for deploy to finish.
 
 
 
-👉 After deploy press Manage App then go to Resources
+* After deploy press Manage App then go to Resources
 
 
 
-👉 Enable the worker dyno, by toggling the slide-toggle.
+* Enable the worker dyno, by toggling the slide-toggle.
 
 
 
-👉 Done. Your UserBot is alive. Check with .help in any chat.
+* Done. Your UserBot is alive. Check with .help in any chat.
 
 ------------------------------------------------------------------------------------------------------------------------
 
@@ -218,7 +218,7 @@ Send Your Feedback @MrMobTech_Bot
 
 If You Like My Project, Contribute To The Development
 
-https://www.paypal.me/RBINTERNATIONALNET
+[![Contribute To This Project](https://www.paypal.me/RBINTERNATIONALNET)
 
 
 
