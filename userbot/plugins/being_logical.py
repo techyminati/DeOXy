@@ -1,6 +1,6 @@
 """
 Say something interesting...
-Syntax: .belo
+Syntax: .logic
     by @Deonnn
 Quotes credits: Being logical Channel
 """
@@ -16,10 +16,10 @@ import sys
 import random
 from global_variables_sql import SYNTAX, MODULE_LIST
 
-MODULE_LIST.append("belo")
+MODULE_LIST.append("logic")
 
 
-@borg.on(events.NewMessage(pattern=r"\.belo", outgoing=True))
+@borg.on(events.NewMessage(pattern=r"\.logic", outgoing=True))
 
 async def _(event):
 
@@ -424,9 +424,9 @@ async def _(event):
     
 
 SYNTAX.update({
-    "belo": "\
-**Requested module --> Bot Say Something ;-)**\
+    "logic": "\
+**Requested module --> Being Logical ;-)**\
 \n\n• `.bello`\
-\n__Usage: Pulls out a random shit. yay__\
+\n__Usage: Pulls out a random logic command. yay__\
 "
 })
