@@ -37,14 +37,14 @@ from userbot.utils import register, errors_handler, admin_cmd
 # =================== CONSTANT ===================
 PP_TOO_SMOL = "`The image is too small`"
 PP_ERROR = "`Failure while processing the image`"
-NO_ADMIN = "`I am not an admin nub nibba!`"
-NO_PERM = "`I don't have sufficient permissions! This is so sed. Alexa play despacito`"
+NO_ADMIN = "`Request Failed. ADMIN ACCESS DENIED`"
+NO_PERM = "`Request Failed. NOT ENOUGH RIGHTS`"
 NO_SQL = "`Running on Non-SQL mode!`"
 
 CHAT_PP_CHANGED = "`Chat Picture Changed`"
 CHAT_PP_ERROR = "`Some issue with updating the pic,`" \
-                "`maybe coz I'm not an admin,`" \
-                "`or don't have enough rights.`"
+                "`Admin Access Failed,`" \
+                "`Or Not Enough Rights.`"
 INVALID_MEDIA = "`Invalid Extension`"
 
 BANNED_RIGHTS = ChatBannedRights(
@@ -76,10 +76,10 @@ UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
 # ================================================
 
 
-@register(outgoing=True, pattern="^.setgpic$")
+@register(outgoing=True, pattern="^.setpic$")
 @errors_handler
 async def set_group_photo(gpic):
-    """ For .setgpic command, changes the picture of a group """
+    """ For .setpic command, changes the picture of a group """
     if not gpic.is_group:
         await gpic.edit("`I don't think this is a group.`")
         return
@@ -550,7 +550,7 @@ async def get_users(show):
         await show.edit(mentions)
     except MessageTooLongError:
         await show.edit(
-            "Damn, this is a huge group. Uploading users lists as file.")
+            " Members Limit Exceeded. Creating A txt File")
         file = open("userslist.txt", "w+")
         file.write(mentions)
         file.close()
