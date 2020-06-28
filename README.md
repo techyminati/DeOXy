@@ -208,13 +208,13 @@ HEROKU_API_KEY
 
 * After That Just .update now to update your DeOXY
 
-* In Case You Aren't Able To Update, PM @MrMobTech_Bot
+* In Case You Aren't Able To Update, PM [Here](t.me/MrMobTech_Bot)
 
 ------------------------------------------------------------------------------------------------------------------------
 
 
 
-# Send Your Feedback @MrMobTech_Bot
+# Send Your Feedback [Here](t.me/MrMobTech_Bot)
 
 # If You Like My Project, Contribute To The Development
 
