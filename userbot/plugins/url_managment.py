@@ -9,7 +9,9 @@ import os
 import requests
 import json
 from userbot.utils import admin_cmd
+from global_variables_sql import SYNATX, MODULES_LIST
 
+MODULES_LIST.append("url_managment")
 
 @borg.on(admin_cmd("dns (.*)"))
 async def _(event):
