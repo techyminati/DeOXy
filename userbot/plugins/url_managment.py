@@ -9,7 +9,7 @@ import os
 import requests
 import json
 from userbot.utils import admin_cmd
-from global_variables_sql import SYNATX, MODULES_LIST
+from global_variables_sql import SYNTAX, MODULES_LIST
 
 MODULES_LIST.append("url_managment")
 
