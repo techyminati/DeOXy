@@ -6,7 +6,7 @@ import sys
 import io
 
 
-@command(pattern="^.exec")
+@command(pattern="^.execute")
 async def _(event):
     if event.fwd_from:
         return
