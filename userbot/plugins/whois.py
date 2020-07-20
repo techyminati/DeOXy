@@ -1,5 +1,5 @@
 """Get Telegram Profile Picture and other information
-Syntax: .whois @username"""
+Syntax: .info @username"""
 
 import html
 from telethon.tl.functions.photos import GetUserPhotosRequest
@@ -9,7 +9,7 @@ from telethon.utils import get_input_location
 from userbot.utils import admin_cmd
 
 
-@borg.on(admin_cmd("whois ?(.*)"))
+@borg.on(admin_cmd("info ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -48,14 +48,14 @@ async def _(event):
         location = str(e)
     caption = """Extracted Userdata From Mr.MobTech's DATABASE
 ID: <code>{}</code>
-Rendi's Name: <a href='tg://user?id={}'>{}</a>
+Account Name: <a href='tg://user?id={}'>{}</a>
 Bio: {}
 DC ID: {}
 Number of PPs: {}
 Restricted? : {}
-Verified gey: {}
+Verified noob: {}
 Bot(nub): {}
-Groups in Common with this gey: {}
+Groups in Common with this guy: {}
 """.format(
         user_id,
         user_id,
