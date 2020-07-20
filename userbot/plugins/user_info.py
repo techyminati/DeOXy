@@ -44,7 +44,7 @@ async def _(event):
     try:
         dc_id, location = get_input_location(replied_user.profile_photo)
     except Exception as e:
-        dc_id = "Need a Profile Picture to check **this**"
+        dc_id = "DeOXY Master- ERROR. No Profile Picture Found"
         location = str(e)
     caption = """Extracted Userdata From Mr.MobTech's DATABASE
 ID: <code>{}</code>
