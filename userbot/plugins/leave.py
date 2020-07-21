@@ -23,7 +23,7 @@ async def leave(e):
 
 
 SYNTAX.update({
-    "Leave": f"\
+    "leave": f"\
 **Requested Module --> Chat Leaver**\
 \n\nDetailed usage of fuction(s):\
 \n\n```.Leave```\
