@@ -1,6 +1,6 @@
 {
-  "name": "𝔡𝓔𝐎𝕩𝕐",
-  "description": "Main Codes By SNAPDRAGON.Custom Userbot By @CyberJalagam\n\n PM https://t.me/CyberJalagamALT for any problems or support",
+  "name": "X-tra Telegram",
+  "description": "Userbot created by a SNAPDRAGON and custom fork by ANUBIS\n\n join https://t.me/XtraTgChat for any problems or support",
   "logo": "https://telegra.ph/file/1be6c59f53fef57b5745b.jpg",
   "keywords": [
     "telegram",
@@ -9,7 +9,7 @@
     "modular",
     "productivity"
   ],
-  "repository": "https://github.com/JAISHNAVPRASAD-DarklIous/DeOXy/",
+  "repository": "https://github.com/Dark-Princ3/X-tra-Telegram/",
   "website": "#TODO",
   "success_url": "#TODO",
   "env": {
@@ -98,7 +98,7 @@
   "addons": [{
     "plan": "heroku-postgresql",
     "options": {
-      "version": "9.5"
+      "version": "9.6"
     }
   }],
   "buildpacks": [{
