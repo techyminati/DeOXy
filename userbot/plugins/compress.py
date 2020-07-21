@@ -28,7 +28,7 @@ async def _(event):
     if event.fwd_from:
         return
     if not event.is_reply:
-        await event.edit("Reply to a file to compress it. Bruh.")
+        await event.edit("DeOXy Master: Failed- Reply to a media.")
         return
     mone = await event.edit("Processing ...")
     if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
