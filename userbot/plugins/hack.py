@@ -6,7 +6,7 @@ Available Commands:
 .emoji -_-"""
 
 from telethon import events
-
+from telethon.tl.functions.users import GetFullUserRequest
 import asyncio
 
 
