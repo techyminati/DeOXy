@@ -1,3 +1,17 @@
+#   Copyright 2019 - 2020 DarkPrinc3
+
+#   Licensed under the Apache License, Version 2.0 (the "License");
+#   you may not use this file except in compliance with the License.
+#   You may obtain a copy of the License at
+
+#       http://www.apache.org/licenses/LICENSE-2.0
+
+#   Unless required by applicable law or agreed to in writing, software
+#   distributed under the License is distributed on an "AS IS" BASIS,
+#   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#   See the License for the specific language governing permissions and
+#   limitations under the License.
+
 from userbot import bot
 from sys import argv
 import sys
@@ -13,8 +27,8 @@ import telethon.utils
 import heroku3
 
 
-async def add_bot(bot_token):
-    await bot.start(bot_token)
+async def add_bot():
+    ((await bot.start()) if os.environ.get("PHONE") is None else (await bot.start(phone=os.environ.get("PHONE"))))
     bot.me = await bot.get_me() 
     bot.uid = telethon.utils.get_peer_id(bot.me)
 
@@ -34,7 +48,7 @@ else:
         ).start(bot_token=Var.TG_BOT_TOKEN_BF_HER)
         print("Initialisation finished with no errors")
         print("Starting Userbot")
-        bot.loop.run_until_complete(add_bot(Var.TG_BOT_USER_NAME_BF_HER))
+        bot.loop.run_until_complete(add_bot())
         if Var.HEROKU_APP_NAME and Var.HEROKU_API_KEY is not None:
             Heroku = heroku3.from_key(Var.HEROKU_API_KEY)
             app = Heroku.app(Var.HEROKU_APP_NAME)
@@ -43,10 +57,10 @@ else:
             if variable in heroku_var:
                 del heroku_var[variable]
             else:
-                print("Booted Up!")
+                print("Booting Up!")
         print("Startup Completed")
     else:
-        bot.start()
+        ((bot.start()) if os.environ.get("PHONE") is None else (bot.start(phone=os.environ.get("PHONE"))))
     
 
 import glob
@@ -60,7 +74,7 @@ for name in files:
 
 import userbot._core
 
-print("Your 𝔡𝓔𝐎𝕩𝕐 USERBOT Is Successfully Working yay")
+print("𝔡𝓔𝐎𝕩𝕐 MASTER:- Bot Imported Sucessfully")
 
 if len(argv) not in (1, 3, 4):
     bot.disconnect()
