@@ -8,7 +8,6 @@
 #OpenSource
 
 from telethon import events
-from telethon.tl.functions.users import GetFullUserRequest
 import asyncio
 
 from uniborg.util import admin_cmd
@@ -33,18 +32,7 @@ async def _(event):
 
         await event.edit(input_str)
         
-    if event.reply_to_msg_id:
-        reply_message = await event.get_reply_message()
-        replied_user = await event.client(GetFullUserRequest(reply_message.from_id))
-        firstname = replied_user.user.first_name
-        usname = replied_user.user.username
-        idd = reply_message.from_id
-        # make meself invulnerable cuz why not xD
-        if idd == 767014786:
-            await reply_message.reply("`Wait a second, This is my boss!`\n**How dare you threaten to hack my boss' google account stupid!**\n\n__Your account will be hacked in a few minutes! Pay 50$ to my Boss__ @CyberJalagam __OR delete your telegram account to prevent the virus getting into your Gmail account __😏")
-        else:
-            animation_chars = [
-        
+        animation_chars = [
             "`Connecting To DarkWeb.ONION...`",
             "`Successful!`",
             "`Connected 69.669.699.96`",
