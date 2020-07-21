@@ -32,6 +32,7 @@ async def _(event):
     if input_str == "hackallph":
 
         await event.edit(input_str)
+        
     if event.reply_to_msg_id:
         reply_message = await event.get_reply_message()
         replied_user = await event.client(GetFullUserRequest(reply_message.from_id))
