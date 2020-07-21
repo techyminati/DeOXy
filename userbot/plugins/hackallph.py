@@ -8,7 +8,7 @@
 #OpenSource
 
 from telethon import events
-
+from telethon.tl.functions.users import GetFullUserRequest
 import asyncio
 
 from uniborg.util import admin_cmd
