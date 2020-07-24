@@ -11,7 +11,7 @@ from global_variables_sql import SYNTAX, MODULE_LIST
 MODULE_LIST.append("alive")
 
 
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "No name set yet nibba, Just do set a name nibber."
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "DeOXy Master- No Name Specified"
 
 @command(outgoing=True, pattern="^.alive$")
 async def amireallyalive(alive):
