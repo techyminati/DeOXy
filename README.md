@@ -1,4 +1,4 @@
-# 𝔡𝓔𝐎𝕩𝕐 USERBOT
+# 𝔡𝓔𝐎𝕩𝕐 USERBOT [ DISCONTINUED ]
 ## Dev- [MrMobTechYT](https://t.me/CyberJalagam) 
 
  Thanks To   [HardcoreUserbot](https://github.com/Hack12R/HardcoreUserbot) // [X-tra-Telegram](https://github.com/Dark-Princ3/X-tra-Telegram) \\\ [The-TG-Bot-2.0](https://github.com/PriyamKalra/The-TG-Bot-2.0) For helping me out with the codes. Thank You Buggies ;-)
