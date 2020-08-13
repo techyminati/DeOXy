@@ -4,7 +4,7 @@ FROM zakaryan2004/userbot_docker:latest
 ENV PATH="/app/bin:$PATH"
 WORKDIR /app
 
-RUN git clone https://github.com/JAISHNAVPRASAD-DarklIous/DeOXy.git
+RUN git clone https://github.com/CyberJalagam/DeOXy.git
 
 #
 # Copies session and config(if it exists)
