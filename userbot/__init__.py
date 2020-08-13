@@ -96,7 +96,7 @@ if bool(ENV):
     # Custom (forked) repo URL for updater.
     UPSTREAM_REPO_URL = os.environ.get(
         "UPSTREAM_REPO_URL",
-        "https://github.com/JAISHNAVPRASAD-DarklIous/DeOXy.git")
+        "https://github.com/CyberJalagam/DeOXy.git")
     
      # Quotes API key
     QUOTES_API_TOKEN = os.environ.get("QUOTES_API_TOKEN", None)
