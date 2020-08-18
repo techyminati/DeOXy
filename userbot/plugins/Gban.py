@@ -35,10 +35,10 @@ async def startgban(tb):
      if not reason:
        reason = 'Private'
    except:
-   	return await tele.edit(f"`{ALIVE_NAME}:`**Oof! Unknown user.**")
+   	return await tele.edit(f"`{ALIVE_NAME}:`**User not found.**")
    if user:      
-        if user.id == 719195224:     
-    	             return await tele.edit(f"`{ALIVE_NAME}:`**Error! This Is My Creator How Am i Supposed To Gban him.**")
+        if user.id == 767014786:     
+    	             return await tele.edit(f"`{ALIVE_NAME}:`**DeOXy MASTER: Denied.**")
         try:
           from userbot.modules.sql_helper.gmute_sql import gmute            
         except:
@@ -60,10 +60,10 @@ async def startgban(tb):
        await tele.edit(f"`{ALIVE_NAME}:` **Reply to a user !! **")        
    try:
      if gmute(user.id) is False:
-            return await tele.edit(f"`{ALIVE_NAME}:`**Error! User probably already gbanned.**")
+            return await tele.edit(f"`{ALIVE_NAME}:`**DeOXy MATER: User already Gbanned**")
    except:
     	pass
-   return await tele.edit(f"`{ALIVE_NAME}:` **Gbanned [{user.first_name}](tg://user?id={user.id}) in {a} chat(s) , Blocked user and added to Gban watch **") 
+   return await tele.edit(f"`{ALIVE_NAME}:` **Gbanned [{user.first_name}](tg://user?id={user.id}) in {a} chat(s) **") 
  
 @command(outgoing=True, pattern="^;ungban(?: |$)(.*)")
 async def regressgban(tb):
@@ -85,10 +85,10 @@ async def regressgban(tb):
      if not reason:
        reason = 'Private'
    except:
-   	return await tele.edit(f"`{ALIVE_NAME}:`**Error! Unknown user.**")
+   	return await tele.edit(f"`{ALIVE_NAME}:`**DeOXy MASTER: User not found. Invalid argument**")
    if user:      
-        if user.id == 709723121:     
-    	             return await tele.edit(f"`{ALIVE_NAME}:`**Error! cant ungban this user.**")
+        if user.id == 767014786:     
+    	             return await tele.edit(f"`{ALIVE_NAME}:`**DeOXy MASTER: Denied.**")
         try:
           from userbot.modules.sql_helper.gmute_sql import ungmute
         except:
@@ -107,12 +107,12 @@ async def regressgban(tb):
             except:
                  b += 1                     
    else:
-       await tele.edit(f"`{ALIVE_NAME}:` **Reply to a user !! **")        
+       await tele.edit(f"`{ALIVE_NAME}:` **DeOXy MASTER: User not found, Reply to a user**")        
    try:
      if ungmute(user.id) is False:
-            return await tele.edit(f"`{ALIVE_NAME}:`**Error! User probably already ungbanned.**")
+            return await tele.edit(f"`{ALIVE_NAME}:`**DeOXy MASTER: Invalid argument, Already Gbanned**")
    except:
     	pass
-   return await tele.edit(f"`{ALIVE_NAME}:` **UnGbanned [{user.first_name}](tg://user?id={user.id}) in {a} chat(s) , UnBlocked and removed user from Gban watch **") 
+   return await tele.edit(f"`{ALIVE_NAME}:` **UnGbanned [{user.first_name}](tg://user?id={user.id}) in {a} chat(s) **") 
         
    
