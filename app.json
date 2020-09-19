@@ -1,6 +1,6 @@
   "name": "𝔡𝓔𝐎𝕩𝕐",
   "description": "Base By SNAPDRAGON, Userbot Made By @CyberJalagam\n\n PM https://t.me/CyberJalagamALT for any problems or support",
-  "logo": "https://raw.githubusercontent.com/CyberJalagam/DeOXy/master/logo.png",
+  "logo": "https://github.com/CyberJalagam/DeOXy/master/logo.png",
   "keywords": [
     "telegram",
     "userbot",
@@ -54,7 +54,7 @@
       "required": false
     },
     "GIT_REPO_NAME": {
-      "description": "Your repo name Example: Total-CyberJalagam/DeOXy, but GITHUB_ACCESS_TOKEN must be setup first.",
+      "description": "Your repo name Example: CyberJalagam/DeOXy, but GITHUB_ACCESS_TOKEN must be setup first.",
       "value": "",
       "required": false
     },
