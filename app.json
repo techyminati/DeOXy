@@ -1,7 +1,6 @@
-{
   "name": "𝔡𝓔𝐎𝕩𝕐",
-  "description": "Main Codes By SNAPDRAGON.Custom Userbot By @CyberJalagam\n\n PM https://t.me/CyberJalagamALT for any problems or support",
-  "logo": "https://telegra.ph/file/1be6c59f53fef57b5745b.jpg",
+  "description": "Base By SNAPDRAGON, Userbot Made By @CyberJalagam\n\n PM https://t.me/CyberJalagamALT for any problems or support",
+  "logo": "https://raw.githubusercontent.com/CyberJalagam/DeOXy/master/logo.png",
   "keywords": [
     "telegram",
     "userbot",
@@ -18,25 +17,25 @@
       "value": "ANYTHING"
     },
     "TEMP_DOWNLOAD_DIRECTORY": {
-      "description": "Where downloaded files will go.",
+      "description": "Downloads Folder.",
       "value": "./userbot/DOWNLOADS/",
       "required": false
     },
     "APP_ID": {
-      "description": "Get this value from my.telegram.org! Please do not steal",
+      "description": "Get this value from my.telegram.org",
       "value": ""
     },
     "API_HASH": {
-      "description": "Get this value from my.telegram.org! Please do not steal",
+      "description": "Get this value from my.telegram.org",
       "value": ""
     },
     "STRING_SESSION": {
-      "description": "Get this value by running python3 telesetup.py locally",
+      "description": "Get this value by running string.py locally",
       "value": ""
     },
     "MAX_FLOOD_IN_P_M_s": {
-      "description": "Maximum number of messages a person can send in pm before getting blocked. Value must be an integer. 3 by default.",
-      "value": "3",
+      "description": "Max flood value",
+      "value": "4",
       "required": false
     },
     "OCR_SPACE_API_KEY": {
@@ -55,7 +54,7 @@
       "required": false
     },
     "GIT_REPO_NAME": {
-      "description": "Your repo name Example: Total-Noob-69/X-Tra-Telegram, but GITHUB_ACCESS_TOKEN must be setup first.",
+      "description": "Your repo name Example: Total-CyberJalagam/DeOXy, but GITHUB_ACCESS_TOKEN must be setup first.",
       "value": "",
       "required": false
     },
