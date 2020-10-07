@@ -15,14 +15,14 @@ from telethon.events import ChatAction
 # Imported from @javes05
 # Kangers keep the credits -_-
 
-@command(outgoing=True, pattern="^;gban(?: |$)(.*)")
+@command(outgoing=True, pattern="^.gban(?: |$)(.*)")
 async def startgban(tb): 
    oof = tb ; sender = await oof.get_sender() ; me = await oof.client.get_me()
    if not sender.id == me.id:
         tele = await oof.reply("`Processing...`")
    else:
     	tele = await oof.edit("`Processing...`")      
-   me = await tb.client.get_me() ; await tele.edit(f"`{ALIVE_NAME}:` **Gbanning user!**") ; my_mention = "[{}](tg://user?id={})".format(me.first_name, me.id) ; my_username = f"@{me.username}" if me.username else my_mention ; chat = await tb.get_chat() ; a = b = 0
+   me = await tb.client.get_me() ; await tele.edit(f"`{ALIVE_NAME}:` **Globally Banning user!**") ; my_mention = "[{}](tg://user?id={})".format(me.first_name, me.id) ; my_username = f"@{me.username}" if me.username else my_mention ; chat = await tb.get_chat() ; a = b = 0
    if tb.is_private:       
    	user = tb.chat ; reason = tb.pattern_match.group(1) ; chat_title = 'PM'  
    else:

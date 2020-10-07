@@ -54,7 +54,7 @@ async def carbon_api(e):
    elif textx:
          pcode = str(textx.message) # Importing message to module
    code = quote_plus(pcode) # Converting to urlencoded
-   await e.edit("`Meking Carbon...\n25%`")
+   await e.edit("`Initializing Carbon...\n25%`")
    url = CARBON.format(code=code, lang=CARBONLANG)
    chrome_options = Options()
    chrome_options.add_argument("--headless")
@@ -67,7 +67,7 @@ async def carbon_api(e):
    chrome_options.add_experimental_option('prefs', prefs)
    driver = webdriver.Chrome(executable_path=CHROME_DRIVER, options=chrome_options)
    driver.get(url)
-   await e.edit("`Be Patient...\n50%`")
+   await e.edit("`Processing...\n50%`")
    download_path = './'
    driver.command_executor._commands["send_command"] = ("POST", '/session/$sessionId/chromium/send_command')
    params = {'cmd': 'Page.setDownloadBehavior', 'params': {'behavior': 'allow', 'downloadPath': download_path}}

@@ -20,10 +20,10 @@ async def amireallyalive(alive):
                      "👍🏻  `-̷-̷ Currently Alive! 🍻 -̷-̷` \n\n"
                      "__Telethon version: 6.9.0 // Python: 3.7.3\n\n__"
                      "**◆ ---------------- ✪ ----------------◆**\n"
-                     "𝓑𝓸𝓽 𝓜𝓪𝓭𝓮 𝓑𝔂: [𝕄𝕣.𝕄𝕠𝕓𝕋𝕖𝕔𝕙𝕐𝕋✪](t.me/CyberJalagam)\n"
+                     "𝓑𝓸𝓽 𝓜𝓪𝓭𝓮 𝓑𝔂: [ᴊᴀɪꜱʜɴᴀᴠᴘʀᴀꜱᴀᴅ | #𝓣𝓱𝓮𝓣𝓮𝓬𝓱𝓖𝓪𝓷𝓰](t.me/CyberJalagam)\n"
                      f"ℱÃ𝐈𝕥н𝒻𝕦l𝕝𝔂 𝑤𝑜𝑟𝑘𝑖𝑛𝑔 𝑓𝑜𝑟: {DEFAULTUSER}\n"
                      "**◆ ---------------- ✪ ----------------◆**\n\n"
-                     "                  ★彡 [GitHub](https://github.com/JAISHNAVPRASAD-DarklIous/DeOXy) 彡★"
+                     "                  ★彡 [GitHub](https://github.com/CyberJalagam/DeOXy) 彡★"
                      "                                                ")
 SYNTAX.update({
     "alive": "\

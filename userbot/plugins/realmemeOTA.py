@@ -1,7 +1,7 @@
 # For UniBorg
 # By Priyam Kalra
 # Syntax (.rmota <device_model>)
-#Ported To Xtra MOD v2.0 By MrMobTech
+#Ported To DeOXy By MrMobTech
 from telethon import events
 from telethon.tl import functions, types
 from uniborg.util import admin_cmd

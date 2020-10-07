@@ -1,30 +1,46 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.b (the "License");
-# you may not use this file except in compliance with the License.
-#
-
+# For UniBorg
+# Thanks To Priyam Kalra
+# Syntax (.spam <number of msgs> <text>)
+#Ported To Xtra Bot MOD v2.0 By MrMobTech
 from asyncio import wait
-
 from telethon import events
+from uniborg.util import admin_cmd
+import asyncio
+from telethon.tl import functions, types
+from time import sleep
 
 
+@borg.on(admin_cmd(pattern="spam ?(.*)"))
+async def _(event):
+    if event.fwd_from:
+        return
+    input = str(event.pattern_match.group(1))
+    input_split = input.split()
+    chat = event.chat_id
+    try:
+        count = str(input_split[0])
+    except ValueError:
+        await event.edit("Invalid Syntax!")
+        return
+    if input.startswith(count):
+        strip = len(count)
+        text = input[strip:]
+    else:
+        await event.edit("Fatal Error!")
+        return
+    if text and count != None:
+        await event.delete()
+        for spam in range(int(count)):
+            await event.reply(text)
+        msg = await event.reply(f"Task complete, spammed input text {count} times!")
+        sleep(2)
+        await msg.delete()
+        status = f"SPAMMED\n```{text}```\n in ```{chat}``` ```{count}``` times."
+        await log(status)
+    else:
+        await event.edit("Unexpected Error! Aborting..")
+        return
 
-@borg.on(events.NewMessage(pattern=r"\.spam", outgoing=True))
-async def spammer(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        message = e.text
-        counter = int(message[6:8])
-        spam_message = str(e.text[8:])
-
-        await wait(
-            [e.respond(spam_message) for i in range(counter)]
-            )
-
-        await e.delete()
-        if LOGGER:
-            await e.client.send_message(
-                LOGGER_GROUP,
-                "#SPAM \n\n"
-                "Spam was executed successfully"
-                )
+async def log(text):
+    LOGGER = Config.PRIVATE_GROUP_BOT_API_ID
+    await borg.send_message(LOGGER, text)

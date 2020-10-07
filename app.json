@@ -1,3 +1,4 @@
+{
   "name": "𝔡𝓔𝐎𝕩𝕐",
   "description": "Base By SNAPDRAGON, Userbot Made By @CyberJalagam\n\n PM https://t.me/CyberJalagamALT for any problems or support",
   "logo": "https://github.com/CyberJalagam/DeOXy/master/logo.png",
@@ -8,7 +9,7 @@
     "modular",
     "productivity"
   ],
-  "repository": "https://github.com/JAISHNAVPRASAD-DarklIous/DeOXy/",
+  "repository": "https://github.com/CyberJalagam/DeOXy/",
   "website": "#TODO",
   "success_url": "#TODO",
   "env": {
@@ -17,7 +18,7 @@
       "value": "ANYTHING"
     },
     "TEMP_DOWNLOAD_DIRECTORY": {
-      "description": "Downloads Folder.",
+      "description": "Download Directory",
       "value": "./userbot/DOWNLOADS/",
       "required": false
     },
@@ -82,6 +83,16 @@
       "description": "Needed for inline buttons maker. Make a bot at http://telegram.dog/BotFather and get the username of your bot",
       "value": "",
       "required": false
+    },
+    "PRIVATE_GROUP_ID": {
+      "description": "LOG Group ID",
+      "value": "",
+      "required": false
+    },
+    "PRIVATE_GROUP_BOT_API_ID": {
+      "description": "LOG Group ID",
+      "value": "",
+      "required": false       
     },
     "DOWNLOAD_PFP_URL_CLOCK": {
       "description": "Needed for autopic module. A url that is a preview link of your Profile Pic",
