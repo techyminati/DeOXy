@@ -1,9 +1,9 @@
 # 𝔡𝓔𝐎𝕩𝕐 USERBOT
-## Dev- [MrMobTechYT](https://t.me/CyberJalagam) 
+## Dev- [ᴊᴀɪꜱʜɴᴀᴠᴘʀᴀꜱᴀᴅ | #𝓣𝓱𝓮𝓣𝓮𝓬𝓱𝓖𝓪𝓷𝓰](https://t.me/CyberJalagam) 
 
  Thanks To   [HardcoreUserbot](https://github.com/Hack12R/HardcoreUserbot) // [X-tra-Telegram](https://github.com/Dark-Princ3/X-tra-Telegram) \\\ [The-TG-Bot-2.0](https://github.com/PriyamKalra/The-TG-Bot-2.0) For helping me out with the codes. Thank You Buggies ;-)
 
- # WARNING!! THIS USERBOT IS NOT DEPLOYABLE AT THE CURRENT STATE.
+ # WARNING!! THIS USERBOT IS WIP
 
  ### DECLARATION/LICENCE AGREEMENT
 
@@ -49,7 +49,7 @@ cd /sdcard/Telegram
 ```
 
 ```
-git clone https://github.com/JAISHNAVPRASAD-DarklIous/DeOXy
+git clone https://github.com/CyberJalagam/DeOXy
 ```
 
 ```
