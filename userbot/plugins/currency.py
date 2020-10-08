@@ -4,6 +4,18 @@ import asyncio
 from datetime import datetime
 import requests
 from uniborg.util import admin_cmd
+from global_variables_sql import SYNTAX, MODULE_LIST
+
+MODULE_LIST.append("currency")
+
+SYNTAX.update({
+    "currency": "\
+**Requested Module --> Currency Module**\
+\n\n**Detailed usage of fuction(s):**\
+\n\n```.currency <currency value> <origin currency code> <conversion currency code>```\
+\nUsage: Converts currency.\
+"
+})        
 
 
 @borg.on(admin_cmd(pattern="currency (.*)"))

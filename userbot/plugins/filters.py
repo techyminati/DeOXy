@@ -11,7 +11,24 @@ import re
 from telethon import events, utils
 from telethon.tl import types
 from userbot.plugins.sql_helper.filter_sql import get_filter, add_filter, remove_filter, get_all_filters, remove_all_filters
+from global_variables_sql import SYNTAX, MODULE_LIST
 
+MODULE_LIST.append("filters")
+
+SYNTAX.update({
+    "filters": "\
+**Requested Module --> Filter Module**\
+\n\n**Detailed usage of fuction(s):**\
+\n\n• `.savefilter <text>`\
+\nUsage: __Saves a filter__\
+\n\n• `.listfilters`\
+\nUsage: __Retrieves all the filters.__\
+\n\n• `.clearfilter <filter>`\
+\nUsage: __Clear a specific filter__\
+\n\n• `.clearallfilters`\
+\nUsage: __Clears all the filters saved.__\
+"
+})        
 
 DELETE_TIMEOUT = 0
 TYPE_TEXT = 0

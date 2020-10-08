@@ -18,7 +18,7 @@ from telethon import events
 from global_variables_sql import SYNTAX, MODULE_LIST
 import zipfile
 
-MODULE_LIST.append("Zip/Unzipper")
+MODULE_LIST.append("ZipUtility")
 
 extracted = Config.TMP_DOWNLOAD_DIRECTORY + "extracted/"
 thumb_image_path = Config.TMP_DOWNLOAD_DIRECTORY + "/thumb_image.jpg"
@@ -136,7 +136,7 @@ def get_lst_of_files(input_directory, output_lst):
     return output_lst
 
 SYNTAX.update({
-    "Zip/Unzipper": f"\
+    "ZipUtility": f"\
 **Requested Module --> Compression Module**\
 \n\nDetailed usage of fuction(s):\
 \n\n```.zip```\

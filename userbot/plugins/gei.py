@@ -5,10 +5,21 @@
 #Syntax .gei"""
 
 from telethon import events
-
 import asyncio
-
 from userbot.utils import admin_cmd
+from global_variables_sql import SYNTAX, MODULE_LIST
+
+MODULE_LIST.append("gei")
+
+SYNTAX.update({
+    "gei": "\
+**Requested Module --> Make it gei Module**\
+\n\n**Detailed usage of fuction(s):**\
+\n\n```.gei```\
+\nUsage: Lets make it gei.\
+"
+})        
+
 
 @borg.on(admin_cmd("(.*)"))
 async def _(event):
@@ -23,7 +34,7 @@ async def _(event):
             "**“It**",
             "**“It Is**",
             "**“It Is Gei”**",
-            "**“It Is Gei”** __- Priyam Kalra__"
+            "**“It Is Gei”** __- Me__"
         ]
 
         for i in animation_ttl:

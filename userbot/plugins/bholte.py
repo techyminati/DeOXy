@@ -9,7 +9,7 @@ from telethon import events
 
 import asyncio
 
-MODULE_LIST.append("desp4volte")
+MODULE_LIST.append("bholte")
 
 
 
@@ -46,7 +46,7 @@ async def _(event):
             "` ▂ ▄ ▆ ▇ █`",
             "**No SIM Card detected**",
             "**Not for Jio users**",
-            "__Flashing ROM__",
+            "__Flashing Custom ROM__",
             "`Connecting To Jio Network...`",
             "` ▒ ▒ ▒ ▒ ▒`",           
             "` ▂ ▒ ▒ ▒ ▒`",
@@ -85,7 +85,7 @@ async def _(event):
             await event.edit(animation_chars[i % 41])
 
 SYNTAX.update({
-    "desp4volte": "\
+    "bholte": "\
 **Requested module --> Despirate For VoLTE**\
 \n\n• `.volte`\
 \n__Usage: Express the sed loif of a MemeTek GSI/ROM user__\

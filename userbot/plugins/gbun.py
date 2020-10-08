@@ -4,7 +4,18 @@ from telethon import events
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import ChannelParticipantsAdmins
 from userbot.utils import admin_cmd
+from global_variables_sql import SYNTAX, MODULE_LIST
 
+MODULE_LIST.append("gbun")
+
+SYNTAX.update({
+    "gbun": "\
+**Requested Module --> Gban Prank Module**\
+\n\n**Detailed usage of fuction(s):**\
+\n\n```.gbun```\
+\nUsage: Reply to a user message.\
+"
+})        
 
 @borg.on(admin_cmd("gbun"))
 async def gbun(event):
@@ -14,7 +25,7 @@ async def gbun(event):
     gbunVar = gbunVar[6:]
     mentions = "`Warning!! User 𝙂𝘽𝘼𝙉𝙉𝙀𝘿 By Admin...\n`"
     no_reason = "__Reason: Potential Telegram Addict. __"
-    await event.edit("**Federation ban in progress ❗️⚜️☠️**")
+    await event.edit("**Global ban in progress ❗️⚜️☠️**")
     asyncio.sleep(3.5)
     chat = await event.get_input_chat()
     async for x in borg.iter_participants(chat, filter=ChannelParticipantsAdmins):
@@ -37,7 +48,7 @@ async def gbun(event):
                   "**ID : ** `{}`\n"
                 ).format(firstname, idd, firstname, idd)
             if usname == None:
-                jnl += "**Victim Nigga's username: ** `Doesn't own a username!`\n"
+                jnl += "**Victim's username:** **DeOXY MASTER:** `Doesn't own a username!`\n"
             elif usname != "None":
                 jnl += "**Victim's username** : @{}\n".format(usname)
             if len(gbunVar) > 0:

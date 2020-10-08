@@ -19,6 +19,17 @@ from humanize import naturalsize
 from userbot.utils import register
 from global_variables_sql import SYNTAX, MODULE_LIST
 
+MODULE_LIST.append("direct")
+
+SYNTAX.update({
+    "direct": "\
+**Requested Module --> Direct Link Provider Module**\
+\n\n**Detailed usage of fuction(s):**\
+\n\n```.direct <link>```\
+\nUsage: Fetches the direct link.\
+"
+})        
+
 @register(outgoing=True, pattern=r"^.direct(?: |$)([\s\S]*)")
 async def direct_link_generator(request):
     """ direct links generator """
@@ -348,23 +359,3 @@ def useragent():
     return user_agent.text
 
 
-MODULE_LIST.append("direct_link")
-
-SYNTAX.update({
-    "direct_link": "\
-**Requested Module --> Direct Link Generator**\
-\n\n• `.direct <url>`\
-\nUsage: __Generate direct download link from supported URL(s)__\
-\n\nSupported websites:\
-\nGoogle Drive\
-\nMEGA.nz\
-\nCloud Mail\
-\nYandex.Disk\
-\nAFH\
-\nZippyShare\
-\nMediaFire\
-\nSourceForge\
-\nOSDN\
-\nGitHub\
-"
-})

@@ -19,7 +19,22 @@ from oauth2client.file import Storage
 from oauth2client import file, client, tools
 from mimetypes import guess_type
 import httplib2
+from global_variables_sql import SYNTAX, MODULE_LIST
 
+MODULE_LIST.append("gdrive")
+
+SYNTAX.update({
+    "gdrive": "\
+**Requested Module --> Google Drive Module**\
+\n\n**Detailed usage of fuction(s):**\
+\n\n```.ugdrive```\
+\nUsage: upload to gdrive\
+\n\n```.gdrivedir```\
+\nUsage: Enter a folder\
+\n\n```.gfolder```\
+\nUsage: Share a whole folder\
+"
+})        
 
 # Path to token json file, it should be in same directory as script
 G_DRIVE_TOKEN_FILE = Var.TEMP_DOWNLOAD_DIRECTORY + "/auth_token.txt"

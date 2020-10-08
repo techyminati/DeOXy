@@ -16,10 +16,10 @@ import sys
 import random
 from global_variables_sql import SYNTAX, MODULE_LIST
 
-MODULE_LIST.append("logic")
+MODULE_LIST.append("comment")
 
 
-@borg.on(events.NewMessage(pattern=r"\.logic", outgoing=True))
+@borg.on(events.NewMessage(pattern=r"\.comment", outgoing=True))
 
 async def _(event):
 
@@ -424,9 +424,9 @@ async def _(event):
     
 
 SYNTAX.update({
-    "logic": "\
-**Requested module --> Being Logical ;-)**\
+    "comment": "\
+**Requested module --> Comment ;-)**\
 \n\n• `.bello`\
-\n__Usage: Pulls out a random logic command. yay__\
+\n__Usage: Pulls out a random logic comment. yay__\
 "
 })

@@ -11,6 +11,18 @@ client = telebot = bot
 from telethon.tl.functions.messages import GetCommonChatsRequest
 ALIVE_NAME = str(ALIVE_NAME) 
 from telethon.events import ChatAction
+from global_variables_sql import SYNTAX, MODULE_LIST
+
+MODULE_LIST.append("gban")
+
+SYNTAX.update({
+    "gban": "\
+**Requested Module --> Global Ban Module**\
+\n\n**Detailed usage of fuction(s):**\
+\n\n```.gban```\
+\nUsage: Globally bans a user everywhere you admin in.\
+"
+})        
 
 # Imported from @javes05
 # Kangers keep the credits -_-

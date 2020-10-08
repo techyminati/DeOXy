@@ -3,7 +3,18 @@ Syntax: .decide"""
 from telethon import events
 import requests
 from userbot.utils import admin_cmd
+from global_variables_sql import SYNTAX, MODULE_LIST
 
+MODULE_LIST.append("decide")
+
+SYNTAX.update({
+    "decide": "\
+**Requested Module --> Decider Module**\
+\n\n**Detailed usage of fuction(s):**\
+\n\n```.decide```\
+\nUsage: Hepls you in an situation where you are unable to say yes or no.\
+"
+})        
 
 @borg.on(admin_cmd("decide"))
 async def _(event):

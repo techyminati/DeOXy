@@ -16,8 +16,8 @@ USER_BOT_WARN_ZERO = "`You were spamming my peru master, 𝔡𝓔𝐎𝕩𝕐 Se
 USER_BOT_NO_WARN = ("[──▄█▀█▄─────────██ \n▄████████▄───▄▀█▄▄▄▄ \n██▀▼▼▼▼▼─▄▀──█▄▄ \n█████▄▲▲▲─▄▄▄▀───▀▄ \n██████▀▀▀▀─▀────────▀▀](tg://user?id=767014786)\n\n"
                     "`Hello, this is 𝔡𝓔𝐎𝕩𝕐 ULTRA Security Service.You have found your way here to my peru master,`"
                     f"{DEFAULTUSER}'s` inbox.\n\n"
-                    "This service is only available for Telegram's TOP Most Famous Peru Users\n"
-                    "Leave your name, phone number, address and 10k$. Don't Spam, 𝔡𝓔𝐎𝕩𝕐 SERVICE can ban Blacklist you.`\n\n"
+                    "This service is only available for Telegram's TOP Most Famous Pro Users\n"
+                    "Leave your name, phone number, address and some money. Don't Spam, 𝔡𝓔𝐎𝕩𝕐 SERVICE can ban Blacklist you.`\n\n"
                     "** Send** `/start` ** so that we can decide why you decided to see my busy master  .**")
 
 

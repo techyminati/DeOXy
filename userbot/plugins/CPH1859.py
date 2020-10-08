@@ -3,6 +3,18 @@
 # Syntax .search <text>
 
 from userbot.utils import admin_cmd
+from global_variables_sql import SYNTAX, MODULE_LIST
+
+MODULE_LIST.append("CPH1859")
+
+SYNTAX.update({
+    "CPH1859": "\
+**Requested Module --> Realme 1 Update Fetcher**\
+\n\n**Detailed usage of fuction(s):**\
+\n\n```.CPH1859 <ROM_NAME/KERNEL/RECOVERY>```\
+\nUsage: Fetches the CPH1859 **Development**.\
+"
+})        
 
 @borg.on(admin_cmd(pattern="CPH1859 ?(.*)"))
 async def handler(event):

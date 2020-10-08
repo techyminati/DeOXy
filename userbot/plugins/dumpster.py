@@ -2,9 +2,20 @@ from telethon import events
 import asyncio
 from userbot.utils import admin_cmd
 from telethon.errors.rpcerrorlist import MessageIdInvalidError
+from global_variables_sql import SYNTAX, MODULE_LIST
 
+MODULE_LIST.append("dumpster")
 
-@borg.on(admin_cmd(pattern="dump ?(.*)"))
+SYNTAX.update({
+    "": "\
+**Requested Module --> Dumpster**\
+\n\n**Detailed usage of fuction(s):**\
+\n\n```.dumpster```\
+\nUsage: Dumps some shit\
+"
+})        
+
+@borg.on(admin_cmd(pattern="dumpster ?(.*)"))
 async def _(message):
     try:
         obj = message.pattern_match.group(1)

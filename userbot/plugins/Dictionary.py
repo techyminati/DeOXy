@@ -4,7 +4,18 @@ Syntax: .meaning <word>"""
 import requests
 from telethon import events
 from uniborg.util import admin_cmd
+from global_variables_sql import SYNTAX, MODULE_LIST
 
+MODULE_LIST.append("Dictionary")
+
+SYNTAX.update({
+    "Dictionary": "\
+**Requested Module --> Dictionary Module**\
+\n\n**Detailed usage of fuction(s):**\
+\n\n```.meaning <word>```\
+\nUsage: Looks for the meaning of the word **true**.\
+"
+})        
 
 @borg.on(admin_cmd("meaning (.*)"))
 async def _(event):

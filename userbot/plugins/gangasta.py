@@ -2,7 +2,18 @@ from telethon import events
 import random, re
 from userbot.utils import admin_cmd
 import asyncio 
+from global_variables_sql import SYNTAX, MODULE_LIST
 
+MODULE_LIST.append("gangsta")
+
+SYNTAX.update({
+    "gangsta": "\
+**Requested Module --> Gangsta Module**\
+\n\n**Detailed usage of fuction(s):**\
+\n\n```.gangsta```\
+\nUsage: Become a gangsta.\
+"
+})        
 
 
 @borg.on(admin_cmd("gangasta ?(.*)"))
