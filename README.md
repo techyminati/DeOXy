@@ -1,9 +1,11 @@
+# ------------------------------------------------------------------------ WARNING ----------------------------------------------------------------------------
+## ---------------------------------------------------------------------- TESTING ZONE ----------------------------------------------------------------------------
 # 𝔡𝓔𝐎𝕩𝕐 USERBOT
 ## Dev- [ᴊᴀɪꜱʜɴᴀᴠᴘʀᴀꜱᴀᴅ | #𝓣𝓱𝓮𝓣𝓮𝓬𝓱𝓖𝓪𝓷𝓰](https://t.me/CyberJalagam) 
 
  Thanks To   [HardcoreUserbot](https://github.com/Hack12R/HardcoreUserbot) // [X-tra-Telegram](https://github.com/Dark-Princ3/X-tra-Telegram) \\\ [The-TG-Bot-2.0](https://github.com/PriyamKalra/The-TG-Bot-2.0) For helping me out with the codes. Thank You Buggies ;-)
 
- # WARNING!! THIS USERBOT IS WIP
+ # WARNING!! THIS BRANCH OD THIS USERBOT IS UNSTABLE. DEPLOY IT AT YOUR OWN RISK. SOME OF THE ACTIONS DONE HERE ARE NOT TESTED!!
 
  ### DECLARATION/LICENCE AGREEMENT
 
@@ -191,7 +193,7 @@ ALIVE_NAME
 
 ------------------------------------------------------------------------------------------------------------------------
 
-# How To Setup INBUILT Updater Module
+# How To Setup INBUILT Updaterbeta-stable Module
 
 * You need to set these two variables in heroku vars.. 
 
