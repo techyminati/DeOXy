@@ -1,4 +1,30 @@
 from userbot import CMD_LIST
+from global_variables_sql import SYNTAX, MODULE_LIST
+
+MODULE_LIST.append("userbot")
+
+SYNTAX.update({
+    "userbot": "\
+**Requested Module --> Userbot main Module**\
+\n\n**Detailed usage of fuction(s):**\
+\n\n```.load```\
+\nUsage: Load a pre-existing module.\
+\n\n```.unload```\
+\nUsage: Unload a module.\
+\n\n```.install```\
+\nUsage: install a module.\
+\n\n```.shutdown```\
+\nUsage: Poweroff your userbot.\
+\n\n```.restart```\
+\nUsage: Restarts your userbot.\
+\n\n```.plugins```\
+\nUsage: See all the modules of the userbot.\
+\n\n```.send <plugin_name>```\
+\nUsage: Send a plugin.\
+\n\n```.help```\
+\nUsage: The legacy way of seeking help.\
+"
+})        
 
 @command(pattern="^.help ?(.*)")
 async def cmd_list(event):
@@ -20,7 +46,7 @@ async def cmd_list(event):
                 await event.edit(string)
         elif input_str:
             if input_str in CMD_LIST:
-                string = "Commands found in {}:\n".format(input_str)
+                string = "Use `.modules` for a cleaner command view. Commands found in {}:\n".format(input_str)
                 for i in CMD_LIST[input_str]:
                     string += "    " + i
                     string += "\n"
@@ -28,8 +54,8 @@ async def cmd_list(event):
             else:
                 await event.edit(input_str + " is not a valid plugin!")
         else:
-            help_string = """Userbot Helper.. Provided by [𝔡𝓔𝐎𝕩𝕐](https://github.com/JAISHNAVPRASAD-DarklIous/DeOXy)\n
-`Userbot Helper to reveal all the commands`\n__Do .help plugin_name for commands, in case popup doesn't appear.__"""
+            help_string = """Userbot Legacy Look.. Provided by [𝔡𝓔𝐎𝕩𝕐](https://github.com/CyberJalagam/DeOXy)\n
+`Use` `.plugins` `to reveal all the commands`\n"""
             results = await bot.inline_query(  # pylint:disable=E0602
                 tgbotusername,
                 help_string

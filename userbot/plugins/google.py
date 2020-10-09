@@ -9,8 +9,22 @@ from search_engine_parser import GoogleSearch
 from asyncio import sleep
 from userbot.utils import register
 from telethon.tl.types import DocumentAttributeAudio
+from global_variables_sql import SYNTAX, MODULE_LIST
 
-@register(outgoing=True, pattern=r"^\.gs (.*)")
+MODULE_LIST.append("google")
+
+SYNTAX.update({
+    "google": "\
+**Requested Module --> Google Module**\
+\n\n**Detailed usage of fuction(s):**\
+\n\n```.google```\
+\nUsage: Searches an item in google.\
+\n\n```.ggl```\
+\nUsage: Memes a use to search google.\
+"
+})        
+
+@register(outgoing=True, pattern=r"^\.google (.*)")
 async def gsearch(q_event):
     """ For .google command, do a Google search. """
     match = q_event.pattern_match.group(1)

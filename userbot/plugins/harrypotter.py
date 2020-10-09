@@ -8,6 +8,18 @@ import asyncio
 import os
 import sys
 import random
+from global_variables_sql import SYNTAX, MODULE_LIST
+
+MODULE_LIST.append("harrypotter")
+
+SYNTAX.update({
+    "harrypotter": "\
+**Requested Module --> Harrypotter Module**\
+\n\n**Detailed usage of fuction(s):**\
+\n\n```.hp```\
+\nUsage: Pulls out a random happypotter chant.\
+"
+})        
 
 
 

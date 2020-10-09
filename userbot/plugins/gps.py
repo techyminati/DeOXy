@@ -9,6 +9,18 @@ credits :@mrconfused
 from geopy.geocoders import Nominatim
 from userbot.utils import admin_cmd
 from telethon.tl import types
+from global_variables_sql import SYNTAX, MODULE_LIST
+
+MODULE_LIST.append("gps")
+
+SYNTAX.update({
+    "gps": "\
+**Requested Module --> Gps Module**\
+\n\n**Detailed usage of fuction(s):**\
+\n\n```.gps```\
+\nUsage: Fetches the location.\
+"
+})        
 
 
 
@@ -22,9 +34,9 @@ async def gps(event):
     input_str = event.pattern_match.group(1)
 
     if not input_str:
-        return await event.edit("what should i find give me location.")
+        return await event.edit("**DeOXy MASTER:** `Fetching Location`")
 
-    await event.edit("finding")
+    await event.edit("`processing.....`")
 
     geolocator = Nominatim(user_agent="catuserbot")
     geoloc = geolocator.geocode(input_str)
@@ -42,5 +54,5 @@ async def gps(event):
         )
         await event.delete()
     else:
-        await event.edit("i coudn't find it")
+        await event.edit("**DeOXy MASTER:** `Task failed`")
 

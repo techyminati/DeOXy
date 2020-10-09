@@ -3,9 +3,21 @@ Syntax: .get_id"""
 from telethon import events
 from telethon.utils import pack_bot_file_id
 from userbot.utils import admin_cmd
+from global_variables_sql import SYNTAX, MODULE_LIST
+
+MODULE_LIST.append("id")
+
+SYNTAX.update({
+    "id": "\
+**Requested Module --> ID Fetcher Module**\
+\n\n**Detailed usage of fuction(s):**\
+\n\n```.id```\
+\nUsage: Fetches the user ID.\
+"
+})        
 
 
-@borg.on(admin_cmd("get_id"))
+@borg.on(admin_cmd("id"))
 async def _(event):
     if event.fwd_from:
         return
