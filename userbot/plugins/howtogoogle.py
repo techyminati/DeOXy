@@ -5,14 +5,12 @@ Command .ggl Search Query
 By @loxxi
 """
 
-from telethon import events
 import os
 import requests
 import json
-from userbot.utils import admin_cmd
 
 
-@borg.on(admin_cmd("ggl (.*)"))
+@client.on(events(pattern="ggl (.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -23,3 +21,9 @@ async def _(event):
         await event.edit("[{}]({})\n`Thank me Later 🙃` ".format(input_str,response_api.rstrip()))
     else:
         await event.edit("something is wrong. please try again later.")
+
+
+HELPER.update({"howtogoogle": "\
+**Available commands in howtogoogle module:**\
+\n`.ggl <text>`\
+"})

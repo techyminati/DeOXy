@@ -1,11 +1,9 @@
 """Get Detailed info about any message
 Syntax: .json"""
-from telethon import events
 import io
-from userbot.utils import admin_cmd
 
 
-@borg.on(admin_cmd("json"))
+@client.on(events(pattern="json"))
 async def _(event):
     if event.fwd_from:
         return
@@ -21,7 +19,7 @@ async def _(event):
     if len(the_real_message) > Config.MAX_MESSAGE_SIZE_LIMIT:
         with io.BytesIO(str.encode(the_real_message)) as out_file:
             out_file.name = "json.text"
-            await borg.send_file(
+            await client.send_file(
                 event.chat_id,
                 out_file,
                 force_document=True,
@@ -31,3 +29,9 @@ async def _(event):
             await event.delete()
     else:
         await event.edit("`{}`".format(the_real_message))
+
+
+HELPER.update({"json": "\
+**Available commands in json module:**\
+\n`.json`\
+"})

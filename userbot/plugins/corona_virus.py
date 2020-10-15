@@ -1,9 +1,8 @@
 """CoronaVirus LookUp
 Syntax: .covid <country>"""
 from covid import Covid
-from uniborg.util import admin_cmd
 
-@borg.on(admin_cmd(pattern="covid (.*)"))
+@client.on(events(pattern="covid (.*)"))
 async def _(event):
     covid = Covid()
     data = covid.get_data()
@@ -19,3 +18,9 @@ def get_country_data(country, world):
         if country_data["country"] == country:
             return country_data
     return {"Status": "Use the first letter CAPITAL. Diden't Work?, No information yet about this country!"}
+
+
+HELPER.update({"corona_virus": "\
+**Available commands in corona_virus module:**\
+\n`.covid <text>`\
+"})

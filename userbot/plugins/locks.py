@@ -3,12 +3,11 @@ Available Commands: .lock <option>, .unlock <option>, .locks
 API Options: msg, media, sticker, gif, gamee, ainline, gpoll, adduser, cpin, changeinfo
 DB Options: bots, commands, email, forward, url"""
 
-from telethon import events, functions, types
+import telethon
 from userbot.plugins.sql_helper.locks_sql import update_lock, is_locked, get_locks
-from userbot.utils import admin_cmd
 
 
-@borg.on(admin_cmd("lock( (?P<target>\S+)|$)"))
+@client.on(events("lock( (?P<target>\S+)|$)"))
 async def _(event):
      # Space weirdness in regex required because argument is optional and other
      # commands start with ".lock"
@@ -53,7 +52,7 @@ async def _(event):
                 cpin = True
             if "changeinfo" in input_str:
                 changeinfo = True
-        banned_rights = types.ChatBannedRights(
+        banned_rights = telethon.types.ChatBannedRights(
             until_date=None,
             # view_messages=None,
             send_messages=msg,
@@ -68,8 +67,8 @@ async def _(event):
             change_info=changeinfo,
         )
         try:
-            result = await borg(  # pylint:disable=E0602
-                functions.messages.EditChatDefaultBannedRightsRequest(
+            result = await client(  
+                telethon.functions.messages.EditChatDefaultBannedRightsRequest(
                     peer=peer_id,
                     banned_rights=banned_rights
                 )
@@ -82,7 +81,7 @@ async def _(event):
             )
 
 
-@borg.on(admin_cmd("unlock ?(.*)"))
+@client.on(events(pattern="unlock ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -99,7 +98,7 @@ async def _(event):
         )
 
 
-@borg.on(admin_cmd("curenabledlocks"))
+@client.on(events(pattern="curenabledlocks"))
 async def _(event):
     if event.fwd_from:
         return
@@ -134,8 +133,8 @@ async def _(event):
     await event.edit(res)
 
 
-@borg.on(events.MessageEdited())  # pylint:disable=E0602
-@borg.on(events.NewMessage())  # pylint:disable=E0602
+@client.on(telethon.events.MessageEdited())
+@client.on(events(incoming=True))
 async def check_incoming_messages(event):
     # TODO: exempt admins from locks
     peer_id = event.chat_id
@@ -144,7 +143,7 @@ async def check_incoming_messages(event):
         is_command = False
         if entities:
             for entity in entities:
-                if isinstance(entity, types.MessageEntityBotCommand):
+                if isinstance(entity, telethon.types.MessageEntityBotCommand):
                     is_command = True
         if is_command:
             try:
@@ -168,7 +167,7 @@ async def check_incoming_messages(event):
         is_email = False
         if entities:
             for entity in entities:
-                if isinstance(entity, types.MessageEntityEmail):
+                if isinstance(entity, telethon.types.MessageEntityEmail):
                     is_email = True
         if is_email:
             try:
@@ -183,7 +182,7 @@ async def check_incoming_messages(event):
         is_url = False
         if entities:
             for entity in entities:
-                if isinstance(entity, (types.MessageEntityTextUrl, types.MessageEntityUrl)):
+                if isinstance(entity, (telethon.types.MessageEntityTextUrl, telethon.types.MessageEntityUrl)):
                     is_url = True
         if is_url:
             try:
@@ -195,7 +194,8 @@ async def check_incoming_messages(event):
                 update_lock(peer_id, "url", False)
 
 
-@borg.on(events.ChatAction())  # pylint:disable=E0602
+@client.on(telethon.events.ChatAction())
+@client.on(events(incoming=True))
 async def _(event):
     # TODO: exempt admins from locks
     # check for "lock" "bots"
@@ -205,17 +205,17 @@ async def _(event):
         if event.user_added:
             users_added_by = event.action_message.from_id
             is_ban_able = False
-            rights = types.ChatBannedRights(
+            rights = telethon.types.ChatBannedRights(
                 until_date=None,
                 view_messages=True
             )
             added_users = event.action_message.action.users
             for user_id in added_users:
-                user_obj = await borg.get_entity(user_id)
+                user_obj = await client.get_entity(user_id)
                 if user_obj.bot:
                     is_ban_able = True
                     try:
-                        await borg(functions.channels.EditBannedRequest(
+                        await client(telethon.functions.channels.EditBannedRequest(
                             event.chat_id,
                             user_obj,
                             rights
@@ -230,3 +230,11 @@ async def _(event):
                 ban_reason_msg = await event.reply(
                     "!warn [user](tg://user?id={}) Please Do Not Add BOTs to this chat.".format(users_added_by)
                 )
+
+
+HELPER.update({"locks": "\
+**Available commands in locks module:**\
+\n`.lock( (P<target>S+)|)`\
+\n`.unlock <text>`\
+\n`.curenabledlocks`\
+"})

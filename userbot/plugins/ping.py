@@ -1,8 +1,7 @@
-from telethon import events
 from datetime import datetime
 
 
-@command(pattern="^.ping")
+@client.on(events(pattern="ping"))
 async def _(event):
     if event.fwd_from:
         return
@@ -11,3 +10,9 @@ async def _(event):
     end = datetime.now()
     ms = (end - start).microseconds / 1000
     await event.edit("Pong!\n{}".format(ms))
+
+
+HELPER.update({"ping": "\
+**Available commands in ping module:**\
+\n`.ping`\
+"})

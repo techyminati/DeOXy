@@ -16,12 +16,11 @@ from collections import deque
 
 import requests
 
+from telethon import events as _events
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
 
 from cowpy import cow
-
-from userbot import CMD_HELP,YOUTUBE_API_KEY
 from userbot.utils import register
 
 # ================= CONSTANT =================
@@ -664,7 +663,7 @@ async def univsaye(cowmsg):
         await cowmsg.edit(f"`{cheese.milk(text).replace('`', '´')}`")
 
 
-@register(outgoing=True, pattern="^:/$")
+@client.on(_events.NewMessage(pattern=":/", outgoing=True))
 async def kek(keks):
     if not keks.text[0].isalpha() and keks.text[0] not in ("/", "#", "@", "!"):
         """ Check yourself ;)"""
@@ -673,7 +672,7 @@ async def kek(keks):
             time.sleep(0.3)
             await keks.edit(":" + uio[i % 2])
 
-@register(outgoing=True, pattern=r"^.coinflip (.*)")
+@client.on(events(pattern="coinflip (.*)"))
 async def _(event):
     if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
         if event.fwd_from:
@@ -699,7 +698,7 @@ async def _(event):
         else:
             await event.edit("Gimme another coin, this one fake AF !!")
 
-@register(pattern="^.slap(?: |$)(.*)", outgoing=True)
+@client.on(events(pattern="slap ?(.*)"))
 async def who(event):
     if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
         """ slaps a user, or get slapped if not a reply. """
@@ -771,7 +770,7 @@ async def slap(replied_user, event):
 
     return caption
 
-@register(outgoing=True, pattern="^-_-$")
+@client.on(_events.NewMessage(pattern="-_-", outgoing=True))
 async def lol(lel):
     if not lel.text[0].isalpha() and lel.text[0] not in ("/", "#", "@", "!"):
         """ Ok... """
@@ -780,7 +779,7 @@ async def lol(lel):
             okay = okay[:-1] + "_-"
             await lel.edit(okay)
 
-@register(outgoing=True, pattern="^.decide$")
+@client.on(events(pattern="decide"))
 async def _(event):
     if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
         if event.fwd_from:
@@ -797,7 +796,7 @@ async def _(event):
         )
         await event.delete()
 
-@register(outgoing=True, pattern="^;_;$")
+@client.on(_events.NewMessage(pattern=";_;", outgoing=True))
 async def fun(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         t = ";__;"
@@ -805,19 +804,19 @@ async def fun(e):
             t = t[:-1] + "_;"
             await e.edit(t)
 
-@register(outgoing=True, pattern="^.cry$")
+@client.on(events(pattern="cry"))
 async def cry(e):
     """ y u du dis, i cry everytime !! """
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         await e.edit(random.choice(CRI))
 
-@register(outgoing=True, pattern="^.insult$")
+@client.on(events(pattern="insult"))
 async def insult(e):
     """ I make you cry !! """
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         await e.edit(random.choice(INSULT_STRINGS))
 
-@register(outgoing=True, pattern="^.cp(?: |$)(.*)")
+@client.on(events(pattern="cp ?(.*)"))
 async def copypasta(cp_e):
     """ Copypasta the famous meme """
     if not cp_e.text[0].isalpha() and cp_e.text[0] not in ("/", "#", "@", "!"):
@@ -853,7 +852,7 @@ async def copypasta(cp_e):
         await cp_e.edit(reply_text)
 
 
-@register(outgoing=True, pattern="^.vapor(?: |$)(.*)")
+@client.on(events(pattern="vapor ?(.*)"))
 async def vapor(vpr):
     """ Vaporize everything! """
     if not vpr.text[0].isalpha() and vpr.text[0] not in ("/", "#", "@", "!"):
@@ -879,13 +878,13 @@ async def vapor(vpr):
         await vpr.edit("".join(reply_text))
 
 			  
-@register(outgoing=True, pattern="^.repo$")
+@client.on(events(pattern="repo"))
 async def source(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         await e.edit("Click [here](https://github.com/Dark-Princ3/X-tra-Telegram) to open this lit af repo.")
 			  
 			  
-@register(outgoing=True, pattern="^.str(?: |$)(.*)")
+@client.on(events(pattern="str ?(.*)"))
 async def stretch(stret):
     """ Stretch it."""
     if not stret.text[0].isalpha() and stret.text[0] not in ("/", "#", "@", "!"):
@@ -909,7 +908,7 @@ async def stretch(stret):
         await stret.edit(reply_text)
 
 
-@register(outgoing=True, pattern="^.zal(?: |$)(.*)")
+@client.on(events(pattern="zal ?(.*)"))
 async def zal(zgfy):
     """ Invoke the feeling of chaos. """
     if not zgfy.text[0].isalpha() and zgfy.text[0] not in ("/", "#", "@", "!"):
@@ -949,13 +948,13 @@ async def zal(zgfy):
         await zgfy.edit("".join(reply_text))
 
 
-@register(outgoing=True, pattern="^.hi$")
+@client.on(events(pattern="hi"))
 async def hoi(hello):
     """ Greet everyone! """
     if not hello.text[0].isalpha() and hello.text[0] not in ("/", "#", "@", "!"):
         await hello.edit(random.choice(HELLOSTR))
 			  
-@register(outgoing=True, pattern="^.kill$")
+@client.on(events(pattern="kill"))
 async def killing (killed):
     """ Dont Kill Too much -_-"""
     if not killed.text[0].isalpha() and killed.text[0] not in ("/", "#", "@", "!"):
@@ -965,7 +964,7 @@ async def killing (killed):
 		"#Sad_Reacts_Onli\n"
             )
 			  
-@register(outgoing=True, pattern="^.bt$")
+@client.on(events(pattern="bt"))
 async def bluetext(bte):
     """ Believe me, you will find this useful. """
     if not bte.text[0].isalpha() and bte.text[0] not in ("/", "#", "@", "!"):
@@ -975,7 +974,7 @@ async def bluetext(bte):
                 "`Are you a stupid animal which is attracted to colours?`"
             )
 			  
-@register(outgoing=True, pattern="^.rape$")
+@client.on(events(pattern="rape"))
 async def raping (raped):
     """ Dont Rape Too much -_-"""
     if not raped.text[0].isalpha() and raped.text[0] not in ("/", "#", "@", "!"):
@@ -983,7 +982,7 @@ async def raping (raped):
         reply_text = RAPE_STRINGS[index]
         await raped.edit(reply_text)
 			  
-@register(outgoing=True, pattern="^.pro$")
+@client.on(events(pattern="pro"))
 async def proo (pros):
     """ String for Pros only -_-"""
     if not pros.text[0].isalpha() and pros.text[0] not in ("/", "#", "@", "!"):
@@ -991,7 +990,7 @@ async def proo (pros):
         reply_text = PRO_STRINGS[index]
         await pros.edit(reply_text)
 
-@register(outgoing=True, pattern="^.fuk$")
+@client.on(events(pattern="fuk"))
 async def chutiya (fuks):
     """ String for fhu only -_-"""
     if not fuks.text[0].isalpha() and fuks.text[0] not in ("/", "#", "@", "!"):
@@ -999,7 +998,7 @@ async def chutiya (fuks):
         reply_text = FUK_STRINGS[index]
         await fuks.edit(reply_text)
 
-@register(outgoing=True, pattern="^.chu$")
+@client.on(events(pattern="chu"))
 async def chutiya (chus):
     """ String for Chu only -_-"""
     if not chus.text[0].isalpha() and chus.text[0] not in ("/", "#", "@", "!"):
@@ -1007,7 +1006,7 @@ async def chutiya (chus):
         reply_text = CHU_STRINGS[index]
         await chus.edit(reply_text)
 			  			  
-@register(outgoing=True, pattern="^.thanos$")
+@client.on(events(pattern="thanos"))
 async def thanos (thanos):
     """ String for thanos only -_-"""
     if not thanos.text[0].isalpha() and thanos.text[0] not in ("/", "#", "@", "!"):
@@ -1015,7 +1014,7 @@ async def thanos (thanos):
         reply_text = THANOS_STRINGS[index]
         await thanos.edit(reply_text)	
 			  
-@register(outgoing=True, pattern="^.abusehard$")
+@client.on(events(pattern="abusehard"))
 async def fuckedd (abusehard):
     """ Dont Use this Too much bsdk -_-"""
     if not abusehard.text[0].isalpha() and abusehard.text[0] not in ("/", "#", "@", "!"):
@@ -1024,7 +1023,7 @@ async def fuckedd (abusehard):
         await abusehard.edit(reply_text)
 			  
 			  
-@register(outgoing=True, pattern="^.gey$")
+@client.on(events(pattern="gey"))
 async def geys (geyed):
     """ Use only for gey ppl -_-"""
     if not geyed.text[0].isalpha() and geyed.text[0] not in ("/", "#", "@", "!"):
@@ -1033,7 +1032,7 @@ async def geys (geyed):
         await geyed.edit(reply_text)
 			  
 			  
-@register(outgoing=True, pattern="^.abuse$")
+@client.on(events(pattern="abuse"))
 async def abusing (abused):
     """ Dont Abuse Too much bsdk -_-"""
     if not abused.text[0].isalpha() and abused.text[0] not in ("/", "#", "@", "!"):
@@ -1042,7 +1041,7 @@ async def abusing (abused):
         await abused.edit(reply_text)
 
 
-@register(outgoing=True, pattern="^.owo(?: |$)(.*)")
+@client.on(events(pattern="owo ?(.*)"))
 async def faces(owo):
     """ UwU """
     if not owo.text[0].isalpha() and owo.text[0] not in ("/", "#", "@", "!"):
@@ -1066,39 +1065,39 @@ async def faces(owo):
         await owo.edit(reply_text)
 
 
-@register(outgoing=True, pattern="^.react$")
+@client.on(events(pattern="react"))
 async def react_meme(react):
     """ Make your userbot react to everything. """
     if not react.text[0].isalpha() and react.text[0] not in ("/", "#", "@", "!"):
         await react.edit(random.choice(FACEREACTS))
 
 
-@register(outgoing=True, pattern="^.shg$")
+@client.on(events(pattern="shg"))
 async def shrugger(shg):
     r""" ¯\_(ツ)_/¯ """
     if not shg.text[0].isalpha() and shg.text[0] not in ("/", "#", "@", "!"):
         await shg.edit(random.choice(SHGS))
 
 
-@register(outgoing=True, pattern="^.runs$")
+@client.on(events(pattern="runs"))
 async def runner_lol(run):
     """ Run, run, RUNNN! """
     if not run.text[0].isalpha() and run.text[0] not in ("/", "#", "@", "!"):
         await run.edit(random.choice(RUNSREACTS))
 
-@register(outgoing=True, pattern="^.noob$")
+@client.on(events(pattern="noob"))
 async def metoo(hahayes):
     """ Haha yes """
     if not hahayes.text[0].isalpha() and hahayes.text[0] not in ("/", "#", "@", "!"):
         await hahayes.edit(random.choice(NOOBSTR))
 			  
-@register(outgoing=True, pattern="^.rendi$")
+@client.on(events(pattern="rendi"))
 async def metoo(hahayes):
     """ Haha yes """
     if not hahayes.text[0].isalpha() and hahayes.text[0] not in ("/", "#", "@", "!"):
         await hahayes.edit(random.choice(RENDISTR))
 			 			  
-@register(outgoing=True, pattern="^.oof$")
+@client.on(events(pattern="oof"))
 async def Oof(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         t = "Oof"
@@ -1106,12 +1105,12 @@ async def Oof(e):
             t = t[:-1] + "of"
             await e.edit(t)
 
-@register(outgoing=True, pattern="^.10iq$")
+@client.on(events(pattern="10iq"))
 async def iqless(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         await e.edit("♿")
 
-@register(outgoing=True, pattern="^.moon$")
+@client.on(events(pattern="moon"))
 async def _(event):
     if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
 	    if event.fwd_from:
@@ -1122,7 +1121,7 @@ async def _(event):
 		    await event.edit("".join(deq))
 		    deq.rotate(1)
 
-@register(outgoing=True, pattern="^.clock$")
+@client.on(events(pattern="clock"))
 async def _(event):
     if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
 	    if event.fwd_from:
@@ -1133,7 +1132,7 @@ async def _(event):
 		    await event.edit("".join(deq))
 		    deq.rotate(1)
 
-@register(outgoing=True, pattern="^.mock(?: |$)(.*)")
+@client.on(events(pattern="mock ?(.*)"))
 async def spongemocktext(mock):
     """ Do it and find the real fun. """
     if not mock.text[0].isalpha() and mock.text[0] not in ("/", "#", "@", "!"):
@@ -1158,7 +1157,7 @@ async def spongemocktext(mock):
         await mock.edit("".join(reply_text))
 
 
-@register(outgoing=True, pattern="^.clap(?: |$)(.*)")
+@client.on(events(pattern="clap ?(.*)"))
 async def claptext(memereview):
     """ Praise people! """
     if not memereview.text[0].isalpha() and memereview.text[0] not in ("/", "#", "@", "!"):
@@ -1177,7 +1176,7 @@ async def claptext(memereview):
         await memereview.edit(reply_text)
 
 
-@register(outgoing=True, pattern="^.bt$")
+@client.on(events(pattern="bt"))
 async def bluetext(bt_e):
     """ Believe me, you will find this useful. """
     if not bt_e.text[0].isalpha() and bt_e.text[0] not in ("/", "#", "@", "!"):
@@ -1188,7 +1187,7 @@ async def bluetext(bt_e):
             )
 
 
-@register(outgoing=True, pattern="^.smk (.*)")
+@client.on(events(pattern="smk (.*)"))
 async def smrk(smk):
         if not smk.text[0].isalpha() and smk.text[0] not in ("/", "#", "@", "!"):
             textx = await smk.get_reply_message()
@@ -1207,7 +1206,7 @@ async def smrk(smk):
              await smk.edit(reply_text)
 
 
-@register(outgoing=True, pattern=r"\.f (.*)")
+@client.on(events(pattern="f (.*)"))
 async def payf(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         paytext = e.pattern_match.group(1)
@@ -1215,7 +1214,7 @@ async def payf(e):
         await e.edit(pay)
 
 
-@register(outgoing=True, pattern="^.lfy (.*)",)
+@client.on(events(pattern="lfy (.*)"))
 async def let_me_google_that_for_you(lmgtfy_q):
     if not lmgtfy_q.text[0].isalpha() and lmgtfy_q.text[0] not in ("/", "#", "@", "!"):
         textx = await lmgtfy_q.get_reply_message()
@@ -1237,7 +1236,7 @@ async def let_me_google_that_for_you(lmgtfy_q):
             )
 
 
-@register(outgoing=True, pattern=r".yt_dl (\S*) ?(\S*)")
+@client.on(events(pattern="yt_dl (S*) ?(S*)"))
 async def download_video(v_url):
     """ For .yt_dl command, download videos from YouTube. """
     if not v_url.text[0].isalpha() and v_url.text[0] not in ("/", "#", "@", "!"):
@@ -1310,7 +1309,7 @@ async def download_video(v_url):
         os.remove('thumbnail.jpg')
         await v_url.delete()
 			  
-@register(pattern='.type(?: |$)(.*)')
+@client.on(events(pattern="type ?(.*)"))
 async def typewriter(typew):
     """ Just a small command to make your keyboard become a typewriter! """
     if not typew.text[0].isalpha() and typew.text[0] not in ("/", "#", "@", "!"):
@@ -1336,7 +1335,7 @@ async def typewriter(typew):
             await typew.edit(old_text)
             await asyncio.sleep(sleep_time)
 
-CMD_HELP.update({
+HELPER.update({
     "memes": ".cowsay\
 \nUsage: cow which says things.\
 \n\n.milksay\

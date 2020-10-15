@@ -6,10 +6,9 @@ from telethon.tl.functions.photos import GetUserPhotosRequest
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
 from telethon.utils import get_input_location
-from uniborg.util import admin_cmd
 
 
-@borg.on(admin_cmd(pattern="ppg ?(.*)"))
+@client.on(events(pattern="ppg ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -17,7 +16,7 @@ async def _(event):
     if replied_user is None:
         await event.edit(str(error_i_a))
         return False
-    replied_user_profile_photos = await borg(GetUserPhotosRequest(
+    replied_user_profile_photos = await client(GetUserPhotosRequest(
         user_id=replied_user.user.id,
         offset=42,
         max_id=0,
@@ -65,7 +64,7 @@ Rendi: <a href='tg://user?id={}'>{}</a>
     message_id_to_reply = event.message.reply_to_msg_id
     if not message_id_to_reply:
         message_id_to_reply = event.message.id
-    await borg.send_message(
+    await client.send_message(
         event.chat_id,
         caption,
         reply_to=message_id_to_reply,
@@ -130,3 +129,9 @@ async def get_full_user(event):
                 return replied_user, None
             except Exception as e:
                 return None, e
+
+
+HELPER.update({"ppg": "\
+**Available commands in ppg module:**\
+\n`.ppg <text>`\
+"})

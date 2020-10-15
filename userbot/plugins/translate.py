@@ -5,10 +5,9 @@ Available Commands:
 
 import emoji
 from googletrans import Translator
-from userbot.utils import admin_cmd
 
 
-@borg.on(admin_cmd("tr ?(.*)"))
+@client.on(events(pattern="tr ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -42,3 +41,9 @@ async def _(event):
         await event.edit(output_str)
     except Exception as exc:
         await event.edit(str(exc))
+
+
+HELPER.update({"translate": "\
+**Available commands in translate module:**\
+\n`.tr <text>`\
+"})

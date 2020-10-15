@@ -11,12 +11,11 @@ import asyncio
 import os
 import time
 from datetime import datetime
-from telethon import events
 from telethon.tl.types import DocumentAttributeVideo
 
 
 GIT_TEMP_DIR = "./userbot/temp/"
-@command(pattern="^.commit", outgoing=True)
+@client.on(events(pattern="commit"))
 async def download(event):
     if event.fwd_from:
         return	
@@ -81,3 +80,9 @@ async def git_commit(file_name,mone):
             await mone.edit("Cannot Upload Plugin")
     else:
         return await mone.edit("`Committed Suicide`")
+
+
+HELPER.update({"gitcommit": "\
+**Available commands in gitcommit module:**\
+\n`.commit`\
+"})

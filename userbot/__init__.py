@@ -20,7 +20,7 @@ else:
 
 CMD_LIST = {}
 # for later purposes
-CMD_HELP = {}
+HELPER = {}
 INT_PLUG = ""
 LOAD_PLUG = {}
 
@@ -182,7 +182,7 @@ COUNT_MSG = 0
 USERS = {}
 COUNT_PM = {}
 LASTMSG = {}
-CMD_HELP = {}
+HELPER = {}
 ISAFK = False
 AFKREASON = None
 # End of PaperPlaneExtended Support Vars

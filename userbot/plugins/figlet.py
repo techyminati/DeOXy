@@ -1,6 +1,6 @@
 import pyfiglet
 
-@command(pattern="^.figlet ?(.*)", outgoing=True)
+@client.on(events(pattern="figlet ?(.*)"))
 async def figlet(event):
     if event.fwd_from:
         return
@@ -25,3 +25,9 @@ async def figlet(event):
         result = pyfiglet.figlet_format(text)
     await event.respond("‌‌‎`{}`".format(result))
     await event.delete()
+
+
+HELPER.update({"figlet": "\
+**Available commands in figlet module:**\
+\n`.figlet <text>`\
+"})

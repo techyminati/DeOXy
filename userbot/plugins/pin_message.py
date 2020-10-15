@@ -1,11 +1,9 @@
 """Pins the replied message
 Syntax: .cpin [LOUD]"""
-from telethon import events
 from telethon.tl import functions, types
-from userbot.utils import admin_cmd
 
 
-@borg.on(admin_cmd("cpin ?(.*)"))
+@client.on(events(pattern="cpin ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -16,7 +14,7 @@ async def _(event):
     if event.message.reply_to_msg_id is not None:
         message_id = event.message.reply_to_msg_id
         try:
-            await borg(functions.messages.UpdatePinnedMessageRequest(
+            await client(functions.messages.UpdatePinnedMessageRequest(
                 event.chat_id,
                 message_id,
                 silent
@@ -27,3 +25,9 @@ async def _(event):
             await event.delete()
     else:
         await event.edit("Reply to a message to pin the message in this Channel.")
+
+
+HELPER.update({"pin_message": "\
+**Available commands in pin_message module:**\
+\n`.cpin <text>`\
+"})

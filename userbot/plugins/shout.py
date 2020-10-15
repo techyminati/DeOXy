@@ -4,17 +4,16 @@ originaly from : @corsicanu_bot
 """
 
 import sys
-from telethon import events, functions
-from userbot.utils import admin_cmd
+from telethon import functions
 import random
 
 
-@borg.on(events.NewMessage(pattern=r"\.shout", outgoing=True))
+@client.on(events(pattern="shout"))
 async def shout(args):
     if args.fwd_from:
         return
     else:
-        msg = "```"
+        msg = "`"
         messagestr = args.text
         messagestr = messagestr[7:]
         text = " ".join(messagestr)
@@ -30,3 +29,9 @@ async def shout(args):
         
     
     
+
+
+HELPER.update({"shout": "\
+**Available commands in shout module:**\
+\n`.shout`\
+"})

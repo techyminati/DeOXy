@@ -1,11 +1,9 @@
 """Get ID of any Telegram media, or any user
 Syntax: .get_id"""
-from telethon import events
 from telethon.utils import pack_bot_file_id
-from userbot.utils import admin_cmd
 
 
-@borg.on(admin_cmd("get_id"))
+@client.on(events(pattern="get_id"))
 async def _(event):
     if event.fwd_from:
         return
@@ -19,3 +17,9 @@ async def _(event):
             await event.edit("Current Chat ID: `{}`\nFrom User ID: `{}`".format(str(event.chat_id), str(r_msg.from_id)))
     else:
         await event.edit("Current Chat ID: `{}`".format(str(event.chat_id)))
+
+
+HELPER.update({"get_id": "\
+**Available commands in get_id module:**\
+\n`.get_id`\
+"})

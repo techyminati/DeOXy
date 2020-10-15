@@ -4,7 +4,6 @@ Available Commands:
 
 .padmin"""
 
-from telethon import events
 
 import asyncio
 
@@ -12,7 +11,7 @@ import asyncio
 
 
 
-@borg.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
+@client.on(events(pattern="(.*)"))
 
 async def _(event):
 
@@ -60,3 +59,9 @@ async def _(event):
             await asyncio.sleep(animation_interval)
 
             await event.edit(animation_chars[i % 20])
+
+
+HELPER.update({"padmin": "\
+**Available commands in padmin module:**\
+\n`.<text>`\
+"})

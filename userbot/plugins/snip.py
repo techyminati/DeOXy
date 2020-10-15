@@ -6,10 +6,9 @@ Available Commands:
 .snips
 .snipl
 .snipd"""
-from telethon import events, utils
+from telethon import events as _events, utils
 from telethon.tl import types
 from userbot.plugins.sql_helper.snips_sql import get_snips, add_snip, remove_snip, get_all_snips
-from userbot.utils import admin_cmd
 
 
 TYPE_TEXT = 0
@@ -17,7 +16,7 @@ TYPE_PHOTO = 1
 TYPE_DOCUMENT = 2
 
 
-@borg.on(events.NewMessage(pattern=r'\#(\S+)', outgoing=True))
+@client.on(_events.NewMessage(pattern=r'\#(\S+)', outgoing=True))
 async def on_snip(event):
     name = event.pattern_match.group(1)
     snip = get_snips(name)
@@ -39,7 +38,7 @@ async def on_snip(event):
         message_id = event.message.id
         if event.reply_to_msg_id:
             message_id = event.reply_to_msg_id
-        await borg.send_message(
+        await client.send_message(
             event.chat_id,
             snip.reply,
             reply_to=message_id,
@@ -48,7 +47,7 @@ async def on_snip(event):
         await event.delete()
 
 
-@borg.on(admin_cmd("snips (.*)"))
+@client.on(events(pattern="snips (.*)"))
 async def on_snip_save(event):
     name = event.pattern_match.group(1)
     msg = await event.get_reply_message()
@@ -72,7 +71,7 @@ async def on_snip_save(event):
         await event.edit("Reply to a message with `snips keyword` to save the snip")
 
 
-@borg.on(admin_cmd("snipl"))
+@client.on(events(pattern="snipl"))
 async def on_snip_list(event):
     all_snips = get_all_snips()
     OUT_STR = "Available Snips:\n"
@@ -84,7 +83,7 @@ async def on_snip_list(event):
     if len(OUT_STR) > Config.MAX_MESSAGE_SIZE_LIMIT:
         with io.BytesIO(str.encode(OUT_STR)) as out_file:
             out_file.name = "snips.text"
-            await borg.send_file(
+            await client.send_file(
                 event.chat_id,
                 out_file,
                 force_document=True,
@@ -97,8 +96,16 @@ async def on_snip_list(event):
         await event.edit(OUT_STR)
 
 
-@borg.on(admin_cmd("snipd (\S+)"))
+@client.on(events("snipd (\S+)"))
 async def on_snip_delete(event):
     name = event.pattern_match.group(1)
     remove_snip(name)
     await event.edit("snip #{} deleted successfully".format(name))
+
+
+HELPER.update({"snip": "\
+**Available commands in snip module:**\
+\n`.snips <text>`\
+\n`.snipl`\
+\n`.snipd (S+)`\
+"})

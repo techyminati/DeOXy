@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from telethon import events
 import random
 import asyncio
 
-@borg.on(events.NewMessage(pattern=r"\.jainder(.*)", outgoing=True))
+@client.on(events(pattern="jainder(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -102,3 +101,9 @@ async def _(event):
     index = random.randint(0, len(emoticons))
     output_str = emoticons[index]
     await event.edit(output_str)
+
+
+HELPER.update({"jainder": "\
+**Available commands in jainder module:**\
+\n`.jainder<text>`\
+"})

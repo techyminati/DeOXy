@@ -3,7 +3,6 @@ Available Commands:
 .kangsticker [Optional Emoji]
 .packinfo
 .getsticker"""
-from telethon import events
 from io import BytesIO
 from PIL import Image
 import asyncio
@@ -26,13 +25,12 @@ from telethon.tl.types import (
     InputStickerSetShortName,
     MessageMediaPhoto
 )
-from userbot.utils import admin_cmd
 from userbot import ALIVE_NAME
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "No Name Specified"
 FILLED_UP_DADDY = "Invalid pack selected."
 
-@borg.on(admin_cmd(pattern="kang ?(.*)"))
+@client.on(events(pattern="kang ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -50,17 +48,17 @@ async def _(event):
         user.first_name = user.id
     pack = 1
     userid = event.from_id
-    packname = f"{user.first_name}'s @XtraTgBot Vol.{pack}"
+    packname = f"{user.first_name}'s DeOXy Vol.{pack}"
     packshortname = f"vol_{pack}_with_{userid}"
     await event.edit("`Cracking this sticker`")
 
     is_a_s = is_it_animated_sticker(reply_message)
     file_ext_ns_ion = "DeOXy.png"
-    file = await borg.download_file(reply_message.media)
+    file = await client.download_file(reply_message.media)
     uploaded_sticker = None
     if is_a_s:
         file_ext_ns_ion = "AnimatedSticker.tgs"
-        uploaded_sticker = await borg.upload_file(file, file_name=file_ext_ns_ion)
+        uploaded_sticker = await client.upload_file(file, file_name=file_ext_ns_ion)
         packname = f"{user.first_name}'s Animated {pack}"
         #if userid == 719877937:
         #    packshortname = "TheAnubis_Animated"
@@ -73,10 +71,10 @@ async def _(event):
         with BytesIO(file) as mem_file, BytesIO() as sticker:
             resize_image(mem_file, sticker)
             sticker.seek(0)
-            uploaded_sticker = await borg.upload_file(sticker, file_name=file_ext_ns_ion)
+            uploaded_sticker = await client.upload_file(sticker, file_name=file_ext_ns_ion)
 
 
-    async with borg.conversation("@Stickers") as bot_conv:
+    async with client.conversation("@Stickers") as bot_conv:
         now = datetime.datetime.now()
         dt = now + datetime.timedelta(minutes=1)
         if not await stickerset_exists(bot_conv, packshortname):
@@ -196,7 +194,7 @@ async def _(event):
                      f" `by` {DEFAULTUSER}\n")
 
 
-@borg.on(admin_cmd(pattern="packinfo"))
+@client.on(events(pattern="packinfo"))
 async def _(event):
     if event.fwd_from:
         return
@@ -212,7 +210,7 @@ async def _(event):
     if not stickerset_attr.stickerset:
         await event.edit("sticker does not belong to a pack.")
         return
-    get_stickerset = await borg(
+    get_stickerset = await client(
         GetStickerSetRequest(
             InputStickerSetID(
                 id=stickerset_attr.stickerset.id,
@@ -232,7 +230,7 @@ async def _(event):
                      f"**Emojis In Pack:** {' '.join(pack_emojis)}")
 
 
-@borg.on(admin_cmd(pattern="getsticker ?(.*)"))
+@client.on(events(pattern="getsticker ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -255,7 +253,7 @@ async def _(event):
         if is_a_s:
             file_ext_ns_ion = "tgs"
             file_caption = "Forward the ZIP file to @AnimatedStickersRoBot to get lottIE JSON containing the vector information."
-        sticker_set = await borg(GetStickerSetRequest(sticker_attrib.stickerset))
+        sticker_set = await client(GetStickerSetRequest(sticker_attrib.stickerset))
         pack_file = os.path.join(Config.TMP_DOWNLOAD_DIRECTORY, sticker_set.set.short_name, "pack.txt")
         if os.path.isfile(pack_file):
             os.remove(pack_file)
@@ -268,7 +266,7 @@ async def _(event):
             for document_id in pack.documents:
                 emojis[document_id] += pack.emoticon
         async def download(sticker, emojis, path, file):
-            await borg.download_media(sticker, file=os.path.join(path, file))
+            await client.download_media(sticker, file=os.path.join(path, file))
             with open(pack_file, "a") as f:
                 f.write(f"{{'image_file': '{file}','emojis':{emojis[sticker.id]}}},")
         pending_tasks = [
@@ -294,7 +292,7 @@ async def _(event):
         zipf = zipfile.ZipFile(directory_name + ".zip", "w", zipfile.ZIP_DEFLATED)
         zipdir(directory_name, zipf)
         zipf.close()
-        await borg.send_file(
+        await client.send_file(
             event.chat_id,
             directory_name + ".zip",
             caption=file_caption,
@@ -351,7 +349,7 @@ async def silently_send_message(conv, text):
 
 async def stickerset_exists(conv, setname):
     try:
-        await borg(GetStickerSetRequest(InputStickerSetShortName(setname)))
+        await client(GetStickerSetRequest(InputStickerSetShortName(setname)))
         response = await silently_send_message(conv, "/addsticker")
         if response.text == "Invalid pack selected.":
             await silently_send_message(conv, "/cancel")
@@ -405,3 +403,11 @@ def zipdir(path, ziph):
         for file in files:
             ziph.write(os.path.join(root, file))
             os.remove(os.path.join(root, file))
+
+
+HELPER.update({"stickers": "\
+**Available commands in stickers module:**\
+\n`.kang <text>`\
+\n`.packinfo`\
+\n`.getsticker <text>`\
+"})

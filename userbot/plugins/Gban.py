@@ -2,7 +2,6 @@
 
 from userbot import bot, BOTLOG_CHATID, ALIVE_NAME, CMD_LIST
 import asyncio
-from telethon import events
 from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.types import (PeerChat, PeerChannel,ChannelParticipantsAdmins, ChatAdminRights,ChatBannedRights, MessageEntityMentionName,MessageMediaPhoto, ChannelParticipantsBots)
 from telethon.tl.types import Channel
@@ -15,7 +14,7 @@ from telethon.events import ChatAction
 # Imported from @javes05
 # Kangers keep the credits -_-
 
-@command(outgoing=True, pattern="^.gban(?: |$)(.*)")
+@client.on(events(pattern="gban ?(.*)"))
 async def startgban(tb): 
    oof = tb ; sender = await oof.get_sender() ; me = await oof.client.get_me()
    if not sender.id == me.id:
@@ -65,7 +64,7 @@ async def startgban(tb):
     	pass
    return await tele.edit(f"`{ALIVE_NAME}:` **Gbanned [{user.first_name}](tg://user?id={user.id}) in {a} chat(s) **") 
  
-@command(outgoing=True, pattern="^;ungban(?: |$)(.*)")
+@client.on(events(pattern=";ungban ?(.*)"))
 async def regressgban(tb):
    oof = tb ; sender = await oof.get_sender() ; me = await oof.client.get_me()
    if not sender.id == me.id:
@@ -116,3 +115,10 @@ async def regressgban(tb):
    return await tele.edit(f"`{ALIVE_NAME}:` **UnGbanned [{user.first_name}](tg://user?id={user.id}) in {a} chat(s) **") 
         
    
+
+
+HELPER.update({"Gban": "\
+**Available commands in Gban module:**\
+\n`.gban <text>`\
+\n`.;ungban <text>`\
+"})

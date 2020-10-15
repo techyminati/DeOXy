@@ -1,14 +1,11 @@
 # (c) @UniBorg
 # Original written by @UniBorg edit by @I_m_Rock
 
-from telethon import events
 import asyncio
 from collections import deque
-from global_variables_sql import SYNTAX, MODULE_LIST
 
-MODULE_LIST.append("solarsystem")
 
-@borg.on(events.NewMessage(pattern=r"\.earth", outgoing=True))
+@client.on(events(pattern="earth"))
 async def _(event):
 	if event.fwd_from:
 		return
@@ -18,16 +15,16 @@ async def _(event):
 		await event.edit("".join(deq))
 		deq.rotate(1)
     
-SYNTAX.update({
+HELPER.update({
     "solarsystem": f"\
 **Requested Module --> Solar System**\
 \n\nDetailed usage of fuction(s):\
 \n\n\
 \nUsage: Creates Cool solar system based Emojis.\n\
 \n\nList of included animaes:\
-\n```.Earth```\n\
-\n```.moon```\n\
-\n```.solarsystem```\n\
-\n```.isro```\n\
+\n`.Earth`\n\
+\n`.moon`\n\
+\n`.solarsystem`\n\
+\n`.isro`\n\
 "
 })

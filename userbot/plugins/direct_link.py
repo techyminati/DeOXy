@@ -17,9 +17,8 @@ from bs4 import BeautifulSoup
 from humanize import naturalsize
 
 from userbot.utils import register
-from global_variables_sql import SYNTAX, MODULE_LIST
 
-@register(outgoing=True, pattern=r"^.direct(?: |$)([\s\S]*)")
+@client.on(events(pattern="direct ?([sS]*)"))
 async def direct_link_generator(request):
     """ direct links generator """
     await request.edit("`Processing...`")
@@ -348,9 +347,8 @@ def useragent():
     return user_agent.text
 
 
-MODULE_LIST.append("direct_link")
 
-SYNTAX.update({
+HELPER.update({
     "direct_link": "\
 **Requested Module --> Direct Link Generator**\
 \n\n• `.direct <url>`\

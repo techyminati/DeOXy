@@ -5,17 +5,15 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #Ported To X-Tra TG MOD 2.0 By MrMobTech
 
-
-from telethon import events, errors, functions, types
+from telethon import errors, functions, types
 import inspect
 import traceback
 import asyncio
 import sys
 import io
-from uniborg.util import admin_cmd
 
 
-@borg.on(admin_cmd(pattern="py"))
+@client.on(events(pattern="py"))
 async def _(event):
     if event.fwd_from:
         return
@@ -57,7 +55,7 @@ async def _(event):
     if len(final_output) > Config.MAX_MESSAGE_SIZE_LIMIT:
         with io.BytesIO(str.encode(final_output)) as out_file:
             out_file.name = "eval.text"
-            await borg.send_file(
+            await client.send_file(
                 event.chat_id,
                 out_file,
                 force_document=True,
@@ -76,3 +74,9 @@ async def aexec(code, event):
         ''.join(f'\n {l}' for l in code.split('\n'))
     )
     return await locals()['__aexec'](event)
+
+
+HELPER.update({"python": "\
+**Available commands in python module:**\
+\n`.py`\
+"})

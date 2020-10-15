@@ -9,12 +9,8 @@ from datetime import datetime, tzinfo
 
 import aiohttp
 
-from userbot.utils import admin_cmd
 
-from userbot.uniborgConfig import Config
-
-
-@borg.on(admin_cmd(pattern="weather (.*)"))
+@client.on(events(pattern="weather (.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -57,7 +53,7 @@ async def _(event):
         await event.edit(response_api["message"])
 
 
-@borg.on(admin_cmd(pattern="wttr (.*)"))
+@client.on(events(pattern="wttr (.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -73,3 +69,10 @@ async def _(event):
                 file=out_file
             )
     await event.edit(input_str)
+
+
+HELPER.update({"weatherV2": "\
+**Available commands in weatherV2 module:**\
+\n`.weather <text>`\
+\n`.wttr <text>`\
+"})

@@ -2,18 +2,15 @@
 #Written By: @CyberJalagam and @TechyNewbie
 
 """Emoji
-#SYNTAX .volte"""
+#HELPER .volte"""
 
-from global_variables_sql import SYNTAX, MODULE_LIST
-from telethon import events
 
 import asyncio
 
-MODULE_LIST.append("desp4volte")
 
 
 
-@borg.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
+@client.on(events(pattern="(.*)"))
 
 async def _(event):
 
@@ -84,7 +81,7 @@ async def _(event):
 
             await event.edit(animation_chars[i % 41])
 
-SYNTAX.update({
+HELPER.update({
     "desp4volte": "\
 **Requested module --> Despirate For VoLTE**\
 \n\n• `.volte`\

@@ -10,14 +10,13 @@ import os
 import requests
 import math
 from userbot.utils import register
-from userbot.utils import admin_cmd
 
 
 Heroku = heroku3.from_key(Var.HEROKU_API_KEY)
 heroku_api = "https://api.heroku.com"
 
 
-@register(outgoing=True, pattern=r"^\.(set|get|del) var(?: |$)(.*)(?: |$)([\s\S]*)")
+@client.on(events(pattern="(set|get|del) var ?(.*) ?([sS]*)"))
 async def variable(var):
     """
         Manage most of ConfigVars setting, set new var, get current var,
@@ -57,7 +56,7 @@ async def variable(var):
                 else:
                     await var.edit("`[HEROKU]` ConfigVars:\n\n"
                                    "================================"
-                                   f"\n```{result}```\n"
+                                   f"\n`{result}`\n"
                                    "================================"
                                    )
             os.remove("configs.json")
@@ -94,7 +93,7 @@ async def variable(var):
             return await var.edit(f"**{variable}**  `is not exists`")
 
 
-@register(outgoing=True, pattern=r"^\.usage(?: |$)")
+@client.on(events(pattern="usage ?"))
 async def dyno_usage(dyno):
     """
         Get your account Dyno Usage
@@ -152,15 +151,23 @@ async def dyno_usage(dyno):
                            )
 
 
-@command(pattern="^.info heroku")
-async def info(event):
-    await borg.send_message(event.chat_id, "**Info for Module to Manage Heroku:**\n\n`.usage`\nUsage:__Check your heroku dyno hours status.__\n\n`.set var <NEW VAR> <VALUE>`\nUsage: __add new variable or update existing value variable__\n**!!! WARNING !!!, after setting a variable the bot will restart.**\n\n`.get var or .get var <VAR>`\nUsage: __get your existing varibles, use it only on your private group!__\n**This returns all of your private information, please be cautious...**\n\n`.del var <VAR>`\nUsage: __delete existing variable__\n**!!! WARNING !!!, after deleting variable the bot will restarted**")
-    await event.delete()
-
-
 def prettyjson(obj, indent=2, maxlinelength=80):
     """Renders JSON content with indentation and line splits/concatenations to fit maxlinelength.
     Only dicts, lists and basic types are supported"""
 
     items, _ = getsubitems(obj, itemkey="", islast=True, maxlinelength=maxlinelength - indent, indent=indent)
     return indentitems(items, indent, level=0)
+
+
+HELPER.update({"heroku": "\
+**Available commands in heroku module:**\
+\n\n`.usage`\nUsage:__Check your heroku dyno hours status.__\
+\n\n`.set var <NEW VAR> <VALUE>`\
+\nUsage: __add new variable or update existing value variable__\
+\n**!!! WARNING !!!, after setting a variable the bot will restart.**\
+\n\n`.get var or .get var <VAR>`\
+\nUsage: __get your existing varibles, use it only on your private group!__\
+\n**This returns all of your private information, please be cautious...**\
+\n\n`.del var <VAR>`\nUsage: __delete existing variable__\
+\n**!!! WARNING !!!, after deleting variable the bot will restarted**\
+"})

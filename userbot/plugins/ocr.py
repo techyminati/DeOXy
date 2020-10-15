@@ -3,11 +3,10 @@
 # Licensed under the Raphielscape Public License, Version 1.c (the "License");
 # you may not use this file except in compliance with the License.
 
-from telethon import events
 import os
 import requests
 import logging
-from userbot import bot, OCR_SPACE_API_KEY, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
+from userbot import bot, OCR_SPACE_API_KEY, HELPER, TEMP_DOWNLOAD_DIRECTORY
 from userbot.utils import register
 
 
@@ -42,7 +41,7 @@ async def ocr_space_file(filename,
     return r.json()
 
 
-@register(pattern="^.ocr(?: |$)(.*)", outgoing=True)
+@client.on(events(pattern="ocr ?(.*)"))
 async def ocr(event):
     await event.edit("`Reading...`")
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
@@ -62,7 +61,13 @@ async def ocr(event):
     os.remove(downloaded_file_name)
 
 
-CMD_HELP.update({
+HELPER.update({
     'ocr':
     ".ocr <language>\nUsage: Reply to an image or sticker to extract text from it.\n\nGet language codes from [here](https://ocr.space/ocrapi)"
 })
+
+
+HELPER.update({"ocr": "\
+**Available commands in ocr module:**\
+\n`.ocr(: |)<text>`\
+"})

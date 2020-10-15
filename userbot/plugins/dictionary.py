@@ -2,11 +2,9 @@
 Syntax: .meaning <word>"""
 
 import requests
-from telethon import events
-from uniborg.util import admin_cmd
 
 
-@borg.on(admin_cmd("meaning (.*)"))
+@client.on(events(pattern="meaning (.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -28,7 +26,7 @@ async def _(event):
     if event.reply_to_msg_id:
         reply_msg_id = event.reply_to_msg_id
     try:
-        await borg.send_file(
+        await client.send_file(
             event.chat_id,
             pronounciation,
             caption=f"Pronounciation of __{input_str}__",
@@ -42,3 +40,9 @@ async def _(event):
     except:
         pass
     await event.edit(caption_str)
+
+
+HELPER.update({"dictionary": "\
+**Available commands in dictionary module:**\
+\n`.meaning <text>`\
+"})

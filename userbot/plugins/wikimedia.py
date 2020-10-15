@@ -1,11 +1,9 @@
 """WikiMedia.ORG
 Syntax: .wikimedia Query"""
-from telethon import events
 import requests
-from uniborg.util import admin_cmd
 
 
-@borg.on(admin_cmd(pattern="wikimedia (.*)"))
+@client.on(events(pattern="wikimedia (.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -40,3 +38,9 @@ async def _(event):
         mediatype: {}
         """.format(pageid, title, timestamp, user, descriptionurl, mime, mediatype)
     await event.edit("**Search**: {} \n\n **Results**: {}".format(input_str, result))
+
+
+HELPER.update({"wikimedia": "\
+**Available commands in wikimedia module:**\
+\n`.wikimedia <text>`\
+"})

@@ -4,14 +4,11 @@ Available Commands:
 
 .call"""
 
-from telethon import events
 import asyncio
-from global_variables_sql import SYNTAX, MODULE_LIST
-
-MODULE_LIST.append("call")
 
 
-@borg.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
+
+@client.on(events(pattern="(.*)"))
 
 async def _(event):
 
@@ -57,11 +54,11 @@ async def _(event):
 
             await event.edit(animation_chars[i % 18])
             
-SYNTAX.update({
+HELPER.update({
     "call": f"\
 **Requested Module --> Call meme**\
 \n\nDetailed usage of fuction(s):\
-\n\n```.call```\
+\n\n`.call`\
 \nUsage: Calls a friend.\
 "
 })

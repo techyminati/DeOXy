@@ -10,7 +10,6 @@ Available Commands:
 
 .emoji -_-"""
 
-from telethon import events
 
 import asyncio
 
@@ -18,7 +17,7 @@ import asyncio
 
 
 
-@borg.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
+@client.on(events(pattern="(.*)"))
 
 async def _(event):
 
@@ -56,7 +55,7 @@ async def _(event):
 
 
 
-@borg.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
+@client.on(events(pattern="(.*)"))
 
 async def _(event):
 
@@ -116,3 +115,9 @@ async def _(event):
 
             await event.edit(animation_chars[i % 117])
 
+
+HELPER.update({"moon": "\
+**Available commands in moon module:**\
+\n`.<text>`\
+\n`.<text>`\
+"})

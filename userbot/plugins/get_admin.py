@@ -1,11 +1,9 @@
 """Get Administrators of any Chat*
 Syntax: .get_admin"""
-from telethon import events
 from telethon.tl.types import ChannelParticipantsAdmins, ChannelParticipantAdmin, ChannelParticipantCreator
-from userbot.utils import admin_cmd
 
 
-@borg.on(admin_cmd("get_ad?(m)in ?(.*)"))
+@client.on(events(pattern="get_ad?(m)in ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -26,17 +24,17 @@ async def _(event):
         mentions_heading = "Admins in {} channel: \n".format(input_str)
         mentions = mentions_heading
         try:
-            chat = await borg.get_entity(input_str)
+            chat = await client.get_entity(input_str)
         except Exception as e:
             await event.edit(str(e))
             return None
     try:
-        async for x in borg.iter_participants(chat, filter=ChannelParticipantsAdmins):
+        async for x in client.iter_participants(chat, filter=ChannelParticipantsAdmins):
             if not x.deleted:
                 if isinstance(x.participant, ChannelParticipantCreator):
                     mentions += "\n 👑 [{}](tg://user?id={}) `{}`".format(x.first_name, x.id, x.id)
         mentions += "\n"
-        async for x in borg.iter_participants(chat, filter=ChannelParticipantsAdmins):
+        async for x in client.iter_participants(chat, filter=ChannelParticipantsAdmins):
             if not x.deleted:
                 if isinstance(x.participant, ChannelParticipantAdmin):
                     mentions += "\n ⚜️ [{}](tg://user?id={}) `{}`".format(x.first_name, x.id, x.id)
@@ -52,3 +50,9 @@ async def _(event):
         await event.delete()
     else:
         await event.edit(mentions)
+
+
+HELPER.update({"get_admin": "\
+**Available commands in get_admin module:**\
+\n`.get_ad(m)in <text>`\
+"})

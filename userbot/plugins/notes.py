@@ -4,14 +4,12 @@
 # Based on the note module made by RaphielGang (https://da.gd/X4Mnf)
 # Syntax (.save <notename>, .get <notename>, .clear <notename>, .clearall)
 
-from userbot.notes_sql import get_notes, rm_note, add_note, rm_all_notes
-from telethon import events
-from userbot.utils import admin_cmd
+from userbot.plugins.sql_helper.notes_sql import get_notes, rm_note, add_note, rm_all_notes
 import asyncio, time
 from telethon.tl import functions, types
 
 
-@borg.on(admin_cmd(pattern="notes ?(.*)"))
+@client.on(events(pattern="notes ?(.*)"))
 async def _(svd):
     if svd.fwd_from:
         return
@@ -24,7 +22,7 @@ async def _(svd):
     await svd.edit(message)
 
 
-@borg.on(admin_cmd(pattern="clear ?(.*)"))
+@client.on(events(pattern="clear ?(.*)"))
 async def _(clr):
     if clr.fwd_from:
         return
@@ -36,11 +34,11 @@ async def _(clr):
     status = f"**Note {notename} not found.**"
     if notename in notelist:
       rm_note(clr.chat_id, notename)
-      status = f"**Note** ```{notename}``` **cleared successfully**"
+      status = f"**Note** `{notename}` **cleared successfully**"
     await clr.edit(status)
 
 
-@borg.on(admin_cmd(pattern="save ?(.*)"))
+@client.on(events(pattern="save ?(.*)"))
 async def _(fltr):
     if fltr.fwd_from:
         return
@@ -49,13 +47,13 @@ async def _(fltr):
     if rep_msg and notename:
       string = rep_msg.text
       add_note(str(fltr.chat_id), notename, string)
-      message = f"**Note saved successfully.**\n**Use** ```.get {notename}``` **to get it.**"
+      message = f"**Note saved successfully.**\n**Use** `.get {notename}` **to get it.**"
     else:
       message = f"**Error!**"
     await fltr.edit(message)
 
 
-@borg.on(admin_cmd(pattern="get ?(.*)"))
+@client.on(events(pattern="get ?(.*)"))
 async def _(getnt):
     if getnt.fwd_from:
         return
@@ -66,22 +64,32 @@ async def _(getnt):
             await getnt.reply(note.reply)
             await getnt.delete()
         else:
-            await getnt.edit(f"**Note** ```{notename}``` **not found!**")
+            await getnt.edit(f"**Note** `{notename}` **not found!**")
 
 
-@borg.on(admin_cmd(pattern="clearall ?(.*)"))
+@client.on(events(pattern="clearall ?(.*)"))
 async def _(prg):
     if prg.fwd_from:
         return
     if not prg.text[0].isalpha():
         await prg.edit("**Purging all notes.**")
-        await prg.edit("**All notes have been purged successfully.**\n```This auto generated message will be deleted in a few seconds...```")
+        await prg.edit("**All notes have been purged successfully.**\n`This auto generated message will be deleted in a few seconds...`")
         rm_all_notes(str(prg.chat_id))
         time.sleep(5)
         await prg.delete()
-        status = f"**Successfully purged all notes at** ```{prg.chat_id}```"
+        status = f"**Successfully purged all notes at** `{prg.chat_id}`"
         await log(status)
 
 async def log(text):
     LOGGER = Config.PRIVATE_GROUP_BOT_API_ID
-    await borg.send_message(LOGGER, text)
+    await client.send_message(LOGGER, text)
+
+
+HELPER.update({"notes": "\
+**Available commands in notes module:**\
+\n`.notes <text>`\
+\n`.clear <text>`\
+\n`.save <text>`\
+\n`.get <text>`\
+\n`.clearall <text>`\
+"})

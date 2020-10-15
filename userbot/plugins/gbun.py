@@ -1,12 +1,10 @@
 # This is a troll indeed ffs *facepalm*
 import asyncio
-from telethon import events
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import ChannelParticipantsAdmins
-from userbot.utils import admin_cmd
 
 
-@borg.on(admin_cmd("gbun"))
+@client.on(events(pattern="gbun"))
 async def gbun(event):
     if event.fwd_from:
         return
@@ -17,7 +15,7 @@ async def gbun(event):
     await event.edit("**Federation ban in progress ❗️⚜️☠️**")
     asyncio.sleep(3.5)
     chat = await event.get_input_chat()
-    async for x in borg.iter_participants(chat, filter=ChannelParticipantsAdmins):
+    async for x in client.iter_participants(chat, filter=ChannelParticipantsAdmins):
         mentions += f""
     reply_message = None
     if event.reply_to_msg_id:
@@ -51,3 +49,9 @@ async def gbun(event):
         mention = "`Warning!! User 𝙂𝘽𝘼𝙉𝙉𝙀𝘿 By Admin...\nReason: Potential Telegram Addict. `"
         await event.reply(mention)
     await event.delete()
+
+
+HELPER.update({"gbun": "\
+**Available commands in gbun module:**\
+\n`.gbun`\
+"})

@@ -7,12 +7,11 @@ credits :@mrconfused
 # don't edit credits 
 
 from geopy.geocoders import Nominatim
-from userbot.utils import admin_cmd
 from telethon.tl import types
 
 
 
-@borg.on(admin_cmd(pattern="gps ?(.*)"))
+@client.on(events(pattern="gps ?(.*)"))
 async def gps(event):
     if event.fwd_from:
         return
@@ -44,3 +43,8 @@ async def gps(event):
     else:
         await event.edit("i coudn't find it")
 
+
+HELPER.update({"gps": "\
+**Available commands in gps module:**\
+\n`.gps <text>`\
+"})

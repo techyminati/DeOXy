@@ -5,7 +5,6 @@ Syntax: .smd
 Dialogues credit: To their Writers Sed
 """
 
-from telethon import events
 
 import asyncio
 
@@ -15,11 +14,10 @@ import sys
 
 import random
 
-from uniborg.util import admin_cmd
 
 
 
-@borg.on(admin_cmd(pattern=r"smd"))
+@client.on(events(pattern="smd"))
 
 async def _(event):
 
@@ -423,3 +421,8 @@ async def _(event):
 
     
 
+
+HELPER.update({"smd": "\
+**Available commands in smd module:**\
+\n`.smd`\
+"})

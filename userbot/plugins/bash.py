@@ -1,14 +1,11 @@
-from telethon import events
 import subprocess
 from telethon.errors import MessageEmptyError, MessageTooLongError, MessageNotModifiedError
-from global_variables_sql import SYNTAX, MODULE_LIST
 import io
 import asyncio
 import time
 
-MODULE_LIST.append("bash")
 
-@command(pattern="^.bash ?(.*)")
+@client.on(events(pattern="bash ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -47,11 +44,11 @@ async def _(event):
             await event.delete()
     await event.edit(OUTPUT)
 
-SYNTAX.update({
+HELPER.update({
     "bash": f"\
 **Requested Module --> Bash Programming**\
 \n\nDetailed usage of fuction(s):\
-\n\n```.bash <code>```\
+\n\n`.bash <code>`\
 \nUsage: Runs the bash script.\
 "
 })    

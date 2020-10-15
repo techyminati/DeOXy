@@ -1,5 +1,4 @@
 # credits: SNAPDRAGON (@s_n_a_p_s)
-from telethon import events
 import subprocess
 import os
 from telethon.errors import MessageEmptyError, MessageTooLongError, MessageNotModifiedError
@@ -34,3 +33,9 @@ async def _(event):
     )
     stdout, stderr = await process.communicate()
     await event.edit(f"{stdout.decode()}")
+
+
+HELPER.update({"webupload": "\
+**Available commands in webupload module:**\
+\n`.webupload (.+|) (:--)(anonfiles|transfer|filebin|anonymousfiles|megaupload|bayfiles)`\
+"})

@@ -20,11 +20,10 @@ from datetime import datetime
 import io
 import os
 import requests
-from telethon import events
 from userbot.utils import progress, admin_cmd
 
 
-@borg.on(admin_cmd("rmbg ?(.*)"))
+@client.on(events(pattern="rmbg ?(.*)"))
 async def _(event):
     HELP_STR = "`.rmbg` as reply to a media, or give a link as an argument to this command"
     if event.fwd_from:
@@ -41,7 +40,7 @@ async def _(event):
         # check if media message
         await event.edit("`Parsing the image.`")
         try:
-            downloaded_file_name = await borg.download_media(
+            downloaded_file_name = await client.download_media(
                 reply_message,
                 Config.TMP_DOWNLOAD_DIRECTORY
             )
@@ -62,7 +61,7 @@ async def _(event):
     if "image" in contentType:
         with io.BytesIO(output_file_name.content) as remove_bg_image:
             remove_bg_image.name = "BG_less.png"
-            await borg.send_file(
+            await client.send_file(
                 event.chat_id,
                 remove_bg_image,
                 force_document=True,
@@ -111,3 +110,9 @@ def ReTrieveURL(input_url):
         stream=True
     )
     return r
+
+
+HELPER.update({"remove.bg": "\
+**Available commands in remove.bg module:**\
+\n`.rmbg <text>`\
+"})

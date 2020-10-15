@@ -10,7 +10,7 @@ from asyncio import sleep
 from userbot.utils import register
 from telethon.tl.types import DocumentAttributeAudio
 
-@register(outgoing=True, pattern=r"^\.gs (.*)")
+@client.on(events(pattern="gs (.*)"))
 async def gsearch(q_event):
     """ For .google command, do a Google search. """
     match = q_event.pattern_match.group(1)
@@ -36,3 +36,9 @@ async def gsearch(q_event):
     await q_event.edit("**Search Query:**\n`" + match + "`\n\n**Results:**\n" +
                        msg,
                        link_preview=False)
+
+
+HELPER.update({"google": "\
+**Available commands in google module:**\
+\n`.gs <text>`\
+"})

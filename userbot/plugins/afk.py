@@ -3,16 +3,13 @@ Syntax: .afk REASON"""
 import asyncio
 import datetime
 from datetime import datetime
-from telethon import events
 from telethon.tl import functions, types
-from global_variables_sql import SYNTAX, MODULE_LIST
-
-MODULE_LIST.append("afk")
 
 
-global USER_AFK  # pylint:disable=E0602
-global afk_time  # pylint:disable=E0602
-global last_afk_message  # pylint:disable=E0602
+
+global USER_AFK  
+global afk_time  
+global last_afk_message  
 global afk_start
 global afk_end
 USER_AFK = {}
@@ -21,13 +18,13 @@ last_afk_message = {}
 afk_start = {}
 
 
-@borg.on(events.NewMessage(pattern=r"\.afk ?(.*)", outgoing=True))  # pylint:disable=E0602
+@client.on(events(pattern="afk ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
-    global USER_AFK  # pylint:disable=E0602
-    global afk_time  # pylint:disable=E0602
-    global last_afk_message  # pylint:disable=E0602
+    global USER_AFK  
+    global afk_time  
+    global last_afk_message  
     global afk_start
     global afk_end
     global reason
@@ -38,35 +35,35 @@ async def _(event):
     start_1 = datetime.now()
     afk_start = start_1.replace(microsecond=0)
     reason = event.pattern_match.group(1)
-    if not USER_AFK:  # pylint:disable=E0602
-        last_seen_status = await borg(  # pylint:disable=E0602
+    if not USER_AFK:  
+        last_seen_status = await client(  
             functions.account.GetPrivacyRequest(
                 types.InputPrivacyKeyStatusTimestamp()
             )
         )
         if isinstance(last_seen_status.rules, types.PrivacyValueAllowAll):
-            afk_time = datetime.datetime.now()  # pylint:disable=E0602
-        USER_AFK = f"yes: {reason}"  # pylint:disable=E0602
+            afk_time = datetime.datetime.now()  
+        USER_AFK = f"yes: {reason}"  
         if reason:
-            await borg.send_message(event.chat_id, f"**I shall be Goin' afk!** __cuz ~ {reason}__")
+            await client.send_message(event.chat_id, f"**I shall be Goin' afk!** __cuz ~ {reason}__")
         else:
-            await borg.send_message(event.chat_id, f"**I am Goin' afk!**")
+            await client.send_message(event.chat_id, f"**I am Goin' afk!**")
         await asyncio.sleep(5)
         await event.delete()
         try:
-            await borg.send_message(  # pylint:disable=E0602
-                Config.PRIVATE_GROUP_BOT_API_ID,  # pylint:disable=E0602
+            await client.send_message(  
+                Config.PRIVATE_GROUP_BOT_API_ID,  
                 f"Set AFK mode to True, and Reason is {reason}"
             )
         except Exception as e:  # pylint:disable=C0103,W0703
-            logger.warn(str(e))  # pylint:disable=E0602
+            logger.warn(str(e))  
 
 
-@borg.on(events.NewMessage(outgoing=True))  # pylint:disable=E0602
+@client.on(events())
 async def set_not_afk(event):
-    global USER_AFK  # pylint:disable=E0602
-    global afk_time  # pylint:disable=E0602
-    global last_afk_message  # pylint:disable=E0602
+    global USER_AFK  
+    global afk_time  
+    global last_afk_message  
     global afk_start
     global afk_end
     back_alive = datetime.now()
@@ -74,15 +71,15 @@ async def set_not_afk(event):
     if afk_start != {}:
         total_afk_time = str((afk_end - afk_start))
     current_message = event.message.message
-    if ".afk" not in current_message and "yes" in USER_AFK:  # pylint:disable=E0602
-        shite = await borg.send_message(event.chat_id, "__Back alive :P!__\n**No Longer **AFK** .**\n `Was afk for:``" + total_afk_time + "`")
+    if ".afk" not in current_message and "yes" in USER_AFK:  
+        shite = await client.send_message(event.chat_id, "__Back alive :P!__\n**No Longer **AFK** .**\n `Was afk for:``" + total_afk_time + "`")
         try:
-            await borg.send_message(  # pylint:disable=E0602
-                Config.PRIVATE_GROUP_BOT_API_ID,  # pylint:disable=E0602
+            await client.send_message(  
+                Config.PRIVATE_GROUP_BOT_API_ID,  
                 "Set AFK mode to False"
             )
         except Exception as e:  # pylint:disable=C0103,W0703
-            await borg.send_message(  # pylint:disable=E0602
+            await client.send_message(  
                 event.chat_id,
                 "Please set `PRIVATE_GROUP_BOT_API_ID` " + \
                 "for the proper functioning of afk functionality " + \
@@ -92,20 +89,17 @@ async def set_not_afk(event):
             )
         await asyncio.sleep(5)
         await shite.delete()
-        USER_AFK = {}  # pylint:disable=E0602
-        afk_time = None  # pylint:disable=E0602
+        USER_AFK = {}  
+        afk_time = None  
 
 
-@borg.on(events.NewMessage(  # pylint:disable=E0602
-    incoming=True,
-    func=lambda e: bool(e.mentioned or e.is_private)
-))
+@client.on(events(incoming=True, func=lambda e: bool(e.mentioned or e.is_private)))
 async def on_afk(event):
     if event.fwd_from:
         return
-    global USER_AFK  # pylint:disable=E0602
-    global afk_time  # pylint:disable=E0602
-    global last_afk_message  # pylint:disable=E0602
+    global USER_AFK  
+    global afk_time  
+    global last_afk_message  
     global afk_start
     global afk_end
     back_alivee = datetime.now()
@@ -118,10 +112,10 @@ async def on_afk(event):
         # userbot's should not reply to other userbot's
         # https://core.telegram.org/bots/faq#why-doesn-39t-my-bot-see-messages-from-other-bots
         return False
-    if USER_AFK and not (await event.get_sender()).bot:  # pylint:disable=E0602
-        if afk_time:  # pylint:disable=E0602
+    if USER_AFK and not (await event.get_sender()).bot:  
+        if afk_time:  
             now = datetime.datetime.now()
-            datime_since_afk = now - afk_time  # pylint:disable=E0602
+            datime_since_afk = now - afk_time  
             time = float(datime_since_afk.seconds)
             days = time // (24 * 3600)
             time = time % (24 * 3600)
@@ -154,15 +148,15 @@ async def on_afk(event):
             else f"**Hey Nibba!**\n__I am currently AFK oof. Since when, you ask? For {total_afk_time} I guess.__\n\nWhen will I be back? ~~Soon~~ cuz always ded__Whenever I feel like it__**( ಠ ʖ̯ ಠ)**  "
         msg = await event.reply(message_to_reply)
         await asyncio.sleep(5)
-        if event.chat_id in last_afk_message:  # pylint:disable=E0602
-            await last_afk_message[event.chat_id].delete()  # pylint:disable=E0602
-        last_afk_message[event.chat_id] = msg  # pylint:disable=E0602
+        if event.chat_id in last_afk_message:  
+            await last_afk_message[event.chat_id].delete()  
+        last_afk_message[event.chat_id] = msg  
 
-SYNTAX.update({
+HELPER.update({
     "afk": "\
 **Requested Module --> afk**\
 \n\n**Detailed usage of fuction(s):**\
-\n\n```.afk <optional_reason>```\
+\n\n`.afk <optional_reason>`\
 \nUsage: Changes afk mode to **true**.\
 "
 })        

@@ -119,3 +119,12 @@ async def endgmute(event):
 async def watcher(event):
     if is_muted(event.sender_id, "gmute"):
         await event.delete()
+
+
+HELPER.update({"gmute": "\
+**Available commands in gmute module:**\
+\n`.gmute (d+)`\
+\n`.ungmute (d+)`\
+\n`.gmute (d+)`\
+\n`.ungmute (d+)`\
+"})

@@ -9,7 +9,6 @@ Userbot module to help you manage a group
 import time
 from asyncio import sleep
 from os import remove
-from telethon import events
 import asyncio
 from datetime import datetime
 from telethon.tl.functions.channels import EditBannedRequest
@@ -30,7 +29,6 @@ from telethon.tl.types import (ChannelParticipantsAdmins, ChatAdminRights,
                                MessageMediaPhoto)
 
 from userbot import BOTLOG, BOTLOG_CHATID, bot 
-from global_variables_sql import SYNTAX, MODULE_LIST
 
 from userbot.utils import register, errors_handler, admin_cmd
 
@@ -76,7 +74,7 @@ UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
 # ================================================
 
 
-@register(outgoing=True, pattern="^.setpic$")
+@client.on(events(pattern="setpic"))
 @errors_handler
 async def set_group_photo(gpic):
     """ For .setpic command, changes the picture of a group """
@@ -114,7 +112,7 @@ async def set_group_photo(gpic):
             await gpic.edit(PP_ERROR)
 
 
-@register(outgoing=True, pattern="^.promote(?: |$)(.*)")
+@client.on(events(pattern="promote ?(.*)"))
 @errors_handler
 async def promote(promt):
     """ For .promote command, promotes the replied/tagged person """
@@ -165,7 +163,7 @@ async def promote(promt):
             f"CHAT: {promt.chat.title}(`{promt.chat_id}`)")
 
 
-@register(outgoing=True, pattern="^.demote(?: |$)(.*)")
+@client.on(events(pattern="demote ?(.*)"))
 @errors_handler
 async def demote(dmod):
     """ For .demote command, demotes the replied/tagged person """
@@ -215,7 +213,7 @@ async def demote(dmod):
             f"CHAT: {dmod.chat.title}(`{dmod.chat_id}`)")
 
 
-@borg.on(admin_cmd(pattern="(ban|unban) ?(.*)", allow_sudo=True))
+@client.on(events(pattern="(ban|unban) ?(.*)"))
 async def _(event):
     # Space weirdness in regex required because argument is optional and other
     # commands start with ".unban"
@@ -239,14 +237,14 @@ async def _(event):
     else:
         return False
     try:
-        await borg(EditBannedRequest(event.chat_id, to_ban_id, rights))
+        await client(EditBannedRequest(event.chat_id, to_ban_id, rights))
     except (Exception) as exc:
         await event.edit(str(exc))
     else:
         await event.edit(f"{input_cmd}ned Successfully!")
 
 
-@borg.on(admin_cmd(pattern="pgs ?(.*)", allow_sudo=True))
+@client.on(events(pattern="pgs ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -256,9 +254,9 @@ async def _(event):
         from_user = None
         input_str = event.pattern_match.group(1)
         if input_str:
-            from_user = await borg.get_entity(input_str)
+            from_user = await client.get_entity(input_str)
             logger.info(from_user)
-        async for message in borg.iter_messages(
+        async for message in client.iter_messages(
             event.chat_id,
             min_id=event.reply_to_msg_id,
             from_user=from_user
@@ -266,17 +264,17 @@ async def _(event):
             i = i + 1
             msgs.append(message)
             if len(msgs) == 100:
-                await borg.delete_messages(event.chat_id, msgs, revoke=True)
+                await client.delete_messages(event.chat_id, msgs, revoke=True)
                 msgs = []
         if len(msgs) <= 100:
-            await borg.delete_messages(event.chat_id, msgs, revoke=True)
+            await client.delete_messages(event.chat_id, msgs, revoke=True)
             msgs = []
             await event.delete()
         else:
             await event.edit("**PURGE** Failed!")
 
 
-@borg.on(admin_cmd(pattern="(ban|unban) ?(.*)"))
+@client.on(events(pattern="(ban|unban) ?(.*)"))
 async def _(event):
     # Space weirdness in regex required because argument is optional and other
     # commands start with ".unban"
@@ -300,7 +298,7 @@ async def _(event):
     else:
         return False
     try:
-        await borg(EditBannedRequest(event.chat_id, to_ban_id, rights))
+        await client(EditBannedRequest(event.chat_id, to_ban_id, rights))
     except (Exception) as exc:
         await event.edit(str(exc))
     else:
@@ -339,7 +337,7 @@ async def muter(moot):
             await moot.delete()
 
 
-@borg.on(admin_cmd(pattern="affk(?: |$)(.*)", allow_sudo=True))
+@client.on(events(pattern="affk ?(.*)"))
 @errors_handler
 async def promote(promt):
     """ For .promote command, promotes the replied/tagged person """
@@ -386,7 +384,7 @@ async def promote(promt):
             f"CHAT: {promt.chat.title}(`{promt.chat_id}`)")
 
 
-@borg.on(admin_cmd("admins ?(.*)"))
+@client.on(events(pattern="admins ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -399,13 +397,13 @@ async def _(event):
         if event.reply_to_msg_id:
             reply_message = await event.get_reply_message()
     chat = await event.get_input_chat()
-    async for x in borg.iter_participants(chat, filter=ChannelParticipantsAdmins):
+    async for x in client.iter_participants(chat, filter=ChannelParticipantsAdmins):
         if not x.deleted:
             if isinstance(x.participant, ChannelParticipantCreator):
                 mentions += "\n 👑 [{}](tg://user?id={}) `{}`".format(
                     x.first_name, x.id, x.id)
     mentions += "\n"
-    async for x in borg.iter_participants(chat, filter=ChannelParticipantsAdmins):
+    async for x in client.iter_participants(chat, filter=ChannelParticipantsAdmins):
         if not x.deleted:
             if isinstance(x.participant, ChannelParticipantAdmin):
                 mentions += "\n ⚜️ [{}](tg://user?id={}) `{}`".format(
@@ -422,7 +420,7 @@ async def _(event):
         await event.edit(mentions)
 
 
-@register(outgoing=True, pattern="^.pin(?: |$)(.*)")
+@client.on(events(pattern="pin ?(.*)"))
 @errors_handler
 async def pin(msg):
     """ For .pin command, pins the replied/tagged message on the top the chat. """
@@ -468,7 +466,7 @@ async def pin(msg):
             f"LOUD: {not is_silent}")
 
 
-@register(outgoing=True, pattern="^.kick(?: |$)(.*)")
+@client.on(events(pattern="kick ?(.*)"))
 @errors_handler
 async def kick(usr):
     """ For .kick command, kicks the replied/tagged person from the group. """
@@ -511,18 +509,18 @@ async def kick(usr):
             f"CHAT: {usr.chat.title}(`{usr.chat_id}`)\n")
 
         
-@borg.on(admin_cmd("kickme", outgoing=True))
+@client.on(events(pattern="kickme"))
 async def leave(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         await e.edit("`I am leaving this group.....!`")
         time.sleep(3)
         if '-' in str(e.chat_id):
-            await borg(LeaveChannelRequest(e.chat_id))
+            await client(LeaveChannelRequest(e.chat_id))
         else:
             await e.edit('`This Is Not A Group`')
             
             
-@register(outgoing=True, pattern="^.users ?(.*)")
+@client.on(events(pattern="users ?(.*)"))
 @errors_handler
 async def get_users(show):
     """ For .users command, list all of the users in a chat. """
@@ -612,8 +610,7 @@ async def get_user_from_id(user, event):
 
     return user_obj
 
-MODULE_LIST.append("admin_managment")
-SYNTAX.update({
+HELPER.update({
     "admin_managment": "\
 **Detailed usage of Function(s) in Admin module -->**\
 \n\n• `.promote <username/reply> <custom rank (optional)>`\

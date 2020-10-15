@@ -75,3 +75,4 @@ def remove_all_filters(chat_id):
     if saved_filter:
         saved_filter.delete()
         SESSION.commit()
+

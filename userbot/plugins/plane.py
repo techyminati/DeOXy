@@ -1,11 +1,10 @@
 #By STARKTM1
-from telethon import events
 import asyncio
 import os
 import sys
 
 
-@borg.on(events.NewMessage(pattern=r"\.plane", outgoing=True))
+@client.on(events(pattern="plane"))
 async def _(event):
     if event.fwd_from:
         return
@@ -28,3 +27,8 @@ async def _(event):
     await asyncio.sleep(3)
     await event.delete()
 
+
+HELPER.update({"plane": "\
+**Available commands in plane module:**\
+\n`.plane`\
+"})

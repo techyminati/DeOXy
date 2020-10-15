@@ -6,9 +6,10 @@ Available Commands:
 .savefilter
 .listfilters
 .clearfilter"""
+
 import asyncio
 import re
-from telethon import events, utils
+from telethon import utils
 from telethon.tl import types
 from userbot.plugins.sql_helper.filter_sql import get_filter, add_filter, remove_filter, get_all_filters, remove_all_filters
 
@@ -20,10 +21,10 @@ TYPE_DOCUMENT = 2
 
 
 global last_triggered_filters
-last_triggered_filters = {}  # pylint:disable=E0602
+last_triggered_filters = {}  
 
 
-@command(incoming=True)
+@client.on(events(incoming=True))
 async def on_snip(event):
     global last_triggered_filters
     name = event.raw_text
@@ -65,7 +66,7 @@ async def on_snip(event):
                 last_triggered_filters[event.chat_id].remove(name)
 
 
-@command(pattern="^.savefilter (.*)")
+@client.on(events(pattern="savefilter (.*)"))
 async def on_snip_save(event):
     name = event.pattern_match.group(1)
     msg = await event.get_reply_message()
@@ -89,7 +90,7 @@ async def on_snip_save(event):
         await event.edit("Reply to a message with `savefilter keyword` to save the filter")
 
 
-@command(pattern="^.listfilters$")
+@client.on(events(pattern="listfilters"))
 async def on_snip_list(event):
     all_snips = get_all_filters(event.chat_id)
     OUT_STR = "Available Filters in the Current Chat:\n"
@@ -114,14 +115,23 @@ async def on_snip_list(event):
         await event.edit(OUT_STR)
 
 
-@command(pattern="^.clearfilter (.*)")
+@client.on(events(pattern="clearfilter (.*)"))
 async def on_snip_delete(event):
     name = event.pattern_match.group(1)
     remove_filter(event.chat_id, name)
     await event.edit(f"filter {name} deleted successfully")
 
 
-@command(pattern="^.clearallfilters$")
+@client.on(events(pattern="clearallfilters"))
 async def on_all_snip_delete(event):
     remove_all_filters(event.chat_id)
     await event.edit(f"filters **in current chat** deleted successfully")
+
+
+HELPER.update({"filters": "\
+**Available commands in filters module:**\
+\n`.savefilter <text>`\
+\n`.listfilters`\
+\n`.clearfilter <text>`\
+\n`.clearallfilters`\
+"})

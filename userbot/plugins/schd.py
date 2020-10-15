@@ -1,17 +1,15 @@
 """Schedule Plugin for @UniBorg
 Syntax: .schd <time_in_seconds> ;=; <message to send>"""
-from telethon import events
 import asyncio
-from userbot.utils import admin_cmd
 
 
-@borg.on(admin_cmd("schd ?(.*)"))
+@client.on(events(pattern="schd ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
     input_str = event.pattern_match.group(1)
     ttl = 0
-    message = "SYNTAX: `.schd <time_in_seconds> = <message to send>`"
+    message = "HELPER: `.schd <time_in_seconds> = <message to send>`"
     if input_str:
         await event.delete()
         if "=" in input_str:
@@ -24,3 +22,9 @@ async def _(event):
         await event.respond(message)
     else:
         await event.edit(message)
+
+
+HELPER.update({"schd": "\
+**Available commands in schd module:**\
+\n`.schd <text>`\
+"})

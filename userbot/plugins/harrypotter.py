@@ -3,7 +3,6 @@ Pulls Up A Random Chant From Harry Potter Series...
 Syntax: .hp
     orginal author : AlenPaulVarghese(@STARKTM1)
 """
-from telethon import events
 import asyncio
 import os
 import sys
@@ -11,7 +10,7 @@ import random
 
 
 
-@borg.on(events.NewMessage(pattern=r"\.hp", outgoing=True))
+@client.on(events(pattern="hp"))
 async def _(event):
     if event.fwd_from:
         return
@@ -96,3 +95,9 @@ async def _(event):
       await event.edit("**MAGIC - Tergeo**")
     if (x==39):
       await event.edit("**MAGIC - Wingardium Leviosa**")
+
+
+HELPER.update({"harrypotter": "\
+**Available commands in harrypotter module:**\
+\n`.hp`\
+"})
