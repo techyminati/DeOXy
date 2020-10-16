@@ -156,3 +156,5 @@ HELPER.update({
 \n\n**Detailed usage of fuction(s):**\
 \n\n```.meme```\
 \nUsage: Pulls in a random meme.\
+"
+}) 
