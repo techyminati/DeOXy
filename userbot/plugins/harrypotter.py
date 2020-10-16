@@ -103,3 +103,5 @@ HELPER.update({
 \n\n**Detailed usage of fuction(s):**\
 \n\n```.harrypotter```\
 \nUsage: Pulls in a random Harrypotter chant.\
+"
+}) 
