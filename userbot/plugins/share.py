@@ -15,11 +15,15 @@ async def install(event):
     o = stdout.decode()
     _o = o.split("\n")
     o = "\n".join(_o)
-    OUTPUT = f"**List of Plugins:**\n{o}\n\n**TIP:** Use .send <plugin_name> to send the plugin and .install replied to the module to add the plugin to the userbot"
+    OUTPUT = f"**List of Plugins:**\n`{o}`\n\n**TIP:** Use .send <plugin_name> to send the plugin and .install replied to the module to add the plugin to the userbot"
     await event.edit(OUTPUT)
 
 
-HELPER.update({"command_list": "\
-**Available commands in command_list module:**\
-\n`.plugins`\
-"})
+HELPER.update({
+    "share": "\
+**Requested Module --> Sharing Module**\
+\n\n**Detailed usage of fuction(s):**\
+\n\n`.plugins`\
+\nUsage: Shows all the plugins.\
+"
+})    

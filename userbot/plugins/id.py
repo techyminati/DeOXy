@@ -3,7 +3,7 @@ Syntax: .get_id"""
 from telethon.utils import pack_bot_file_id
 
 
-@client.on(events(pattern="get_id"))
+@client.on(events(pattern="id"))
 async def _(event):
     if event.fwd_from:
         return
@@ -19,7 +19,11 @@ async def _(event):
         await event.edit("Current Chat ID: `{}`".format(str(event.chat_id)))
 
 
-HELPER.update({"get_id": "\
-**Available commands in get_id module:**\
-\n`.get_id`\
-"})
+HELPER.update({
+    "id": "\
+**Requested Module --> ID Fetcher Module**\
+\n\n**Detailed usage of fuction(s):**\
+\n\n```.id```\
+\nUsage: Fetches the ID\
+"
+})        

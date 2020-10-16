@@ -103,7 +103,9 @@ async def _(event):
     await event.edit(output_str)
 
 
-HELPER.update({"jainder": "\
-**Available commands in jainder module:**\
-\n`.jainder<text>`\
-"})
+HELPER.update({
+    "jainder": "\
+**Requested Module --> Jainder Module**\
+\n\n**Detailed usage of fuction(s):**\
+\n\n```.jainder```\
+\nUsage: Pulls out random jainder.\

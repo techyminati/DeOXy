@@ -21,7 +21,7 @@ async def _(event):
             "**“It**",
             "**“It Is**",
             "**“It Is Gei”**",
-            "**“It Is Gei”** __- Priyam Kalra__"
+            "**“It Is Gei”** __- Me__"
         ]
 
         for i in animation_ttl:
@@ -32,5 +32,5 @@ async def _(event):
 
 HELPER.update({"gei": "\
 **Available commands in gei module:**\
-\n`.<text>`\
+\n`.gei`\
 "})

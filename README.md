@@ -116,7 +116,7 @@ Follow these OnScreen prompts-
 
 
 
-* Now go to https://github.com/JAISHNAVPRASAD-DarklIous/DeOXy
+* Now go to https://github.com/CyberJalagam/DeOXy
 
 * Fork and star repository (if on android, enable desktop site to fork)
 
@@ -219,7 +219,8 @@ HEROKU_API_KEY
 
 # If You Like My Project, Contribute To The Development
 
-# [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.me/RBINTERNATIONALNET)
+# [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.me/WINGSOFCARE)
+# UPI ID: geethajaishnav@oksbi
 
 
 
@@ -243,7 +244,7 @@ The UniBorg Config is situated in `userbot/uniborgConfig.py`.
 Simply just leave the Config as it is.
 
 **Local Configuration**
-Check [Line 111](https://github.com/Total-Noob-69/X-tra-Telegram/blob/master/userbot/uniborgConfig.py#L111) and start adding your vars there.
+Check [Line 111](https://github.com/CyberJalagam/DeOXy/blob/master/userbot/uniborgConfig.py#L111) and start adding your vars there.
 Fortunately there are no Mandatory vars for the UniBorg Support Config.
 
 ## Mandatory Vars

@@ -20,7 +20,11 @@ async def _(event):
     await event.delete()
 
 
-HELPER.update({"decide": "\
-**Available commands in decide module:**\
-\n`.decide`\
-"})
+HELPER.update({
+    "decide": "\
+**Requested Module --> Decider Module**\
+\n\n**Detailed usage of fuction(s):**\
+\n\n```.decide```\
+\nUsage: Hepls you in an situation where you are unable to say yes or no.\
+"
+})   

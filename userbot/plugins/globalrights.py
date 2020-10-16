@@ -1,7 +1,8 @@
+from userbot.plugins.sql_helper.mute_sql import is_muted, mute, unmute
+import asyncio
 #Imported to DeOXy
 
 from userbot import bot, BOTLOG_CHATID, ALIVE_NAME, CMD_LIST
-import asyncio
 from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.types import (PeerChat, PeerChannel,ChannelParticipantsAdmins, ChatAdminRights,ChatBannedRights, MessageEntityMentionName,MessageMediaPhoto, ChannelParticipantsBots)
 from telethon.tl.types import Channel
@@ -64,7 +65,7 @@ async def startgban(tb):
     	pass
    return await tele.edit(f"`{ALIVE_NAME}:` **Gbanned [{user.first_name}](tg://user?id={user.id}) in {a} chat(s) **") 
  
-@client.on(events(pattern=";ungban ?(.*)"))
+@client.on(events(pattern=".ungban ?(.*)"))
 async def regressgban(tb):
    oof = tb ; sender = await oof.get_sender() ; me = await oof.client.get_me()
    if not sender.id == me.id:
@@ -115,10 +116,137 @@ async def regressgban(tb):
    return await tele.edit(f"`{ALIVE_NAME}:` **UnGbanned [{user.first_name}](tg://user?id={user.id}) in {a} chat(s) **") 
         
    
+@command(outgoing=True, pattern=r"^.gmute ?(\d+)?")
+async def startgmute(event):
+    private = False
+    if event.fwd_from:
+        return
+    elif event.is_private:
+        await event.edit("Unexpected issues or ugly errors may occur!")
+        await asyncio.sleep(3)
+        private = True
+    reply = await event.get_reply_message()
+    if event.pattern_match.group(1) is not None:
+        userid = event.pattern_match.group(1)
+    elif reply is not None:
+        userid = reply.sender_id
+    elif private is True:
+        userid = event.chat_id
+    else:
+        return await event.edit("Please reply to a user or add their into the command to gmute them.")
+    chat_id = event.chat_id
+    chat = await event.get_chat()
+    if is_muted(userid, "gmute"):
+        return await event.edit("This user is already gmuted")
+    try:
+        mute(userid, "gmute")
+    except Exception as e:
+        await event.edit("Error occured!\nError is " + str(e))
+    else:
+        await event.edit("Successfully gmuted that person")
+
+@command(outgoing=True, pattern=r"^.ungmute ?(\d+)?")
+async def endgmute(event):
+    private = False
+    if event.fwd_from:
+        return
+    elif event.is_private:
+        await event.edit("Unexpected issues or ugly errors may occur!")
+        await asyncio.sleep(3)
+        private = True
+    reply = await event.get_reply_message()
+    if event.pattern_match.group(1) is not None:
+        userid = event.pattern_match.group(1)
+    elif reply is not None:
+        userid = reply.sender_id
+    elif private is True:
+        userid = event.chat_id
+    else:
+        return await event.edit("Please reply to a user or add their into the command to ungmute them.")
+    chat_id = event.chat_id
+    if not is_muted(userid, "gmute"):
+        return await event.edit("This user is not gmuted")
+    try:
+        unmute(userid, "gmute")
+    except Exception as e:
+        await event.edit("Error occured!\nError is " + str(e))
+    else:
+        await event.edit("Successfully ungmuted that person")
+
+@command(outgoing=True, pattern=r"^.gmute ?(\d+)?", allow_sudo=True)
+async def startgmute(event):
+    private = False
+    if event.fwd_from:
+        return
+    elif event.is_private:
+        await event.edit("Unexpected issues or ugly errors may occur!")
+        await asyncio.sleep(3)
+        private = True
+    reply = await event.get_reply_message()
+    if event.pattern_match.group(1) is not None:
+        userid = event.pattern_match.group(1)
+    elif reply is not None:
+        userid = reply.sender_id
+    elif private is True:
+        userid = event.chat_id
+    else:
+        return await event.edit("Please reply to a user or add their into the command to gmute them.")
+    chat_id = event.chat_id
+    chat = await event.get_chat()
+    if is_muted(userid, "gmute"):
+        return await event.edit("This user is already gmuted")
+    try:
+        mute(userid, "gmute")
+    except Exception as e:
+        await event.edit("Error occured!\nError is " + str(e))
+    else:
+        await event.edit("Successfully gmuted that person")
+
+@command(outgoing=True, pattern=r"^.ungmute ?(\d+)?", allow_sudo=True)
+async def endgmute(event):
+    private = False
+    if event.fwd_from:
+        return
+    elif event.is_private:
+        await event.edit("Unexpected issues or ugly errors may occur!")
+        await asyncio.sleep(3)
+        private = True
+    reply = await event.get_reply_message()
+    if event.pattern_match.group(1) is not None:
+        userid = event.pattern_match.group(1)
+    elif reply is not None:
+        userid = reply.sender_id
+    elif private is True:
+        userid = event.chat_id
+    else:
+        return await event.edit("Please reply to a user or add their into the command to ungmute them.")
+    chat_id = event.chat_id
+    if not is_muted(userid, "gmute"):
+        return await event.edit("This user is not gmuted")
+    try:
+        unmute(userid, "gmute")
+    except Exception as e:
+        await event.edit("Error occured!\nError is " + str(e))
+    else:
+        await event.edit("Successfully ungmuted that person")
+
+@command(incoming=True)
+async def watcher(event):
+    if is_muted(event.sender_id, "gmute"):
+        await event.delete()
 
 
-HELPER.update({"Gban": "\
-**Available commands in Gban module:**\
-\n`.gban <text>`\
-\n`.;ungban <text>`\
-"})
+HELPER.update({
+    "globalrights": "\
+**Requested Module --> Global Rights Module**\
+\n\n**Detailed usage of fuction(s):**\
+\n\n```.gban```\
+\nUsage: Globally bans a user everywhere you admin in.\
+\n\n```.ungban```\
+\nUsage: Globally unbans a user everywhere you admin in.\
+\n\n```.gmute```\
+\nUsage: Globally mutes a user everywhere you admin in.\
+\n\n```.ungmute```\
+\nUsage: Globally unmutes a user everywhere you admin in.\
+"
+})

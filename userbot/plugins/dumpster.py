@@ -2,7 +2,7 @@ import asyncio
 from telethon.errors.rpcerrorlist import MessageIdInvalidError
 
 
-@client.on(events(pattern="dump ?(.*)"))
+@client.on(events(pattern="dumpster ?(.*)"))
 async def _(message):
     try:
         obj = message.pattern_match.group(1)
@@ -26,7 +26,11 @@ async def _(message):
                 return
 
 
-HELPER.update({"dumpster": "\
-**Available commands in dumpster module:**\
-\n`.dump <text>`\
-"})
+HELPER.update({
+    "": "\
+**Requested Module --> Dumpster**\
+\n\n**Detailed usage of fuction(s):**\
+\n\n```.dumpster```\
+\nUsage: Dumps some shit\
+"
+})        

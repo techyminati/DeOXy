@@ -325,10 +325,15 @@ async def _(event):
     await event.edit("`Here is Your G-Drive Folder link : `\n"+folder_link)
 
 
-HELPER.update({"gDrive": "\
-**Available commands in gDrive module:**\
-\n`.ugdrive <text>`\
-\n`.drivesch <text>`\
-\n`.gdrivedir <text>`\
-\n`.gfolder <text>`\
-"})
+HELPER.update({
+    "gdrive": "\
+**Requested Module --> Google Drive Module**\
+\n\n**Detailed usage of fuction(s):**\
+\n\n```.ugdrive```\
+\nUsage: upload to gdrive\
+\n\n```.gdrivedir```\
+\nUsage: Enter a folder\
+\n\n```.gfolder```\
+\nUsage: Share a whole folder\
+"
+})        

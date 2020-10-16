@@ -42,7 +42,11 @@ async def _(event):
     await event.edit(caption_str)
 
 
-HELPER.update({"dictionary": "\
-**Available commands in dictionary module:**\
-\n`.meaning <text>`\
-"})
+HELPER.update({
+    "Dictionary": "\
+**Requested Module --> Dictionary Module**\
+\n\n**Detailed usage of fuction(s):**\
+\n\n```.meaning <word>```\
+\nUsage: Looks for the meaning of the word **true**.\
+"
+})        

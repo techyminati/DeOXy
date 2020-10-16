@@ -82,9 +82,9 @@ async def _(event):
             await event.edit(animation_chars[i % 41])
 
 HELPER.update({
-    "desp4volte": "\
+    "bholte": "\
 **Requested module --> Despirate For VoLTE**\
 \n\n• `.volte`\
 \n__Usage: Express the sed loif of a MemeTek GSI/ROM user__\
 "
-})            
+})          

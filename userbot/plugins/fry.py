@@ -3,7 +3,7 @@ import datetime
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.functions.account import UpdateNotifySettingsRequest
 
-@client.on(events(pattern="frybot ?(.*)"))
+@client.on(events(pattern="fry ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return 
@@ -36,5 +36,5 @@ async def _(event):
 
 HELPER.update({"frybot": "\
 **Available commands in frybot module:**\
-\n`.frybot <text>`\
+\n`.fry <text>`\
 "})

@@ -1,4 +1,4 @@
-@client.on(events(pattern="help ?(.*)"))
+@client.on(events(pattern="legacyhelp ?(.*)"))
 async def cmd_list(event):
     if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
         tgbotusername = Var.TG_BOT_USER_NAME_BF_HER
@@ -21,7 +21,7 @@ async def cmd_list(event):
             else:
                 await event.edit(input_str + " is not a valid plugin!")
         else:
-            help_string = """Userbot Helper.. Provided by [𝔡𝓔𝐎𝕩𝕐](https://github.com/JAISHNAVPRASAD-DarklIous/DeOXy)\n
+            help_string = """Legacy Userbot Helper.. Provided by [𝔡𝓔𝐎𝕩𝕐](https://github.com/JAISHNAVPRASAD-DarklIous/DeOXy)\n
 `Userbot Helper to reveal all the commands`\n__Do .help plugin_name for commands, in case popup doesn't appear.__"""
             results = await bot.inline_query(
                 tgbotusername,

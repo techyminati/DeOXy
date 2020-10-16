@@ -33,7 +33,11 @@ async def handler(event):
     )
 
 
-HELPER.update({"CPH1859": "\
-**Available commands in CPH1859 module:**\
-\n`.CPH1859 <text>`\
-"})
+HELPER.update({
+    "CPH1859": "\
+**Requested Module --> CPH1859 Development Fetcher**\
+\n\n**Detailed usage of fuction(s):**\
+\n\n`.CPH1859 <rom/kernel/recovery Name>`\
+\nUsage: Fetches the matching development.\
+"
+})    

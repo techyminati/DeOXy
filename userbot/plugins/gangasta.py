@@ -25,5 +25,5 @@ async def _(event):
 
 HELPER.update({"gangasta": "\
 **Available commands in gangasta module:**\
-\n`.gangasta <text>`\
+\n`.gangasta`\
 "})

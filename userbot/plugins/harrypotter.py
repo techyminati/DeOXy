@@ -10,7 +10,7 @@ import random
 
 
 
-@client.on(events(pattern="hp"))
+@client.on(events(pattern="harrypotter"))
 async def _(event):
     if event.fwd_from:
         return
@@ -97,7 +97,9 @@ async def _(event):
       await event.edit("**MAGIC - Wingardium Leviosa**")
 
 
-HELPER.update({"harrypotter": "\
-**Available commands in harrypotter module:**\
-\n`.hp`\
-"})
+HELPER.update({
+    "harrypotter": "\
+**Requested Module --> Harrypotter Module**\
+\n\n**Detailed usage of fuction(s):**\
+\n\n```.harrypotter```\
+\nUsage: Pulls in a random Harrypotter chant.\

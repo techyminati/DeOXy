@@ -132,7 +132,7 @@ def get_lst_of_files(input_directory, output_lst):
     return output_lst
 
 HELPER.update({
-    "Zip/Unzipper": f"\
+    "compression": f"\
 **Requested Module --> Compression Module**\
 \n\nDetailed usage of fuction(s):\
 \n\n`.zip`\

@@ -349,7 +349,7 @@ def useragent():
 
 
 HELPER.update({
-    "direct_link": "\
+    "direct": "\
 **Requested Module --> Direct Link Generator**\
 \n\n• `.direct <url>`\
 \nUsage: __Generate direct download link from supported URL(s)__\

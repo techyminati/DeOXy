@@ -17,7 +17,7 @@ import random
 
 
 
-@client.on(events(pattern="gott"))
+@client.on(events(pattern="thoughts"))
 
 async def _(event):
 
@@ -192,7 +192,9 @@ async def _(event):
         await event.edit("`\"I wish I was the monster you think I am!\"`")
 
 
-HELPER.update({"got_thoughts": "\
-**Available commands in got_thoughts module:**\
-\n`.gott`\
-"})
+HELPER.update({
+    "meme": "\
+**Requested Module --> Thoughts Module**\
+\n\n**Detailed usage of fuction(s):**\
+\n\n```.thoughts```\
+\nUsage: Brings out random thoughts.\

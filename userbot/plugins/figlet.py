@@ -27,7 +27,11 @@ async def figlet(event):
     await event.delete()
 
 
-HELPER.update({"figlet": "\
-**Available commands in figlet module:**\
-\n`.figlet <text>`\
-"})
+HELPER.update({
+    "figlet": "\
+**Requested Module --> Figletter Module**\
+\n\n**Detailed usage of fuction(s):**\
+\n\n```.figlet <text>```\
+\nUsage: Figlets the text.\
+"
+})        

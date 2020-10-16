@@ -129,7 +129,7 @@ async def on_all_snip_delete(event):
 
 
 HELPER.update({"filters": "\
-**Available commands in filters module:**\
+**Requested Module --> Filter Module**\
 \n`.savefilter <text>`\
 \n`.listfilters`\
 \n`.clearfilter <text>`\

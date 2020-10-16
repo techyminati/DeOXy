@@ -68,8 +68,12 @@ async def aexec(code, event):
     )
     return await locals()['__aexec'](event)
 
-
-HELPER.update({"execute": "\
-**Available commands in execute module:**\
-\n`.execute`\
-"})
+HELPER.update({
+    "": "\
+**Requested Module --> Executer**\
+\n\n**Detailed usage of fuction(s):**\
+\n\n```.execute```\
+\nUsage: Executes the given code\
+"
+})  
+HELPER.

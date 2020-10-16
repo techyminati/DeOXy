@@ -11,7 +11,7 @@ async def gbun(event):
     gbunVar = event.text
     gbunVar = gbunVar[6:]
     mentions = "`Warning!! User 𝙂𝘽𝘼𝙉𝙉𝙀𝘿 By Admin...\n`"
-    no_reason = "__Reason: Potential Telegram Addict. __"
+    no_reason = "__Reason: Potential Addict. __"
     await event.edit("**Federation ban in progress ❗️⚜️☠️**")
     asyncio.sleep(3.5)
     chat = await event.get_input_chat()
@@ -26,7 +26,7 @@ async def gbun(event):
         idd = reply_message.from_id
         # make meself invulnerable cuz why not xD
         if idd == 742506768:
-            await reply_message.reply("`Wait a second, This is my master!`\n**How dare you threaten to ban my master nigger!**\n\n__Your account has been hacked! Pay 69$ to my master__ [Anubis](tg://user?id=742506768) __to release your account__😏")
+            await reply_message.reply("**DeOXy MASTER:** `This is my master!, Rejected`")
         else:
             jnl=("`Warning!! `"
                   "[{}](tg://user?id={})"

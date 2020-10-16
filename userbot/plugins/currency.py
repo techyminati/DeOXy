@@ -42,9 +42,11 @@ async def list(ups):
     for key, value in dil_wale_puch_de_na_chaaa.items():
         await client.send_message(ups.chat_id, "**List of currencies:**\n {}\n*Tip:** Use `.gs` currency_code for more details on the currency.".format(key))
 
-
-HELPER.update({"currency": "\
-**Available commands in currency module:**\
-\n`.currency <text>`\
-\n`.currencies <text>`\
-"})
+HELPER.update({
+    "currency": "\
+**Requested Module --> Currency Module**\
+\n\n**Detailed usage of fuction(s):**\
+\n\n```.currency <currency value> <origin currency code> <conversion currency code>```\
+\nUsage: Converts currency.\
+"
+})    

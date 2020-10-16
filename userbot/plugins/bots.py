@@ -3,7 +3,7 @@ Syntax: .get_bot"""
 from telethon.tl.types import ChannelParticipantAdmin, ChannelParticipantsBots
 
 
-@client.on(events(pattern="get_bot ?(.*)"))
+@client.on(events(pattern="bots ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -31,7 +31,11 @@ async def _(event):
     await event.edit(mentions)
 
 
-HELPER.update({"get_bot": "\
-**Available commands in get_bot module:**\
-\n`.get_bot <text>`\
-"})
+HELPER.update({
+    "bots": "\
+**Requested Module --> Bots Module**\
+\n\n**Detailed usage of fuction(s):**\
+\n\n```.bots```\
+\nUsage: Fetches the bots in a channel\
+"
+})        
