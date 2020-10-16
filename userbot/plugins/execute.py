@@ -76,4 +76,3 @@ HELPER.update({
 \nUsage: Executes the given code\
 "
 })  
-HELPER.
