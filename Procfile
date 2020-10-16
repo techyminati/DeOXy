@@ -1,1 +1,1 @@
-DEOXY: python -m deoxy
+DEOXY: python -m userbot
