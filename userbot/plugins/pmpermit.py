@@ -2,13 +2,14 @@ import asyncio
 import io
 import userbot.plugins.sql_helper.pmpermit_sql as pmpermit_sql
 from telethon.tl.functions.users import GetFullUserRequest
-from telethon import events, errors, functions, types
-from userbot import ALIVE_NAME, LESS_SPAMMY
-from userbot.utils import admin_cmd
+from telethon import errors, functions, types
 
 PM_WARNS = {}
 PREV_REPLY_MESSAGE = {}
 CACHE = {}
+
+ALIVE_NAME = Var.ALIVE_NAME
+LESS_SPAMMY = Var.LESS_SPAMMY
 
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "**You haven't set any name nibba, PM @CyberJalagamALT Hopefully You Will Get A Reply XD"
@@ -22,7 +23,7 @@ USER_BOT_NO_WARN = ("[──▄█▀█▄─────────██ \n�
 
 
 if Var.PRIVATE_GROUP_ID is not None:
-    @command(pattern="^.approve ?(.*)")
+    @client.on(events(pattern="approve ?(.*)"))
     async def approve_p_m(event):
         if event.fwd_from:
            return
@@ -38,12 +39,12 @@ if Var.PRIVATE_GROUP_ID is not None:
                     await PREV_REPLY_MESSAGE[chat.id].delete()
                     del PREV_REPLY_MESSAGE[chat.id]
                 pmpermit_sql.approve(chat.id, reason)
-                await event.edit("Approved Nibba [{}](tg://user?id={})".format(firstname, chat.id))
+                await event.edit("Approved user [{}](tg://user?id={})".format(firstname, chat.id))
                 await asyncio.sleep(3)
                 await event.delete()
 
 
-    @bot.on(events.NewMessage(outgoing=True))
+    @client.on(events(outgoing=True))
     async def you_dm_niqq(event):
         if event.fwd_from:
             return
@@ -53,12 +54,12 @@ if Var.PRIVATE_GROUP_ID is not None:
                 if not chat.id in PM_WARNS:
                     pmpermit_sql.approve(chat.id, "outgoing")
                     bruh = "__Added user to approved pms cuz outgoing message >~<__"
-                    rko = await borg.send_message(event.chat_id, bruh)
+                    rko = await client.send_message(event.chat_id, bruh)
                     await asyncio.sleep(3)
                     await rko.delete()
 
 
-    @command(pattern="^.block ?(.*)")
+    @client.on(events(pattern="block ?(.*)"))
     async def block_p_m(event):
         if event.fwd_from:
             return
@@ -74,7 +75,7 @@ if Var.PRIVATE_GROUP_ID is not None:
                 await event.client(functions.contacts.BlockRequest(chat.id))
 
 
-    @command(pattern="^.listapproved")
+    @client.on(events(pattern="listapproved"))
     async def approve_p_m(event):
         if event.fwd_from:
             return
@@ -104,9 +105,9 @@ if Var.PRIVATE_GROUP_ID is not None:
             await event.edit(APPROVED_PMs)
 
 
-    @bot.on(events.NewMessage(incoming=True))
+    @client.on(events(incoming=True))
     async def on_new_private_message(event):
-        if event.from_id == bot.uid:
+        if event.from_id == client.uid:
             return
 
         if Var.PRIVATE_GROUP_ID is None:
@@ -126,10 +127,10 @@ if Var.PRIVATE_GROUP_ID is not None:
         if event.from_id in CACHE:
             sender = CACHE[event.from_id]
         else:
-            sender = await bot.get_entity(event.from_id)
+            sender = await client.get_entity(event.from_id)
             CACHE[event.from_id] = sender
 
-        if chat_id == bot.uid:
+        if chat_id == client.uid:
 
             # don't log Saved Messages
 
@@ -188,3 +189,11 @@ if Var.PRIVATE_GROUP_ID is not None:
         if chat_id in PREV_REPLY_MESSAGE:
             await PREV_REPLY_MESSAGE[chat_id].delete()
         PREV_REPLY_MESSAGE[chat_id] = r
+
+
+HELPER.update({"pmpermit": "\
+**Available commands in pmpermit module:**\
+\n`.approve`\
+\n`.block`\
+\n`.listapproved`\
+"})

@@ -1,13 +1,13 @@
 # 𝔡𝓔𝐎𝕩𝕐 USERBOT
 ## Dev- [ᴊᴀɪꜱʜɴᴀᴠᴘʀᴀꜱᴀᴅ | #𝓣𝓱𝓮𝓣𝓮𝓬𝓱𝓖𝓪𝓷𝓰](https://t.me/CyberJalagam) 
 
- Thanks To   [HardcoreUserbot](https://github.com/Hack12R/HardcoreUserbot) // [X-tra-Telegram](https://github.com/Dark-Princ3/X-tra-Telegram) \\\ [The-TG-Bot-2.0](https://github.com/PriyamKalra/The-TG-Bot-2.0) For helping me out with the codes. Thank You Buggies ;-)
+ Thanks To  [X-tra-Telegram](https://github.com/Dark-Princ3/X-tra-Telegram) // [The-TG-Bot](https://github.com/justaprudev/The-TG-Bot) \\\\ [HardcoreUserbot](https://github.com/Hack12R/HardcoreUserbot) For helping me out with the codes. Thank You Buggies ;-)
 
  # WARNING!! THIS USERBOT IS WIP
 
  ### DECLARATION/LICENCE AGREEMENT
 
-I herby confirm that the base of this userbot is made by SNAPDRAGON and i am making a complete custom userbot using it. I Credit to all the Respective Develelopers for creating the base modules. This userbot is currently in ALPHA stage and i don't mind creating a custom fork of my repository. I will takedown the repository if the credits of the developers are removed. use this userbot at your Own RISK
+I herby confirm that the base of this userbot is adapted from X-tra-Telegram and The-TG-Bot and I am making a complete custom userbot using it. I Credit to all the Respective Develelopers for creating the base modules. This userbot is currently in ALPHA stage and i don't mind creating a custom fork of my repository. I will takedown the repository if the credits of the developers are removed. use this userbot at your Own RISK
 
 and don't blame me for spammers. the modules in this userbot are made for fun purposes and at the same time they are very Powerful. So, don't misuse.
 

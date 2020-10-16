@@ -1,11 +1,10 @@
 # (c) @UniBorg
 
-from telethon import events
 import asyncio
 from collections import deque
 
 
-@borg.on(events.NewMessage(pattern=r"\.lol", outgoing=True))
+@client.on(events(pattern="lol"))
 async def _(event):
 	if event.fwd_from:
 		return
@@ -15,3 +14,9 @@ async def _(event):
 		await event.edit("".join(deq))
 		deq.rotate(1)
     
+
+
+HELPER.update({"thinklol": "\
+**Available commands in thinklol module:**\
+\n`.lol`\
+"})

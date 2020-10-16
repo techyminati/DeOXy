@@ -1,11 +1,8 @@
-
-from telethon import events
 import subprocess
 from telethon.errors import MessageEmptyError, MessageTooLongError, MessageNotModifiedError
 import io
 import asyncio
 import time
-from userbot.utils import admin_cmd
 import glob
 import os
 try:
@@ -23,7 +20,7 @@ def bruh(name):
     os.system("instantmusic -q -s "+name)
     
 
-@borg.on(admin_cmd(pattern="song ?(.*)"))
+@client.on(events(pattern="song ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -38,7 +35,7 @@ async def _(event):
     l = glob.glob("*.mp3")
     loa = l[0]
     await event.edit("sending song")
-    await borg.send_file(
+    await client.send_file(
                 event.chat_id,
                 loa,
                 force_document=True,
@@ -48,3 +45,9 @@ async def _(event):
             )
     os.system("rm -rf *.mp3")
     subprocess.check_output("rm -rf *.mp3",shell=True)
+
+
+HELPER.update({"getmusic": "\
+**Available commands in getmusic module:**\
+\n`.song <text>`\
+"})

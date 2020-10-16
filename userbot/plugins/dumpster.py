@@ -1,10 +1,8 @@
-from telethon import events
 import asyncio
-from userbot.utils import admin_cmd
 from telethon.errors.rpcerrorlist import MessageIdInvalidError
 
 
-@borg.on(admin_cmd(pattern="dump ?(.*)"))
+@client.on(events(pattern="dump ?(.*)"))
 async def _(message):
     try:
         obj = message.pattern_match.group(1)
@@ -26,3 +24,9 @@ async def _(message):
                 await message.edit(something_else)
             except MessageIdInvalidError:
                 return
+
+
+HELPER.update({"dumpster": "\
+**Available commands in dumpster module:**\
+\n`.dump <text>`\
+"})

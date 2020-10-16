@@ -1,10 +1,10 @@
-from telethon import events
+from telethon import events as _events
 from telethon.utils import pack_bot_file_id
 from userbot.plugins.sql_helper.welcome_sql import get_current_welcome_settings, \
     add_welcome_setting, rm_welcome_setting, update_previous_welcome
 
 
-@bot.on(events.ChatAction())  # pylint:disable=E0602
+@client.on(_events.ChatAction())  
 async def _(event):
     cws = get_current_welcome_settings(event.chat_id)
     if cws:
@@ -16,12 +16,12 @@ async def _(event):
         if event.user_joined:
             if cws.should_clean_welcome:
                 try:
-                    await bot.delete_messages(  # pylint:disable=E0602
+                    await bot.delete_messages(  
                         event.chat_id,
                         cws.previous_welcome
                     )
                 except Exception as e:  # pylint:disable=C0103,W0703
-                    logger.warn(str(e))  # pylint:disable=E0602
+                    logger.warn(str(e))  
             a_user = await event.get_user()
             chat = await event.get_chat()
             me = await bot.get_me()
@@ -48,7 +48,7 @@ async def _(event):
             update_previous_welcome(event.chat_id, current_message.id)
 
 
-@command(pattern="^.savewelcome")  # pylint:disable=E0602
+@client.on(events(pattern="savewelcome"))
 async def _(event):
     if event.fwd_from:
         return
@@ -63,7 +63,7 @@ async def _(event):
         await event.edit("Welcome note saved. ")
 
 
-@command(pattern="^.clearwelcome")  # pylint:disable=E0602
+@client.on(events(pattern="clearwelcome"))
 async def _(event):
     if event.fwd_from:
         return
@@ -74,7 +74,7 @@ async def _(event):
         "The previous welcome message was `{}`.".format(cws.custom_welcome_message)
     )
 
-@command(pattern="^.listwelcome")  # pylint:disable=E0602
+@client.on(events(pattern="listwelcome"))
 async def _(event):
     if event.fwd_from:
         return
@@ -88,3 +88,11 @@ async def _(event):
         await event.edit(
             "No Welcome Message found"
         )
+
+
+HELPER.update({"welcome": "\
+**Available commands in welcome module:**\
+\n`.savewelcome`\
+\n`.clearwelcome`\
+\n`.listwelcome`\
+"})

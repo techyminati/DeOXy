@@ -8,12 +8,11 @@
 import time
 
 from telethon.errors import rpcbaseerrors
-from userbot.utils import admin_cmd
 import importlib.util
 
 
 
-@borg.on(admin_cmd("sd", outgoing=True  ))
+@client.on(events(pattern="sd"))
 async def selfdestruct(destroy):
     """ For .sd command, make seflf-destructable messages. """
     if not destroy.text[0].isalpha() and destroy.text[0] not in ("/", "#", "@", "!"):
@@ -30,3 +29,9 @@ async def selfdestruct(destroy):
         smsg = await destroy.client.send_message(destroy.chat_id, text)
         time.sleep(counter)
         await smsg.delete()
+
+
+HELPER.update({"selfdestruct": "\
+**Available commands in selfdestruct module:**\
+\n`.sd`\
+"})

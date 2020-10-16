@@ -1,11 +1,9 @@
 """Get information about an user on GitHub
 Syntax: .github USERNAME"""
-from telethon import events
 import requests
-from userbot.utils import admin_cmd
 
 
-@borg.on(admin_cmd("github (.*)"))
+@client.on(events(pattern="github (.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -23,7 +21,7 @@ async def _(event):
         location = b["location"]
         bio = b["bio"]
         created_at = b["created_at"]
-        await borg.send_file(
+        await client.send_file(
             event.chat_id,
             caption="""Name: [{}]({})
 Type: {}
@@ -40,3 +38,9 @@ Profile Created: {}""".format(name, html_url, gh_type, company, blog, location, 
         await event.delete()
     else:
         await event.edit("`{}`: {}".format(input_str, r.text))
+
+
+HELPER.update({"github": "\
+**Available commands in github module:**\
+\n`.github <text>`\
+"})

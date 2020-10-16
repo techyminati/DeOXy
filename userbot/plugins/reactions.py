@@ -1,15 +1,9 @@
 # By Priyam Kalra
 #Ported By MrMobTech & TechyNewbie
 # Use .syntax emoji/reactions/ascii to know all commands
-from telethon import events
-from userbot.utils import admin_cmd
 import asyncio
 from telethon.tl import functions, types
-from global_variables_sql import SYNTAX, MODULE_LIST
 
-MODULE_LIST.append("reactions")
-MODULE_LIST.append("emojis")
-MODULE_LIST.append("ascii")
 
 emojis = {
     "yee": "ツ",
@@ -48,7 +42,7 @@ for art in ascii:
     unpacked_ascii += f"{art}\n"
 
 
-@borg.on(admin_cmd(pattern="oof ?(.*)"))
+@client.on(events(pattern="oof ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -68,7 +62,7 @@ async def _(event):
     await event.edit(output)
 
 
-@borg.on(admin_cmd(pattern="hek ?(.*)"))
+@client.on(events(pattern="hek ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -79,7 +73,7 @@ async def _(event):
     await event.edit(";_;")
 
 
-@borg.on(admin_cmd(pattern="sed ?(.*)"))
+@client.on(events(pattern="sed ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -91,7 +85,7 @@ async def _(event):
     await event.edit(":/")
 
 
-@borg.on(admin_cmd(pattern="emoji ?(.*)"))
+@client.on(events(pattern="emoji ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -103,7 +97,7 @@ async def _(event):
         await event.edit("Emoji not found!")
 
 
-@borg.on(admin_cmd(pattern="ascii ?(.*)"))
+@client.on(events(pattern="ascii ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -115,7 +109,7 @@ async def _(event):
         await event.edit("ASCII art not found!")
 
 
-SYNTAX.update({
+HELPER.update({
     "reactions": "\
 **Requested Module --> reactions**\
 \n\n**Detailed usage of fuction(s):**\
@@ -127,7 +121,7 @@ SYNTAX.update({
 "
 })
 
-SYNTAX.update({
+HELPER.update({
     "emojis": f"\
 **Requested Module --> emojis**\
 \n\n**Detailed usage of fuction(s):**\
@@ -138,7 +132,7 @@ SYNTAX.update({
 "
 })
 
-SYNTAX.update({
+HELPER.update({
     "ascii": f"\
 **Requested Module --> ascii**\
 \n\nDetailed usage of fuction(s):\

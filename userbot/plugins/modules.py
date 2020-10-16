@@ -2,26 +2,22 @@
 # A clean and beautiful alternative to .help
 # Syntax (.modules)
 
-from telethon import events
-from userbot.utils import admin_cmd
-import asyncio
-from telethon.tl import functions, types
-from global_variables_sql import MODULE_LIST
-
-
-@borg.on(admin_cmd(pattern="modules ?(.*)"))
-async def _(event):
+@client.on(events(pattern="modules ?(.*)"))
+async def modulelist(event):
     if event.fwd_from:
         return
-    modules = "**List of available modules:**\n"
-    MODULE_LIST.sort()
-    prev = "1"
-    num = 0
-    for module in MODULE_LIST:
-        num += 1
-        if prev[0] != module[0]:
-            modules += f"\n\t{module[0].upper()}\n"
-        modules += f"~ ```{module}```\n"
-        prev = module
-    modules += f"**\n\nNumber of modules loaded:** {num}\n**Tip: Use .syntax <module_name> for more info.**"
-    await event.edit(modules)
+    modcount = 1
+    msg = "**Available Modules:**"
+    title = ""
+    for key in sorted(HELPER, key=lambda e: e.upper()):
+        new_title = f"\n\n**{key[0].upper()}**\n"
+        if new_title == title:
+            title = "\n"
+        else:
+            title = new_title
+        msg += f"{title}• `{key}`"
+        title = new_title
+        modcount += 1
+    msg += f"\n\nNumber of modules: **{modcount}**\nSend .help <module_name> to get help regarding a module."
+    await event.edit(msg)
+    

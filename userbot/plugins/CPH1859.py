@@ -2,9 +2,8 @@
 # By Priyam Kalra
 # Syntax .search <text>
 
-from userbot.utils import admin_cmd
 
-@borg.on(admin_cmd(pattern="CPH1859 ?(.*)"))
+@client.on(events(pattern="CPH1859 ?(.*)"))
 async def handler(event):
     if event.fwd_from:
         return
@@ -34,3 +33,7 @@ async def handler(event):
     )
 
 
+HELPER.update({"CPH1859": "\
+**Available commands in CPH1859 module:**\
+\n`.CPH1859 <text>`\
+"})

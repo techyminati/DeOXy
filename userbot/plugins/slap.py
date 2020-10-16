@@ -5,8 +5,7 @@ usage:- .slap in reply to any message, or u gonna slap urself.
 """
 
 import sys
-from telethon import events, functions
-from uniborg.util import admin_cmd
+from telethon import functions
 import random
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
@@ -72,7 +71,7 @@ HIT = [
     "smacks",
     "bashes",
 ]
-@borg.on(admin_cmd(pattern="slap ?(.*)", allow_sudo=True))
+@client.on(events(pattern="slap ?(.*)"))
 async def who(event):
     if event.fwd_from:
         return
@@ -135,6 +134,12 @@ async def slap(replied_user, event):
     hit = random.choice(HIT)
     throw = random.choice(THROW)
 
-    caption = "@"+borg.me.username+" "+ temp.format(user2=slapped, item=item, hits=hit, throws=throw)
+    caption = "@"+client.me.username+" "+ temp.format(user2=slapped, item=item, hits=hit, throws=throw)
 
     return caption
+
+
+HELPER.update({"slap": "\
+**Available commands in slap module:**\
+\n`.slap <text>`\
+"})

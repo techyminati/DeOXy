@@ -5,7 +5,6 @@ by
   @Deonnn
 
 """
-from telethon import events
 
 import asyncio
 
@@ -17,7 +16,7 @@ import random
 
 
 
-@borg.on(events.NewMessage(pattern=r"\.tip", outgoing=True))
+@client.on(events(pattern="tip"))
 
 async def _(event):
 
@@ -382,3 +381,9 @@ async def _(event):
     if x==87:
 
         await event.edit("`\"Go for that run, no one is looking at you, don't overthink it, do it!\"`")
+
+
+HELPER.update({"pro_tip": "\
+**Available commands in pro_tip module:**\
+\n`.tip`\
+"})

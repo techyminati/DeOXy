@@ -14,10 +14,9 @@ document
 cancel"""
 
 import asyncio
-from uniborg.util import admin_cmd
  
  
-@borg.on(admin_cmd("scha ?(.*)"))
+@client.on(events(pattern="scha ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -26,5 +25,11 @@ async def _(event):
     action = "typing"
     if input_str:
         action = input_str
-    async with borg.action(event.chat_id, action):
+    async with client.action(event.chat_id, action):
         await asyncio.sleep(86400)  # type for 10 seconds
+
+
+HELPER.update({"sca": "\
+**Available commands in sca module:**\
+\n`.scha <text>`\
+"})

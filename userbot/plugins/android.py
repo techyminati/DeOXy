@@ -9,18 +9,15 @@ import re
 from requests import get
 from bs4 import BeautifulSoup
 
-from userbot import CMD_HELP
 from userbot.utils import register
-from global_variables_sql import SYNTAX, MODULE_LIST
 
-MODULE_LIST.append("android")
 
 GITHUB = 'https://github.com'
 DEVICES_DATA = 'https://raw.githubusercontent.com/androidtrackers/' \
                'certified-android-devices/master/devices.json'
 
 
-@register(outgoing=True, pattern="^.magisk$")
+@client.on(events(pattern="magisk"))
 async def magisk(request):
     """ magisk latest releases """
     magisk_dict = {
@@ -37,7 +34,7 @@ async def magisk(request):
                     f'[Uninstaller]({data["uninstaller"]["link"]})\n'
     await request.edit(releases)
 
-@register(outgoing=True, pattern=r"^.device(?: |$)(\S*)")
+@client.on(events(pattern="device ?(S*)"))
 async def device_info(request):
     """ get android device basic info from its codename """
     textx = await request.get_reply_message()
@@ -68,7 +65,7 @@ async def device_info(request):
     await request.edit(reply)
 
 
-@register(outgoing=True, pattern=r"^.codename(?: |)([\S]*)(?: |)([\s\S]*)")
+@client.on(events(pattern="codename ?([S]*) ?([sS]*)"))
 async def codename_info(request):
     """ search for android codename """
     textx = await request.get_reply_message()
@@ -103,7 +100,7 @@ async def codename_info(request):
     await request.edit(reply)
 
 
-@register(outgoing=True, pattern=r"^.specs(?: |)([\S]*)(?: |)([\s\S]*)")
+@client.on(events(pattern="specs ?([S]*) ?([sS]*)"))
 async def devices_specifications(request):
     """ Mobile devices specifications """
     textx = await request.get_reply_message()
@@ -156,7 +153,7 @@ async def devices_specifications(request):
     await request.edit(reply)
 
 
-@register(outgoing=True, pattern=r"^.twrp$")
+@client.on(events(pattern="twrp"))
 async def twrp(request):
     """ get android device twrp """
     textx = await request.get_reply_message()
@@ -185,16 +182,16 @@ async def twrp(request):
     await request.edit(reply)
 
 
-SYNTAX.update({
+HELPER.update({
     "android": f"\
 **Requested Module --> Android**\
 \nGet latest Magisk releases\
-\n\n```.device <codename>```\
+\n\n`.device <codename>`\
 \nUsage: Get info about android device codename or model.\
-\n\n```.codename <brand> <device>```\
+\n\n`.codename <brand> <device>`\
 \nUsage: Search for android device codename.\
-\n\n```.specs <brand> <device>```\
+\n\n`.specs <brand> <device>`\
 \nUsage: Get device specifications info.\
-\n\n```.twrp <codename>```\
+\n\n`.twrp <codename>`\
 \nUsage: Get latest twrp download for android device."
 })

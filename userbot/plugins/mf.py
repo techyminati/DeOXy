@@ -1,15 +1,14 @@
 import sys
-from telethon import events, functions, __version__
-from userbot.utils import admin_cmd
+from telethon import functions, __version__
 
 
-@borg.on(admin_cmd(pattern="mf ?(.*)", allow_sudo=True))  # pylint:disable=E0602
+@client.on(events(pattern="mf ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
     splugin_name = event.pattern_match.group(1)
-    if splugin_name in borg._plugins:
-        s_help_string = borg._plugins[splugin_name].__doc__
+    if splugin_name in client._plugins:
+        s_help_string = client._plugins[splugin_name].__doc__
     else:
         s_help_string = ""
     help_string = """
@@ -42,9 +41,9 @@ async def _(event):
         sys.version,
         __version__
     )
-    tgbotusername = Config.TG_BOT_USER_NAME_BF_HER  # pylint:disable=E0602
+    tgbotusername = Config.TG_BOT_USER_NAME_BF_HER  
     if tgbotusername is not None:
-        results = await borg.inline_query(  # pylint:disable=E0602
+        results = await client.inline_query(  
             tgbotusername,
             help_string + "\n\n" + s_help_string
         )
@@ -59,19 +58,27 @@ async def _(event):
         await event.delete()
 
 
-@borg.on(admin_cmd(pattern="dc"))  # pylint:disable=E0602
+@client.on(events(pattern="dc"))
 async def _(event):
     if event.fwd_from:
         return
-    result = await borg(functions.help.GetNearestDcRequest())  # pylint:disable=E0602
+    result = await client(functions.help.GetNearestDcRequest())  
     await event.edit(result.stringify())
 
 
-@borg.on(admin_cmd(pattern="config"))  # pylint:disable=E0602
+@client.on(events(pattern="config"))
 async def _(event):
     if event.fwd_from:
         return
-    result = await borg(functions.help.GetConfigRequest())  # pylint:disable=E0602
+    result = await client(functions.help.GetConfigRequest())  
     result = result.stringify()
-    logger.info(result)  # pylint:disable=E0602
+    logger.info(result)  
     await event.edit("""Telethon UserBot powered by @UniBorg""")
+
+
+HELPER.update({"mf": "\
+**Available commands in mf module:**\
+\n`.mf <text>`\
+\n`.dc`\
+\n`.config`\
+"})

@@ -35,11 +35,8 @@ from random import randint, uniform
 from PIL import Image, ImageEnhance, ImageOps
 from telethon.tl.types import DocumentAttributeFilename
 
-from uniborg.util import admin_cmd
-from telethon import events
 
-
-@borg.on(admin_cmd(pattern="deepfry(?: |$)(.*)", outgoing=True)) 
+@client.on(events(pattern="deepfry ?(.*)"))
 async def deepfryer(event):
     try:
         frycount = int(event.pattern_match.group(1))
@@ -128,3 +125,9 @@ async def check_media(reply_message):
         return False
     else:
         return data
+
+
+HELPER.update({"pixolater": "\
+**Available commands in pixolater module:**\
+\n`.deepfry(: |)<text>`\
+"})

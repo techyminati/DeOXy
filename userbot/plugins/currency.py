@@ -1,12 +1,10 @@
 """command: .currency usd inr"""
-from telethon import events
 import asyncio
 from datetime import datetime
 import requests
-from uniborg.util import admin_cmd
 
 
-@borg.on(admin_cmd(pattern="currency (.*)"))
+@client.on(events(pattern="currency (.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -34,7 +32,7 @@ async def _(event):
     ms = (end - start).seconds
 
  
-@borg.on(admin_cmd(pattern="currencies (.*)"))
+@client.on(events(pattern="currencies (.*)"))
 async def list(ups):
     if ups.fwd_from:
         return
@@ -42,4 +40,11 @@ async def list(ups):
     current_response = requests.get(request_url).json()
     dil_wale_puch_de_na_chaaa = current_response["rates"]
     for key, value in dil_wale_puch_de_na_chaaa.items():
-        await borg.send_message(ups.chat_id, "**List of currencies:**\n {}\n*Tip:** Use `.gs` currency_code for more details on the currency.".format(key))
+        await client.send_message(ups.chat_id, "**List of currencies:**\n {}\n*Tip:** Use `.gs` currency_code for more details on the currency.".format(key))
+
+
+HELPER.update({"currency": "\
+**Available commands in currency module:**\
+\n`.currency <text>`\
+\n`.currencies <text>`\
+"})

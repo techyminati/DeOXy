@@ -10,7 +10,6 @@ Available Commands:
 
 .emoji -_-"""
 
-from telethon import events
 
 import asyncio
 
@@ -18,7 +17,7 @@ import asyncio
 
 
 
-@borg.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
+@client.on(events(pattern="(.*)"))
 
 async def _(event):
 
@@ -58,7 +57,7 @@ async def _(event):
             await event.edit(animation_chars[i % 11])
 
 
-@borg.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
+@client.on(events(pattern="(.*)"))
 
 async def _(event):
 
@@ -99,7 +98,7 @@ async def _(event):
 
 
 
-@borg.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
+@client.on(events(pattern="(.*)"))
 
 async def _(event):
 
@@ -139,7 +138,7 @@ async def _(event):
             await event.edit(animation_chars[i % 11])
 
 
-@borg.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
+@client.on(events(pattern="(.*)"))
 
 async def _(event):
 
@@ -179,7 +178,7 @@ async def _(event):
             await event.edit(animation_chars[i % 11])
 
 
-@borg.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
+@client.on(events(pattern="(.*)"))
 
 async def _(event):
 
@@ -213,3 +212,13 @@ async def _(event):
             await asyncio.sleep(animation_interval)
 
             await event.edit(animation_chars[i % 7])
+
+
+HELPER.update({"os": "\
+**Available commands in os module:**\
+\n`.<text>`\
+\n`.<text>`\
+\n`.<text>`\
+\n`.<text>`\
+\n`.<text>`\
+"})

@@ -18,7 +18,6 @@ from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 
 from userbot import bot, HEROKU_API_KEY, HEROKU_APP_NAME, UPSTREAM_REPO_URL, HEROKU_MEMEZ
 from userbot.events import register
-from global_variables_sql import SYNTAX, MODULE_LIST
 
 requirements_path = path.join(
     path.dirname(path.dirname(path.dirname(__file__))), 'requirements.txt')
@@ -45,7 +44,7 @@ async def update_requirements():
         return repr(e)
 
 
-@register(outgoing=True, pattern="^\.update(?: |$)(.*)")
+@client.on(events(pattern="update ?(.*)"))
 async def upstream(ups):
     "For .update command, check if the bot is up to date, update if specified"
     await ups.edit("`Checking for updates, please wait....`")
@@ -184,9 +183,8 @@ async def upstream(ups):
         execle(sys.executable, *args, environ)
         return
 
-MODULE_LIST.append("updater")
 
-SYNTAX.update({
+HELPER.update({
     "updater": "\
 **𝔡𝓔𝐎𝕩𝕐 Updater**\
 \n\n• `.update`\

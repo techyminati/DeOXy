@@ -2,10 +2,9 @@
 # -*- coding: utf-8 -*-
 # (c) Shrimadhav U K
 import asyncio
-from uniborg.util import admin_cmd
 
 
-@borg.on(admin_cmd(pattern="typewriter (.*)"))
+@client.on(events(pattern="typewriter (.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -38,3 +37,9 @@ async def _(event):
             logger.warn(str(e))
             pass
         await asyncio.sleep(DELAY_BETWEEN_EDITS)
+
+
+HELPER.update({"typing": "\
+**Available commands in typing module:**\
+\n`.typewriter <text>`\
+"})

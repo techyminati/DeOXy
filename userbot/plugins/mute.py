@@ -1,7 +1,7 @@
 from userbot.plugins.sql_helper.mute_sql import is_muted, mute, unmute
 import asyncio
 
-@command(outgoing=True, pattern=r"^.mute ?(\d+)?")
+@client.on(events(pattern="mute ?(\d+)?"))
 async def startmute(event):
     private = False
     if event.fwd_from:
@@ -44,7 +44,7 @@ async def startmute(event):
         else:
             await event.edit("Successfully muted that person.\n**｀-´)⊃━☆ﾟ.*･｡ﾟ **")
 
-@command(outgoing=True, pattern=r"^.unmute ?(\d+)?")
+@client.on(events(pattern="unmute ?(\d+)?"))
 async def endmute(event):
     private = False
     if event.fwd_from:
@@ -76,7 +76,7 @@ async def endmute(event):
             await event.edit("Successfully unmuted that person\n乁( ◔ ౪◔)「    ┑(￣Д ￣)┍")
             
 
-@command(outgoing=True, pattern=r"^.mute ?(\d+)?", allow_sudo=True)
+@client.on(events(pattern="mute ?(\d+)?"))
 async def startmute(event):
     private = False
     if event.fwd_from:
@@ -119,7 +119,7 @@ async def startmute(event):
         else:
             await event.edit("Successfully muted that person.\n**｀-´)⊃━☆ﾟ.*･｡ﾟ **")
 
-@command(outgoing=True, pattern=r"^.unmute ?(\d+)?", allow_sudo=True)
+@client.on(events(pattern="unmute ?(\d+)?"))
 async def endmute(event):
     private = False
     if event.fwd_from:
@@ -150,23 +150,16 @@ async def endmute(event):
         else:
             await event.edit("Successfully unmuted that person\n乁( ◔ ౪◔)「    ┑(￣Д ￣)┍")
 
-@command(incoming=True)
+@client.on(events(incoming=True))
 async def watcher(event):
     if is_muted(event.sender_id, event.chat_id):
         await event.delete()
 
-#ignore, flexing tym 
-from userbot.utils import admin_cmd
-import io
-import userbot.plugins.sql_helper.pmpermit_sql as pmpermit_sql
-from telethon import events
-@bot.on(events.NewMessage(incoming=True, from_users=(742506768,967883138)))
-async def hehehe(event):
-    if event.fwd_from:
-        return
-    chat = await event.get_chat()
-    if event.is_private:
-        if not pmpermit_sql.is_approved(chat.id):
-            pmpermit_sql.approve(chat.id, "supreme lord ehehe")
-            await borg.send_message(chat, "`This inbox has been blessed by my master. Consider yourself lucky.`\n**Increased Stability and Karma** (づ￣ ³￣)づ")
-            
+
+HELPER.update({"mute": "\
+**Available commands in mute module:**\
+\n`.mute (d+)`\
+\n`.unmute (d+)`\
+\n`.mute (d+)`\
+\n`.unmute (d+)`\
+"})

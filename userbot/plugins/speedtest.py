@@ -1,14 +1,12 @@
 """Check your internet speed powered by speedtest.net
 Syntax: .speedtest
 Available Options: image, file, text"""
-from telethon import events
 from datetime import datetime
 import io
 import speedtest
-from userbot.utils import admin_cmd
 
 
-@borg.on(admin_cmd("speedtest ?(.*)"))
+@client.on(events(pattern="speedtest ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -51,7 +49,7 @@ async def _(event):
 `Internet Service Provider: {}`
 `ISP Rating: {}`""".format(ms, convert_from_bytes(download_speed), convert_from_bytes(upload_speed), ping_time, i_s_p, i_s_p_rating))
         else:
-            await borg.send_file(
+            await client.send_file(
                 event.chat_id,
                 speedtest_image,
                 caption="**SpeedTest** completed in {} seconds".format(ms),
@@ -84,3 +82,9 @@ def convert_from_bytes(size):
         size /= power
         n += 1
     return f"{round(size, 2)} {units[n]}"
+
+
+HELPER.update({"speedtest": "\
+**Available commands in speedtest module:**\
+\n`.speedtest <text>`\
+"})

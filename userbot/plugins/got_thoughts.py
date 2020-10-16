@@ -6,7 +6,6 @@ command .gott
 
 """
 
-from telethon import events
 
 import asyncio
 
@@ -18,7 +17,7 @@ import random
 
 
 
-@borg.on(events.NewMessage(pattern=r"\.gott", outgoing=True))
+@client.on(events(pattern="gott"))
 
 async def _(event):
 
@@ -191,3 +190,9 @@ async def _(event):
     if x==40:
 
         await event.edit("`\"I wish I was the monster you think I am!\"`")
+
+
+HELPER.update({"got_thoughts": "\
+**Available commands in got_thoughts module:**\
+\n`.gott`\
+"})

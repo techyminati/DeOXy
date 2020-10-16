@@ -11,19 +11,17 @@ import io
 import telethon.sync
 from telethon.tl.functions.users import GetFullUserRequest
 import userbot.plugins.sql_helper.pmpermit_sql as pmpermit_sql
-from telethon import events, errors, functions, types
-from userbot import ALIVE_NAME, LESS_SPAMMY
-from userbot.utils import admin_cmd
+from telethon import events as _events, errors, functions, types
 
 
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "No name set yet nibba, Set a name nub"
 PREV_REPLY_MESSAGE = {}
 
-
-@command(pattern=r"\/start", incoming=True)
+@client.on(_events.NewMessage(pattern=r"\/start", incoming=True))
 async def _(event):
     chat_id = event.from_id
     userid = event.sender_id
+    me = await client.get_me()
+    DEFAULTUSER = str(Var.ALIVE_NAME) if Var.ALIVE_NAME else f"[{me.first_name}](tg://user?id={me.id})"
     if not pmpermit_sql.is_approved(chat_id):
         chat = await event.get_chat()
         if event.fwd_from:
@@ -50,118 +48,122 @@ async def _(event):
          FIVE = ("`Okay. please have the basic manners as to not bother my master too much. If he wishes to help you, he will respond to you soon.`\n**Do not ask repeatdly else you will be blocked and reported.**")
          LWARN = ("**This is your last warning. DO NOT send another message else you will be blocked and reported. Keep patience. My master will respond you ASAP.**\n__Use__ `/start` __to go back to the main menu.__")
      
-        async with borg.conversation(chat) as conv:
-         await borg.send_message(chat, PM)
+        async with client.conversation(chat) as conv:
+         await client.send_message(chat, PM)
          chat_id = event.from_id
          response = await conv.get_response(chat)
          y = response.text
          if y == "1":
-             await borg.send_message(chat, ONE)
+             await client.send_message(chat, ONE)
              response = await conv.get_response(chat)
              await event.delete()
              if not response.text == "/start":
                  await response.delete()
-                 await borg.send_message(chat, LWARN)
+                 await client.send_message(chat, LWARN)
                  response = await conv.get_response(chat)
                  await event.delete()
                  await response.delete()
                  response = await conv.get_response(chat)
                  if not response.text == "/start":
-                     await borg.send_message(chat, TWO)
+                     await client.send_message(chat, TWO)
                      await asyncio.sleep(3)
                      await event.client(functions.contacts.BlockRequest(chat_id))
          elif y == "2":
-             await borg.send_message(chat, LWARN)
+             await client.send_message(chat, LWARN)
              response = await conv.get_response(chat)
              if not response.text == "/start":
-                 await borg.send_message(chat, TWO)
+                 await client.send_message(chat, TWO)
                  await asyncio.sleep(3)
                  await event.client(functions.contacts.BlockRequest(chat_id))
          elif y == "3":
-             await borg.send_message(chat, Nudas)
+             await client.send_message(chat, Nudas)
              response = await conv.get_response(chat)
              await event.delete()
              await response.delete()
              x = response.text
              if x == "1":
-                 await borg.send_message(chat, "`Oh my, you're very much welcome here ;).\nPlease drop your offerings and let my master judge if you have good heart <3.`\n\n **Please don't flood my inbox, we'll have a nice convo once i come back ;D**")
+                 await client.send_message(chat, "`Oh my, you're very much welcome here ;).\nPlease drop your offerings and let my master judge if you have good heart <3.`\n\n **Please don't flood my inbox, we'll have a nice convo once i come back ;D**")
                  response = await conv.get_response(chat)
                  if not response.text == "/start":
-                     await borg.send_message(chat, LWARN)
+                     await client.send_message(chat, LWARN)
                      response = await conv.get_response(chat)
                      await event.delete()
                      await response.delete()
                      response = await conv.get_response(chat)
                      if not response.text == "/start":
-                         await borg.send_message(chat, TWO)
+                         await client.send_message(chat, TWO)
                          await asyncio.sleep(3)
                          await event.client(functions.contacts.BlockRequest(chat_id))
              elif x == "2":
-                 await borg.send_message(chat, "`Oh my, you're very much welcome here ;).\nPlease drop your offerings and let my master judge if you have good heart <3.`\n\n **Please don't flood my inbox, we'll have a nice convo once i come back ;D**")
+                 await client.send_message(chat, "`Oh my, you're very much welcome here ;).\nPlease drop your offerings and let my master judge if you have good heart <3.`\n\n **Please don't flood my inbox, we'll have a nice convo once i come back ;D**")
                  response = await conv.get_response(chat)
                  if not response.text == "/start":
-                     await borg.send_message(chat, LWARN)
+                     await client.send_message(chat, LWARN)
                      response = await conv.get_response(chat)
                      await event.delete()
                      await response.delete()
                      response = await conv.get_response(chat)
                      if not response.text == "/start":
-                         await borg.send_message(chat, TWO)
+                         await client.send_message(chat, TWO)
                          await asyncio.sleep(3)
                          await event.client(functions.contacts.BlockRequest(chat_id))
              elif x == "3":
-                 await borg.send_message(chat, "`Please decide what you sending right now,\n not that i'm judging if you're a helicopter or a banana but yeah, If its anything else than a dope source,\n Do not send more messages and let my master see for himself if he wants to talk with you.`")
+                 await client.send_message(chat, "`Please decide what you sending right now,\n not that i'm judging if you're a helicopter or a banana but yeah, If its anything else than a dope source,\n Do not send more messages and let my master see for himself if he wants to talk with you.`")
                  response = await conv.get_response(chat)
                  if not response.text == "/start":
-                     await borg.send_message(chat, LWARN)
+                     await client.send_message(chat, LWARN)
                      response = await conv.get_response(chat)
                      await event.delete()
                      await response.delete()
                      response = await conv.get_response(chat)
                      if not response.text == "/start":
-                         await borg.send_message(chat, TWO)
+                         await client.send_message(chat, TWO)
                          await asyncio.sleep(3)
                          await event.client(functions.contacts.BlockRequest(chat_id))
              else:
-                 await borg.send_message(chat, "__You have entered an invalid command. Please send__ `/start` __again or do not send another message if you do not wish to be blocked and reported.__")
+                 await client.send_message(chat, "__You have entered an invalid command. Please send__ `/start` __again or do not send another message if you do not wish to be blocked and reported.__")
                  response = await conv.get_response(chat)
                  if not response.text.startswith("/start"):
-                     await borg.send_message(chat, TWO)
+                     await client.send_message(chat, TWO)
                      await asyncio.sleep(3)
                      await event.client(functions.contacts.BlockRequest(chat_id))
          elif y == "4":
-             await borg.send_message(chat, FOUR)
+             await client.send_message(chat, FOUR)
              response = await conv.get_response(chat)
              await event.delete()
              await response.delete()
              if not response.text == "/start":
-                 await borg.send_message(chat, LWARN)
+                 await client.send_message(chat, LWARN)
                  await event.delete()
                  response = await conv.get_response(chat)
                  if not response.text == "/start":
-                     await borg.send_message(chat, TWO)
+                     await client.send_message(chat, TWO)
                      await asyncio.sleep(3)
                      await event.client(functions.contacts.BlockRequest(chat_id))
          elif y == "5":
-             await borg.send_message(chat,FIVE)
+             await client.send_message(chat,FIVE)
              response = await conv.get_response(chat)
              if not response.text == "/start":
-                 await borg.send_message(chat, LWARN)
+                 await client.send_message(chat, LWARN)
                  response = await conv.get_response(chat)
                  if not response.text == "/start":
-                     await borg.send_message(chat, TWO)
+                     await client.send_message(chat, TWO)
                      await asyncio.sleep(3)
                      await event.client(functions.contacts.BlockRequest(chat_id))
          else:
-             await borg.send_message(chat, "`You have entered an invalid command. Please send /start again or do not send another message if you do not wish to be blocked and reported.`")
+             await client.send_message(chat, "`You have entered an invalid command. Please send /start again or do not send another message if you do not wish to be blocked and reported.`")
              response = await conv.get_response(chat)
              z = response.text
              if not z == "/start":
-                 await borg.send_message(chat, LWARN)
+                 await client.send_message(chat, LWARN)
                  await conv.get_response(chat)
                  if not response.text == "/start":
-                     await borg.send_message(chat, TWO)
+                     await client.send_message(chat, TWO)
                      await asyncio.sleep(3)
                      await event.client(functions.contacts.BlockRequest(chat_id))
 
 
+HELPER.update({"pmpermit_menu": "\
+**Available commands in pmpermit_menu module:**\
+\n`/start`\
+"})

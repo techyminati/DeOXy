@@ -6,7 +6,7 @@ import time
 import json
 import sys
 
-@command(pattern="^.labstack ?(.*)")
+@client.on(events(pattern="labstack ?(.*)"))
 async def labstack(event):
     if event.fwd_from:
         return
@@ -48,3 +48,9 @@ async def labstack(event):
         t_response_arry = "https://up.labstack.com/api/v1/links/{}/receive".format(r2json['code'])
     await event.edit(t_response_arry + "\nMax Days:" + str(max_days), link_preview=False)
     
+
+
+HELPER.update({"labstack": "\
+**Available commands in labstack module:**\
+\n`.labstack <text>`\
+"})

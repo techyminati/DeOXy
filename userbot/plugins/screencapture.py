@@ -3,11 +3,9 @@ Syntax: .screencapture <Website URL>"""
 
 import io
 import requests
-from telethon import events
-from userbot.utils import admin_cmd
 
 
-@borg.on(admin_cmd("screencapture (.*)"))
+@client.on(events(pattern="screencapture (.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -31,7 +29,7 @@ async def _(event):
         with io.BytesIO(response_api.content) as screenshot_image:
             screenshot_image.name = "screencapture.png"
             try:
-                await borg.send_file(
+                await client.send_file(
                     event.chat_id,
                     screenshot_image,
                     caption=input_str,
@@ -43,3 +41,9 @@ async def _(event):
                 await event.edit(str(e))
     else:
         await event.edit(response_api.text)
+
+
+HELPER.update({"screencapture": "\
+**Available commands in screencapture module:**\
+\n`.screencapture <text>`\
+"})

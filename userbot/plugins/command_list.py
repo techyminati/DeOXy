@@ -1,10 +1,9 @@
-from telethon import events
 import subprocess
 import asyncio
 import time
 
 
-@command(pattern="^.plugins", outgoing=True)
+@client.on(events(pattern="plugins"))
 async def install(event):
     if event.fwd_from:
         return
@@ -18,3 +17,9 @@ async def install(event):
     o = "\n".join(_o)
     OUTPUT = f"**List of Plugins:**\n{o}\n\n**TIP:** Use .send <plugin_name> to send the plugin and .install replied to the module to add the plugin to the userbot"
     await event.edit(OUTPUT)
+
+
+HELPER.update({"command_list": "\
+**Available commands in command_list module:**\
+\n`.plugins`\
+"})

@@ -3,14 +3,12 @@
 # Syntax (.spam <number of msgs> <text>)
 #Ported To Xtra Bot MOD v2.0 By MrMobTech
 from asyncio import wait
-from telethon import events
-from uniborg.util import admin_cmd
 import asyncio
 from telethon.tl import functions, types
 from time import sleep
 
 
-@borg.on(admin_cmd(pattern="spam ?(.*)"))
+@client.on(events(pattern="spam ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -35,7 +33,7 @@ async def _(event):
         msg = await event.reply(f"Task complete, spammed input text {count} times!")
         sleep(2)
         await msg.delete()
-        status = f"SPAMMED\n```{text}```\n in ```{chat}``` ```{count}``` times."
+        status = f"SPAMMED\n`{text}`\n in `{chat}` `{count}` times."
         await log(status)
     else:
         await event.edit("Unexpected Error! Aborting..")
@@ -43,4 +41,10 @@ async def _(event):
 
 async def log(text):
     LOGGER = Config.PRIVATE_GROUP_BOT_API_ID
-    await borg.send_message(LOGGER, text)
+    await client.send_message(LOGGER, text)
+
+
+HELPER.update({"spam": "\
+**Available commands in spam module:**\
+\n`.spam <text>`\
+"})

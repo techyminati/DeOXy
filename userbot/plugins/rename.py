@@ -1,4 +1,4 @@
-# Code from pro sar Spechide's fork of Uniborg.
+# Code from pro sar Spechide's fork of Uniclient.
 """Rename Telegram Files
 Syntax:
 .rnupload file.name"""
@@ -14,13 +14,13 @@ import math
 import os
 from pySmartDL import SmartDL
 from telethon.tl.types import DocumentAttributeVideo
-from uniborg.util import progress, humanbytes, time_formatter, admin_cmd
+from uniborg.util import progress, humanbytes, time_formatter
 
 
 thumb_image_path = Config.TMP_DOWNLOAD_DIRECTORY + "/thumb_image.jpg"
 
 
-@borg.on(admin_cmd(pattern="rnupload (.*)"))
+@client.on(events(pattern="rnupload (.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -38,14 +38,14 @@ async def _(event):
         reply_message = await event.get_reply_message()
         to_download_directory = Config.TMP_DOWNLOAD_DIRECTORY
         downloaded_file_name = os.path.join(to_download_directory, file_name)
-        downloaded_file_name = await borg.download_media(
+        downloaded_file_name = await client.download_media(
             reply_message,
             downloaded_file_name,
             )
         ms_one = (end - start).seconds
         if os.path.exists(downloaded_file_name):
             c_time = time.time()
-            await borg.send_file(
+            await client.send_file(
                 event.chat_id,
                 downloaded_file_name,
                 force_document=True,
@@ -63,3 +63,8 @@ async def _(event):
     else:
         await event.edit("Syntax // .rnupload file.name as reply to a Telegram media")
 
+
+HELPER.update({"rename": "\
+**Available commands in rename module:**\
+\n`.rnupload <text>`\
+"})

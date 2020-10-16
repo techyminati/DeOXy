@@ -1,11 +1,9 @@
-# For Uniborg
+# For Uniclient
 # (c) @INF1N17Y
 
-from telethon import events
-from uniborg.util import admin_cmd
 
 
-@borg.on(admin_cmd("mention (.*)"))
+@client.on(events(pattern="mention (.*)"))
 async def _(event):
 	if event.fwd_from:
 		return	
@@ -21,3 +19,9 @@ async def _(event):
 	user_id = replied_user
 	caption = """<a href='tg://user?id={}'>{}</a>""".format(user_id, input_str)
 	await event.edit(caption, parse_mode="HTML")
+
+
+HELPER.update({"mention": "\
+**Available commands in mention module:**\
+\n`.mention <text>`\
+"})

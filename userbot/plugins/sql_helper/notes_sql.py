@@ -1,6 +1,6 @@
 # By RaphielGang (https://da.gd/HlfJ)
 
-from userbot import SESSION, BASE
+from userbot.plugins.sql_helper import SESSION, BASE
 from sqlalchemy import Column, String, UnicodeText, Boolean, Integer, distinct, func
 
 

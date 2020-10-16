@@ -10,15 +10,13 @@ Available Commands:
 
 .emoji -_-"""
 
-from telethon import events
-from userbot.utils import admin_cmd
 import asyncio
 
 
 
 
 
-@borg.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
+@client.on(events(pattern="(.*)"))
 
 async def _(event):
 
@@ -51,3 +49,9 @@ async def _(event):
             await asyncio.sleep(animation_interval)
 
             await event.edit(animation_chars[i % 11])
+
+
+HELPER.update({"nakal": "\
+**Available commands in nakal module:**\
+\n`.<text>`\
+"})

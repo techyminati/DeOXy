@@ -4,13 +4,12 @@ usage = .meme someCharacter //default delay will be 3
 By : - @Zero_cool7870
 
 """
-from telethon import events
 import asyncio
 import os
 import sys
 
 
-@borg.on(events.NewMessage(pattern=r"\.meme", outgoing=True))
+@client.on(events(pattern="meme"))
 async def meme(event):
     if event.fwd_from:
         return   
@@ -40,7 +39,7 @@ Bonus : Flower Boquee Generater
 usage:- .flower
 
 """
-@borg.on(events.NewMessage(pattern=r"\.flower", outgoing=True))
+@client.on(events(pattern="flower"))
 async def meme(event):
     if event.fwd_from:
         return   
@@ -59,3 +58,10 @@ async def meme(event):
     await asyncio.sleep(sleepValue)
         
     
+
+
+HELPER.update({"meme": "\
+**Available commands in meme module:**\
+\n`.meme`\
+\n`.flower`\
+"})

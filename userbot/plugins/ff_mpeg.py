@@ -7,13 +7,13 @@ import time
 from datetime import datetime
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
-from userbot.utils import admin_cmd, progress
+from userbot.utils import progress
 
 
 FF_MPEG_DOWN_LOAD_MEDIA_PATH = "uniborg.media.ffmpeg"
 
 
-@borg.on(admin_cmd("ffmpegsave"))
+@client.on(events(pattern="ffmpegsave"))
 async def ff_mpeg_trim_cmd(event):
     if event.fwd_from:
         return
@@ -25,7 +25,7 @@ async def ff_mpeg_trim_cmd(event):
             reply_message = await event.get_reply_message()
             try:
                 c_time = time.time()
-                downloaded_file_name = await borg.download_media(
+                downloaded_file_name = await client.download_media(
                     reply_message,
                     FF_MPEG_DOWN_LOAD_MEDIA_PATH,
                     progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
@@ -44,7 +44,7 @@ async def ff_mpeg_trim_cmd(event):
         await event.edit(f"a media file already exists in path. Please remove the media and try again!\n`.exec rm {FF_MPEG_DOWN_LOAD_MEDIA_PATH}`")
 
 
-@borg.on(admin_cmd("ffmpegtrim"))
+@client.on(events(pattern="ffmpegtrim"))
 async def ff_mpeg_trim_cmd(event):
     if event.fwd_from:
         return
@@ -67,7 +67,7 @@ async def ff_mpeg_trim_cmd(event):
         logger.info(o)
         try:
             c_time = time.time()
-            await borg.send_file(
+            await client.send_file(
                 event.chat_id,
                 o,
                 caption=" ".join(cmt[1:]),
@@ -93,7 +93,7 @@ async def ff_mpeg_trim_cmd(event):
         logger.info(o)
         try:
             c_time = time.time()
-            await borg.send_file(
+            await client.send_file(
                 event.chat_id,
                 o,
                 caption=" ".join(cmt[1:]),
@@ -184,3 +184,10 @@ async def cult_small_video(video_file, output_directory, start_time, end_time):
         logger.info(e_response)
         logger.info(t_response)
         return None
+
+
+HELPER.update({"ff_mpeg": "\
+**Available commands in ff_mpeg module:**\
+\n`.ffmpegsave`\
+\n`.ffmpegtrim`\
+"})

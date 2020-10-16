@@ -4,7 +4,7 @@ from var import Var
 from pathlib import Path
 from userbot.uniborgConfig import Config
 from userbot import LOAD_PLUG
-from userbot import CMD_LIST
+from userbot import CMD_LIST, HELPER
 import re
 import logging
 import inspect
@@ -34,7 +34,7 @@ def command(**args):
             pass
 
         reg = re.compile('(.*)')
-        if not pattern == None:
+        if pattern is not None:
             try:
                 cmd = re.search(reg, pattern)
                 try:
@@ -103,10 +103,12 @@ def load_module(shortname):
         mod.Var = Var
         mod.command = command
         mod.logger = logging.getLogger(shortname)
-        # support for uniborg
+        # support for uniborg based clients
         sys.modules["uniborg.util"] = userbot.utils
         mod.Config = Config
-        mod.borg = bot
+        mod.client = bot
+        mod.events = admin_cmd
+        mod.HELPER = HELPER
         # support for paperplaneextended
         sys.modules["userbot.events"] = userbot.utils
         spec.loader.exec_module(mod)

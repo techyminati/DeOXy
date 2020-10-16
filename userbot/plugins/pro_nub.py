@@ -7,17 +7,13 @@
 
 @arnab431"""
 
-from telethon import events
 
 import asyncio
 
-from userbot.utils import admin_cmd
-from global_variables_sql import SYNTAX, MODULE_LIST
-
-MODULE_LIST.append("pro_noob")
 
 
-@borg.on(admin_cmd("(.*)"))
+
+@client.on(events(pattern="(.*)"))
 
 async def _(event):
 
@@ -54,7 +50,7 @@ async def _(event):
             await event.edit(animation_chars[i % 9])
             await asyncio.sleep(animation_interval)
             
-@borg.on(admin_cmd("(.*)"))
+@client.on(events(pattern="(.*)"))
 
 async def _(event):
 
@@ -91,7 +87,7 @@ async def _(event):
             await event.edit(animation_chars[i % 9])
             await asyncio.sleep(animation_interval) 
             
-@borg.on(admin_cmd("(.*)"))
+@client.on(events(pattern="(.*)"))
 
 async def _(event):
 
@@ -127,7 +123,7 @@ async def _(event):
             await event.edit(animation_chars[i % 8])
             await asyncio.sleep(animation_interval)  
             
-@borg.on(admin_cmd("(.*)"))
+@client.on(events(pattern="(.*)"))
 
 async def _(event):
 
@@ -163,7 +159,7 @@ async def _(event):
             await event.edit(animation_chars[i % 8])
             await asyncio.sleep(animation_interval)                                
 
-SYNTAX.update({
+HELPER.update({
     "pro_noob": "\
 **Available commands in pro_noob**\
 \n\n`.younoob`\

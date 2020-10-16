@@ -4,13 +4,11 @@
 #Sorry Priyam, Don't take it seriously XD
 #Syntax .gei"""
 
-from telethon import events
 
 import asyncio
 
-from userbot.utils import admin_cmd
 
-@borg.on(admin_cmd("(.*)"))
+@client.on(events(pattern="(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -30,3 +28,9 @@ async def _(event):
         	
             await asyncio.sleep(animation_interval)
             await event.edit(animation_chars[i % 4])
+
+
+HELPER.update({"gei": "\
+**Available commands in gei module:**\
+\n`.<text>`\
+"})

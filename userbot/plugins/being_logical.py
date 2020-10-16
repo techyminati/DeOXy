@@ -5,7 +5,6 @@ Syntax: .logic
 Quotes credits: Being logical Channel
 """
 
-from telethon import events
 
 import asyncio
 
@@ -14,12 +13,10 @@ import os
 import sys
 
 import random
-from global_variables_sql import SYNTAX, MODULE_LIST
-
-MODULE_LIST.append("logic")
 
 
-@borg.on(events.NewMessage(pattern=r"\.logic", outgoing=True))
+
+@client.on(events(pattern="logic"))
 
 async def _(event):
 
@@ -423,7 +420,7 @@ async def _(event):
 
     
 
-SYNTAX.update({
+HELPER.update({
     "logic": "\
 **Requested module --> Being Logical ;-)**\
 \n\n• `.bello`\

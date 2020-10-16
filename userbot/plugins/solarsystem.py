@@ -5,9 +5,8 @@ Available Commands:
 .emoji :/
 .emoji -_-"""
 
-from telethon import events
 import asyncio
-@borg.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
+@client.on(events(pattern="(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -166,3 +165,9 @@ async def _(event):
         for i in animation_ttl:
             await asyncio.sleep(animation_interval)
             await event.edit(animation_chars[i % 549755813888])
+
+
+HELPER.update({"solarsystem": "\
+**Available commands in solarsystem module:**\
+\n`.<text>`\
+"})

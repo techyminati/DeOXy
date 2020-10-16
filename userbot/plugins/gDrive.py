@@ -8,15 +8,14 @@ import os
 import time
 import math
 from datetime import datetime
-from telethon import events
-from uniborg.util import admin_cmd, progress
-#
+from uniborg.util import progress
+
 from googleapiclient.discovery import build
 from apiclient.http import MediaFileUpload
 from apiclient.errors import ResumableUploadError
 from oauth2client.client import OAuth2WebServerFlow
 from oauth2client.file import Storage
-from oauth2client import file, client, tools
+from oauth2client import file, tools
 from mimetypes import guess_type
 import httplib2
 
@@ -34,7 +33,7 @@ parent_id = Var.GDRIVE_FOLDER_ID
 G_DRIVE_DIR_MIME_TYPE = "application/vnd.google-apps.folder"
 
 
-@command(pattern="^.ugdrive ?(.*)")
+@client.on(events(pattern="ugdrive ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -85,7 +84,7 @@ async def _(event):
             http = authorize(G_DRIVE_TOKEN_FILE, storage)
             f = open(G_DRIVE_TOKEN_FILE, "r")
             token_file_data = f.read()
-            await event.client.send_message(int(Var.PRIVATE_GROUP_ID), "Please add Var AUTH_TOKEN_DATA with the following as the value:\n\n`" + token_file_data + "`")
+            await client.send_message(int(Var.PRIVATE_GROUP_ID), "Please add Var AUTH_TOKEN_DATA with the following as the value:\n\n`" + token_file_data + "`")
         # Authorize, get file parameters, upload file and print out result URL for download
         http = authorize(G_DRIVE_TOKEN_FILE, None)
         file_name, mime_type = file_ops(required_file_name)
@@ -99,7 +98,7 @@ async def _(event):
     else:
         await mone.edit("File Not found in local server. Give me a file path :((")
 
-@command(pattern="^.drivesch ?(.*)")
+@client.on(events(pattern="drivesch ?(.*)"))
 async def sch(event):
     if event.fwd_from:
         return
@@ -114,7 +113,7 @@ async def sch(event):
         http = authorize(G_DRIVE_TOKEN_FILE, storage)
         f = open(G_DRIVE_TOKEN_FILE, "r")
         token_file_data = f.read()
-        await event.client.send_message(int(Var.PRIVATE_GROUP_ID), "Please add Var AUTH_TOKEN_DATA with the following as the value:\n\n`" + token_file_data + "`")
+        await client.send_message(int(Var.PRIVATE_GROUP_ID), "Please add Var AUTH_TOKEN_DATA with the following as the value:\n\n`" + token_file_data + "`")
         # Authorize, get file parameters, upload file and print out result URL for download
     http = authorize(G_DRIVE_TOKEN_FILE, None)    
     input_str = event.pattern_match.group(1).strip()
@@ -149,7 +148,7 @@ async def gsearch(http,query,filename):
     return msg        
 
 
-@command(pattern="^.gdrivedir ?(.*)")
+@client.on(events(pattern="gdrivedir ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -173,7 +172,7 @@ async def _(event):
         http = authorize(G_DRIVE_TOKEN_FILE, storage)
         f = open(G_DRIVE_TOKEN_FILE, "r")
         token_file_data = f.read()
-        await event.client.send_message(int(Var.PRIVATE_GROUP_ID), "Please add Var AUTH_TOKEN_DATA with the following as the value:\n\n`" + token_file_data + "`")
+        await client.send_message(int(Var.PRIVATE_GROUP_ID), "Please add Var AUTH_TOKEN_DATA with the following as the value:\n\n`" + token_file_data + "`")
         # Authorize, get file parameters, upload file and print out result URL for download
         # first, create a sub-directory
         await event.edit("Uploading `{}` to G-Drive...".format(input_str))
@@ -243,7 +242,7 @@ async def create_token_file(token_file, event):
     authorize_url = flow.step1_get_authorize_url()
     async with bot.conversation(int(Var.PRIVATE_GROUP_ID)) as conv:
         await conv.send_message(f"Go to the following link in your browser: {authorize_url} and reply the code")
-        response = conv.wait_event(events.NewMessage(
+        response = conv.wait_event(events(
             outgoing=True,
             chats=int(Var.PRIVATE_GROUP_ID)
         ))
@@ -318,9 +317,18 @@ async def upload_file(http, file_path, file_name, mime_type, event, parent_id):
     return download_url
 
 
-@command(pattern="^.gfolder ?(.*)")
+@client.on(events(pattern="gfolder ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
     folder_link = "https://drive.google.com/folderview?id="+parent_id    
     await event.edit("`Here is Your G-Drive Folder link : `\n"+folder_link)
+
+
+HELPER.update({"gDrive": "\
+**Available commands in gDrive module:**\
+\n`.ugdrive <text>`\
+\n`.drivesch <text>`\
+\n`.gdrivedir <text>`\
+\n`.gfolder <text>`\
+"})

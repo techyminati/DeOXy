@@ -2,8 +2,6 @@
 #By Priyam Kalra
 #Ported To X-tra MOD v2.0 By MrMobTech
 
-from telethon import events
-from uniborg.util import admin_cmd
 import asyncio
 import os
 from time import sleep
@@ -11,7 +9,7 @@ from telethon.tl import functions, types
 from PIL import Image, ImageDraw, ImageFont
 
 sticker = f"{Config.TMP_DOWNLOAD_DIRECTORY}/quotify.webp"
-@borg.on(admin_cmd(pattern="quotify ?(.*)"))
+@client.on(events(pattern="quotify ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -20,7 +18,7 @@ async def _(event):
     get_sticker(string)
     sleep(1)
     await event.edit(result)
-    await borg.send_file(event.chat_id, sticker)
+    await client.send_file(event.chat_id, sticker)
     os.remove(sticker)
     sleep(5)
     await event.delete()
@@ -57,3 +55,9 @@ def get_sticker(text):
             cords_x += len(char)+spacing
         cords_y += len(char) + spacing
     img.save(sticker, "WEBP")
+
+
+HELPER.update({"quotify": "\
+**Available commands in quotify module:**\
+\n`.quotify <text>`\
+"})
