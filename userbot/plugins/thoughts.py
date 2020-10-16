@@ -193,8 +193,10 @@ async def _(event):
 
 
 HELPER.update({
-    "meme": "\
+    "thoughts": "\
 **Requested Module --> Thoughts Module**\
 \n\n**Detailed usage of fuction(s):**\
 \n\n```.thoughts```\
 \nUsage: Brings out random thoughts.\
+"
+}) 
