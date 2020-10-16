@@ -109,3 +109,5 @@ HELPER.update({
 \n\n**Detailed usage of fuction(s):**\
 \n\n```.jainder```\
 \nUsage: Pulls out random jainder.\
+"
+}) 
