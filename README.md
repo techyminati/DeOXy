@@ -3,11 +3,11 @@
 
  Thanks To  [X-tra-Telegram](https://github.com/Dark-Princ3/X-tra-Telegram) // [The-TG-Bot](https://github.com/justaprudev/The-TG-Bot) \\\\ [HardcoreUserbot](https://github.com/Hack12R/HardcoreUserbot) For helping me out with the codes. Thank You Buggies ;-)
 
- # WARNING!! THIS USERBOT IS WIP
+ # WARNING!! THIS USERBOT IS WIP and Perticularly this branch is very unstable.
 
  ### DECLARATION/LICENCE AGREEMENT
 
-I herby confirm that the base of this userbot is adapted from X-tra-Telegram and The-TG-Bot and I am making a complete custom userbot using it. I Credit to all the Respective Develelopers for creating the base modules. This userbot is currently in ALPHA stage and i don't mind creating a custom fork of my repository. I will takedown the repository if the credits of the developers are removed. use this userbot at your Own RISK
+I herby confirm that the base of this userbot is adapted from X-tra-Telegram and The-TG-Bot and I am making a complete custom userbot using it. I Credit to all the Respective Developers for creating the base modules. This userbot is currently in ALPHA stage and i don't mind creating a custom fork of my repository. I will takedown the repository if the credits of the developers are removed. use this userbot at your Own RISK
 
 and don't blame me for spammers. the modules in this userbot are made for fun purposes and at the same time they are very Powerful. So, don't misuse.
 
